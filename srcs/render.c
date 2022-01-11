@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2021/12/06 20:04:35 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/11 11:46:21 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,22 @@ void	draw_ray(PARAM *P, DDA D)
 
 int	draw_2Dsquare(PARAM *P, int x, int y, IMG img)
 {
-
 	for (int row = 0; row < BLOCK_SIZE; row++)
 		for (int col = 0; col < BLOCK_SIZE; col++)
 			P->buf2D[y * BLOCK_SIZE + row][x * BLOCK_SIZE + col] = img.addr[row * img.linesize / sizeof(int) + col];
 	return (1);
 }
 
-int	draw_2Dmap(PARAM *P)
+void	draw_2Dmap(PARAM *P)
 {
 	for (int y=0; y < mapHeight; y++)
 		for (int x=0; x < mapWidth; x++)
 			if (draw_2Dsquare(P, x, y, P->grid) && worldMap[y][x])
 				draw_2Dsquare(P, x, y, P->block);
 
-
-	return (0);
 }
 
-int	draw_dir(PARAM *P)
+void	draw_dir(PARAM *P)
 {
 	double dX, dY; dX=0, dY=0;
 
@@ -83,21 +80,18 @@ int	draw_dir(PARAM *P)
 		dX += P->dir.x;
 		dY += P->dir.y;
 		P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Red;
-		// mlx_put_image_to_window(P->mlx, P->win, P->pixel.yellow.img, P->pos.x + dX,  P->pos.y + dY);
 	}
-	return (0);
 }
 
-int	draw_perpdir(PARAM *P, VECTOR perp_dir)
+void	draw_perpdir(PARAM *P, VECTOR perp_dir)
 {
 	for (double x = P->pos.x - perp_dir.x * 30, y = P->pos.y - perp_dir.y * 30; \
-					x < P-> pos.x + perp_dir.x * 30; \
-					x += perp_dir.x, y+= perp_dir.y)
+				x < P-> pos.x + perp_dir.x * 30; \
+				x += perp_dir.x, y+= perp_dir.y)
 			P->buf2D[(int)y][(int)x] = RGB_Yellow;
-	return (0);
 }
 
-int	draw_2Dplayer(PARAM *P)
+void	draw_2Dplayer(PARAM *P)
 {
 
 	if (worldMap[(int)((int)P->pos.y / BLOCK_SIZE)][(int)((int)P->pos.x / BLOCK_SIZE)] == 0)
@@ -109,21 +103,23 @@ int	draw_2Dplayer(PARAM *P)
 			for (int x = (y - 4); x <= -(y - 4); x++)
 				P->buf2D[(int)(P->pos.y + (y))][(int)(P->pos.x + (x))] = RGB_Red;
 	}
-
-	return (0);
 }
 
 
-//FIXME: 벽과 정면일때 (perp), 벽 높이가 고정 : (385, 300) to (480, xxx) 의 거리가 (180)이 나오넹.
-//FIXME: 멀리있을때, 왜곡이 심하고 비율이 이상함..
-//FIXME: border를 지나는 경우 광선이 벽뚫음
+void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P)
+{
+	for (int x2 = x; x2 < x + SCALE; x2++)
+		for (int y = drawStart; y <= drawEnd; y++)
+			P->buf3D[y][x2] = color;
+}
+
+//NOTE: border를 지나는 경우
 int render(PARAM *P)
 {
-	// printf("pos = (%lf, %lf)\n", P->pos.x, P->pos.y);
 	mlx_clear_window(P->mlx, P->win);
 	draw_2Dmap(P);
 	draw_2Dplayer(P);
-	check_hit(P);
+	raycasting(P);
 
 	draw_dir(P);
 	buffer_to_img(P, P->buf2D, P->img2D, screenWidth, screenHeight);

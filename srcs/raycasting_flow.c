@@ -9,7 +9,7 @@
 
 
 
-VECTOR	check_hit(PARAM *P)
+VECTOR	raycasting(PARAM *P)
 {
 	VECTOR	raydir;
 	VECTOR	hit;			// which box of the map we're in

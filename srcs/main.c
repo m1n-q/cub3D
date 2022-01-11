@@ -1,5 +1,16 @@
-#include "cub3D.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
+/*   Updated: 2022/01/11 11:26:46 by mishin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "cub3D.h"
 
 int worldMap[mapWidth][mapHeight]=
 {
@@ -30,29 +41,22 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-
-
-
 int main(int argc, char *argv[])
 {
 	PARAM P;
 
-	int w = screenWidth;
-	int h = screenHeight;
 	P.pos.x = 20 * BLOCK_SIZE;
 	P.pos.y = 15 * BLOCK_SIZE;
 	P.dir.x = 0;
 	P.dir.y = 1;
 
-
   P.mlx = mlx_init();
-	P.win = mlx_new_window(P.mlx, w * 2, h, "Raycaster");
+	P.win = mlx_new_window(P.mlx, screenWidth * 2, screenHeight, "Raycaster");
   load_image(&P);
   init_buffer(&P);
   init_texture(&P);
   render(&P);
-	// mlx_hook(P.win, MotionNotify, 0, movecur, &P);
-	mlx_hook(P.win, KeyPress, 0, move, &P);
+	mlx_hook(P.win, KeyPress, 0, keymap, &P);
   mlx_loop_hook(P.mlx, render , &P);
 	mlx_loop(P.mlx);
 }

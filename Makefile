@@ -9,12 +9,12 @@ INC_DIR = incs
 SRC_DIR = srcs
 OBJS =  ${SRCS:.c=.o}
 SRCS =  $(SRC_DIR)/main.c \
-		$(SRC_DIR)/draw.c \
+		$(SRC_DIR)/render.c \
 		$(SRC_DIR)/utils.c \
 		$(SRC_DIR)/hook.c \
+		$(SRC_DIR)/DDA.c \
 		$(SRC_DIR)/raycasting.c \
 		$(SRC_DIR)/screenbuffer.c \
-		$(SRC_DIR)/load.c \
 		$(SRC_DIR)/image.c \
 		$(SRC_DIR)/texture.c
 
