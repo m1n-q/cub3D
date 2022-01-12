@@ -1,21 +1,21 @@
-# cub3D
+## Issue Closed
+
+- ###### 벽에 근접, 사선방향으로 바라보면 텍스쳐가 깨짐
+
+	![image](/Users/shin/Desktop/Git/cub3D/image.png)![]()
+
+	- <u>drawing length > **screenHeight**</u> 인 경우인 듯.
 
 ------
 
 
 
-https://lodev.org/cgtutor/raycasting.html
 
-> 기본적인 raycasting 개념은 lodev를 참고했습니다.
->
-> 튜토리얼은 벡터 기반이나, 각도 및 벡터를 혼용하는 방식으로 구현했습니다!
->
-> 따라서 해당 튜토리얼의 코드보다는 raycasting의 원리와 DDA 알고리즘 개념 정도만 확인하셔도 될 듯 합니다.
+
+![image (1)](/Users/shin/Desktop/Git/cub3D/image (1)-1973187.png)
 
 
 
-------
+- 기존 **start y**, **end y** 가 화면범위 밖일 경우 각 <u>0, screenHeight 으로 trunc</u> 해주었으나, draw length, start, end y 를 이용해 texture 의 포지션을 계산하기 때문에 적합하지 않음
+	- trunc 없이 **raw**한 y 의 범위를 texture 를 계산에 이용하되, **이미지버퍼**에 넣어줄때엔 **화면범위 밖의 y 는 스킵**하도록 처리
 
-1. 2D맵과 3D맵을 간단하게만 구현해놓은 상태입니다. 미흡한 충돌 감지, 일부 텍스쳐의 깨짐 등 자잘한 오류가 있습니다.
-2. Norminette 는 아직 맞추어지지 않았습니다. 25줄 이하로 함수 쪼개는 정도만 살짝 해보았는데, 거의 맞추어지지 않은 상태로 보시면 될 것 같아요 ㅎㅎ..ㅠㅠ
-3. 맵, configure 파싱은 전혀 구현되지 않은 상태입니다!

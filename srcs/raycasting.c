@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/11 11:32:39 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/12 16:30:49 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,8 @@ LINEDRAW	get_draw_info(double perp_dist)
 	LINEDRAW	draw;
 
 	draw.length		= (int)(screenHeight * sqrt(texHeight)) / perp_dist;
-	draw.start_y	= -draw.length / 2 + screenHeight / 2;
-	draw.end_y		= draw.length / 2 + screenHeight / 2;
-
-	if (draw.start_y < 0)			draw.start_y	= 0;
-	if (draw.end_y >= screenHeight)	draw.end_y		= screenHeight - 1;
+	draw.start_y	= screenHeight / 2 - draw.length / 2;
+	draw.end_y		= screenHeight / 2 + draw.length / 2;
 
 	return (draw);
 }
