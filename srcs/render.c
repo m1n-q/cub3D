@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/12 17:31:02 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/12 17:52:14 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,14 +119,14 @@ void	draw_2DCircle(PARAM *P)
 
 			newdir.x = cos(r) * P->dir.x - sin(r) * P->dir.y;
 			newdir.y = sin(r) * P->dir.x + cos(r) * P->dir.y;
-			for (int linelength = 0; linelength < 25; linelength++)
+			for (int linelength = 0; linelength < collisionRange; linelength++)
 			{
 				dX += newdir.x;
 				dY += newdir.y;
 				if (worldMap[(int)((int)(P->pos.y + dY) / BLOCK_SIZE)][(int)((int)(P->pos.x + dX) / BLOCK_SIZE)])
 					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Yellow;
 				else
-					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Blue;
+					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_White;
 			}
 		}
 	}
