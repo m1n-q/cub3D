@@ -1,21 +1,11 @@
 # cub3D
 
-------
+#### Issues
 
-
-
-https://lodev.org/cgtutor/raycasting.html
-
-> 기본적인 raycasting 개념은 lodev를 참고했습니다.
->
-> 튜토리얼은 벡터 기반이나, 각도 및 벡터를 혼용하는 방식으로 구현했습니다!
->
-> 따라서 해당 튜토리얼의 코드보다는 raycasting의 원리와 DDA 알고리즘 개념 정도만 확인하셔도 될 듯 합니다.
-
-
+1. ~~texture in front of a player~~
+2. ~~collision detection~~ (temporary)
+3. perspective
 
 ------
 
-1. 2D맵과 3D맵을 간단하게만 구현해놓은 상태입니다. 미흡한 충돌 감지, 일부 텍스쳐의 깨짐 등 자잘한 오류가 있습니다.
-2. Norminette 는 아직 맞추어지지 않았습니다. 25줄 이하로 함수 쪼개는 정도만 살짝 해보았는데, 거의 맞추어지지 않은 상태로 보시면 될 것 같아요 ㅎㅎ..ㅠㅠ
-3. 맵, configure 파싱은 전혀 구현되지 않은 상태입니다!
+
