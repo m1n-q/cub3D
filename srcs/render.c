@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/12 17:15:19 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/12 17:31:02 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,10 @@ void	draw_2DCircle(PARAM *P)
 			{
 				dX += newdir.x;
 				dY += newdir.y;
-				P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Blue;
+				if (worldMap[(int)((int)(P->pos.y + dY) / BLOCK_SIZE)][(int)((int)(P->pos.x + dX) / BLOCK_SIZE)])
+					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Yellow;
+				else
+					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Blue;
 			}
 		}
 	}
