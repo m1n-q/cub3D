@@ -2,7 +2,7 @@
 
 - ###### 벽에 근접, 사선방향으로 바라보면 텍스쳐가 깨짐
 
-	![image](/Users/shin/Desktop/Git/cub3D/image.png)![]()
+	![image](https://user-images.githubusercontent.com/68891716/149085919-8413facd-2ee3-4d8f-be37-c9a852d38d8f.png)
 
 	- <u>drawing length > **screenHeight**</u> 인 경우인 듯.
 
@@ -12,7 +12,7 @@
 
 
 
-![image (1)](/Users/shin/Desktop/Git/cub3D/image (1)-1973187.png)
+![image (1)](https://user-images.githubusercontent.com/68891716/149085929-db4b3818-7d9f-4778-ac08-45058e8ca3d5.png)
 
 
 
