@@ -1,6 +1,6 @@
 ## Add Sliding Effect
 
-![2022-01-13 16 21 20](https://user-images.githubusercontent.com/68891716/149284222-7197eaf2-3898-4cb9-be0f-3b0494035798.gif)
+![2022-01-13 16 26 14](https://user-images.githubusercontent.com/68891716/149284666-c5510919-49a0-49d3-883a-c7194d83d68c.gif)
 
 
 ------
