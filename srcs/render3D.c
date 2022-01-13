@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 19:12:54 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:17:32 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int render(PARAM *P)	//Top level
 	draw_dir(P);
 	buffer_to_img(P->buf2D, P->img2D, screenWidth, screenHeight);
 	buffer_to_img(P->buf3D, P->img3D, screenWidth, screenHeight);
-	clear_buffer(P->buf2D);
-	clear_buffer(P->buf3D);
+	// clear_buffer(P->buf2D);
+	// clear_buffer(P->buf3D);	//NOTE: is needed?
 	mlx_put_image_to_window(P->mlx, P->win, P->img2D.img, 0, 0);
 	mlx_put_image_to_window(P->mlx, P->win, P->img3D.img, screenWidth, 0);
 
