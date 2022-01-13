@@ -1,12 +1,16 @@
 ## Issue
 
 [#1] (https://github.com/m1n-q/cub3D/issues/1)
-
-======
+  
+  
+  
+------
 ### Add Sliding Effect
 
 <img src="https://user-images.githubusercontent.com/68891716/149284666-c5510919-49a0-49d3-883a-c7194d83d68c.gif"  width="500" height="500"/>
-======
+------
+  
+  
 #### Issue Closed
 
 1. ~~texture in front of a player~~
