@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/12 17:51:01 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 16:07:09 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,46 @@ int	move(int keycode, PARAM *P)
 	if (keycode == KEY_W)
 	{
 		P->pos.x += P->dir.x * amount;
+		if (checkCollision(P, collisionRange))
+			P->pos = oldpos;
+		oldpos = P->pos;
 		P->pos.y += P->dir.y * amount;
+		if (checkCollision(P, collisionRange))
+			P->pos = oldpos;
 	}
 	else if (keycode == KEY_S)
 	{
  		P->pos.x -= P->dir.x * amount;
+		if (checkCollision(P, collisionRange))
+			P->pos = oldpos;
+		oldpos = P->pos;
 		P->pos.y -= P->dir.y * amount;
+		if (checkCollision(P, collisionRange))
+			P->pos = oldpos;
 	}
 	else if (keycode == KEY_A) //dir 의 -90도 회전방향
 	{
 		P->pos.x += (cos(-PI / 2) * P->dir.x - sin(-PI / 2) * P->dir.y) * amount;
+		if (checkCollision(P, collisionRange))
+			P->pos = oldpos;
+		oldpos = P->pos;
 		P->pos.y += (sin(-PI / 2) * P->dir.x + cos(-PI / 2) * P->dir.y) * amount;
+		if (checkCollision(P, collisionRange))
+			P->pos = oldpos;
 	}
 	else if (keycode == KEY_D) //dir 의 +90도 회전방향
 	{
 		P->pos.x += (cos(PI / 2) * P->dir.x - sin(PI / 2) * P->dir.y) * amount;
+		if (checkCollision(P, collisionRange))
+			P->pos = oldpos;
+		oldpos = P->pos;
 		P->pos.y += (sin(PI / 2) * P->dir.x + cos(PI / 2) * P->dir.y) * amount;
+		if (checkCollision(P, collisionRange))
+			P->pos = oldpos;
 	}
 
-	if (checkCollision(P, collisionRange))
-		P->pos = oldpos;
+
+
 
 	// if (worldMap[(int)P->pos.y / BLOCK_SIZE][(int)P->pos.x / BLOCK_SIZE])
 
