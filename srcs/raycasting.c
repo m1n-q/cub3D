@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/12 16:30:49 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:11:29 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	get_perp_dist(PARAM *P, DDA *D)
 {
-	double	perp_dist;
 	double	perp_delta;
 	double	k;
 	VECTOR	perp_dir;

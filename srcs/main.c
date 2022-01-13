@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/11 11:26:46 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:09:53 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-int main(int argc, char *argv[])
+int main(void)//(int argc, char *argv[])
 {
 	PARAM P;
 

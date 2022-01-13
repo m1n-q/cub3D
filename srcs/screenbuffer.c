@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:16:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 19:00:01 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:11:52 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,21 +48,21 @@ void	destroy_buffer(PARAM* P)
 	free(P->buf2D);
 }
 
-void	buffer_to_img(PARAM *P, int **buffer, IMG img, int w, int h)
+void	buffer_to_img(int **buffer, IMG img, int w, int h)
 {
 	for (int y = 0; y < h; y++)
 		for (int x = 0; x < w; x++)
 			img.addr[(y * img.linesize / sizeof(int) + x)] = buffer[y][x];
 }
 
-void	clear_buffer(PARAM *P, int **buffer)
+void	clear_buffer(int **buffer)
 {
 	for (int y = 0; y < screenHeight; y++)
 		for (int x = 0; x < screenWidth; x++)
 			buffer[y][x] = 0;
 }
 
-void	clear_img(PARAM *P, IMG img)
+void	clear_img(IMG img)
 {
 	for (int y = 0; y < screenHeight; y++)
 		for (int x = 0; x < screenWidth; x++)

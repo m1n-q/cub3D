@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 18:59:02 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:12:05 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,25 @@ DDA		get_DDA_info(VECTOR pos, VECTOR dir, double r);
 void	run_DDA(DDA *D);
 
 /* render */
+int		render(PARAM *P);
+//2D
 void	draw_dir(PARAM *P);
 void	draw_perpdir(PARAM *P, VECTOR perp_dir);
 void	draw_ray(PARAM *P, DDA D);
 void	draw_2Dmap(PARAM *P);
 void	draw_2Dplayer(PARAM *P);
 void	draw_2DCircle(PARAM *P);
+
+//3D
 void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P);
 int		draw_2Dsquare(PARAM *P, int x, int y, IMG img);
-int		render(PARAM *P);
 
 /* screen buffer */
 int		init_buffer(PARAM *P);
 void	destroy_buffer(PARAM* P);
-void	buffer_to_img(PARAM *P, int **buffer, IMG img, int w, int h);
-void	clear_buffer(PARAM *P, int **buffer);
-void	clear_img(PARAM *P, IMG img);
+void	buffer_to_img(int **buffer, IMG img, int w, int h);
+void	clear_buffer(int **buffer);
+void	clear_img(IMG img);
 
 /* image */
 int		load_image(PARAM *P);

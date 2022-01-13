@@ -1,6 +1,6 @@
 NAME = cub3D
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 LIBMLX_DIR = mlx
 LIBFT_DIR = Libft
 LIBFT = Libft/libft.a
@@ -9,7 +9,8 @@ INC_DIR = incs
 SRC_DIR = srcs
 OBJS =  ${SRCS:.c=.o}
 SRCS =  $(SRC_DIR)/main.c \
-		$(SRC_DIR)/render.c \
+		$(SRC_DIR)/render2D.c \
+		$(SRC_DIR)/render3D.c \
 		$(SRC_DIR)/utils.c \
 		$(SRC_DIR)/hook.c \
 		$(SRC_DIR)/DDA.c \

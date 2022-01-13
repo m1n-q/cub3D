@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 17:21:58 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:10:35 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,10 @@ int	move(int keycode, PARAM *P)
 
 int	quit(int keycode, PARAM *P)
 {
+	if (keycode != KEY_ESC)
+		return (1);
 	mlx_destroy_window(P->mlx, P->win);
 	exit(0);
-
 	return (0);
 }
 
