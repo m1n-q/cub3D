@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 19:23:40 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:26:53 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int load_image(PARAM *P)
 	P->img2D.img = mlx_new_image(P->mlx, screenWidth, screenHeight);
 	P->img2D.addr = (int *)mlx_get_data_addr(P->img2D.img, &P->img2D.bpp, &P->img2D.linesize, &P->img2D.endian);
 
+	// for 2D map
 	P->grid.img = mlx_png_file_to_image(P->mlx, "rscs/grid20.png", &P->grid.width, &P->grid.height);
 	P->grid.addr = (int *)mlx_get_data_addr(P->grid.img, &P->grid.bpp, &P->grid.linesize, &P->grid.endian);
 
@@ -30,6 +31,7 @@ int load_image(PARAM *P)
 	P->hblock.img = mlx_png_file_to_image(P->mlx, "rscs/block_cyan.png", &P->hblock.width, &P->hblock.height);
 	P->hblock.addr = (int *)mlx_get_data_addr(P->hblock.img, &P->hblock.bpp, &P->hblock.linesize, &P->hblock.endian);
 
+	// for 3D map
 	P->wall1.img = mlx_png_file_to_image(P->mlx, "rscs/mybrick_256.png", &P->wall1.width, &P->wall1.height);
 	P->wall1.addr = (int *)mlx_get_data_addr(P->wall1.img, &P->wall1.bpp, &P->wall1.linesize, &P->wall1.endian);
 
