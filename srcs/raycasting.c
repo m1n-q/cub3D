@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 19:11:29 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 20:07:08 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ LINEDRAW	get_draw_info(double perp_dist)
 	return (draw);
 }
 
+//NOTE: BLOCK_SIZE
 int	raycasting(PARAM *P)
 {
 	DDA			D;
@@ -52,8 +53,8 @@ int	raycasting(PARAM *P)
 		run_DDA(&D);
 
 		// draw hit block on 2Dmap
-		draw_ray(P, D);
-		draw_2Dsquare(P, (int)(D.hit.x / BLOCK_SIZE), (int)(D.hit.y / BLOCK_SIZE), P->hblock);
+		// draw_ray(P, D);
+		// draw_2Dsquare(P, (int)(D.hit.x / BLOCK_SIZE), (int)(D.hit.y / BLOCK_SIZE), P->hblock);
 
 		get_perp_dist(P, &D);
 

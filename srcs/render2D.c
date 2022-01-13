@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 19:07:47 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:43:57 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	draw_ray(PARAM *P, DDA D)
 	}
 }
 
+//NOTE: BLOCK_SIZE
 int	draw_2Dsquare(PARAM *P, int x, int y, IMG img)
 {
 	for (int row = 0; row < BLOCK_SIZE; row++)
@@ -90,6 +91,7 @@ void	draw_perpdir(PARAM *P, VECTOR perp_dir)
 			P->buf2D[(int)y][(int)x] = RGB_Yellow;
 }
 
+//NOTE: BLOCK_SIZE
 void	draw_2Dplayer(PARAM *P)
 {
 
@@ -104,6 +106,7 @@ void	draw_2Dplayer(PARAM *P)
 	}
 }
 
+//NOTE: BLOCK_SIZE
 void	draw_2DCircle(PARAM *P)
 {
 

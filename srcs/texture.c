@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 19:24:10 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 20:08:00 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ VECTOR	get_texture_pos(DDA D)
 	return (texpos);
 }
 
+//NOTE: BLOCK_SIZE
 void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
 {
 	int		color;

@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 19:10:35 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:42:40 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	rotate(int keycode, PARAM *P)
 {
-	double	rot_angle = 0.2;
+	double	rot_angle;
 	double	old_dirx;
 
+	rot_angle = 0.2;
 	if (keycode == KEY_RIGHT)
 	{
 		old_dirx = P->dir.x;
@@ -34,18 +35,21 @@ int	rotate(int keycode, PARAM *P)
 
 int	checkCollision(PARAM *P, double radius)
 {
+	double	dX;
+	double	dY;
+	VECTOR	newdir;
+
 	for (double r = 0.0; r <= PI * 2 ; r += 0.03)
 	{
-		double dX = 0.0, dY = 0.0;
-		VECTOR newdir;
-
+		dX = 0.0;
+		dY = 0.0;
 		newdir.x = cos(r) * P->dir.x - sin(r) * P->dir.y;
 		newdir.y = sin(r) * P->dir.x + cos(r) * P->dir.y;
 		for (int linelength = 0; linelength < radius; linelength++)
 		{
 			dX += newdir.x;
 			dY += newdir.y;
-			if (worldMap[(int)((int)(P->pos.y + dY) / BLOCK_SIZE)][(int)((int)(P->pos.x + dX) / BLOCK_SIZE)])
+			if (worldMap[(int)((int)(P->pos.y + dY) / BLOCK_SIZE)][(int)((int)(P->pos.x + dX) / BLOCK_SIZE)])	//NOTE: BLOCK_SIZE
 				return (1);
 		}
 	}
