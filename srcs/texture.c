@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/11 11:26:12 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/12 16:48:20 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ int image_to_texture(int *texture, IMG teximg)
 	return (0);
 }
 
-//BUG: 벽에 근접, 사선방향으로 바라보면 텍스쳐가 깨짐
 VECTOR	get_texture_pos(DDA D)
 {
 	double wall_hit;
@@ -72,6 +71,11 @@ void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
 	texnum = worldMap[(int)(D.hit.y / BLOCK_SIZE)][(int)(D.hit.x / BLOCK_SIZE)] - 1;
 	for (int y = draw.start_y; y < draw.end_y; y++)
 	{
+		if (y < 0 || y >= screenHeight)
+		{
+			texpos.y += tex_stepY;
+			continue ;
+		}
 		texpos.y	= fmin(texpos.y, texHeight - 1);
 		color		= P->texture[texnum][(int)texpos.y * texHeight + (int)texpos.x];
 

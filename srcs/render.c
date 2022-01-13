@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/11 11:46:21 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/12 16:31:20 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,15 @@ void	draw_2Dplayer(PARAM *P)
 void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P)
 {
 	for (int x2 = x; x2 < x + SCALE; x2++)
+	{
 		for (int y = drawStart; y <= drawEnd; y++)
+		{
+			if (y < 0 || y >= screenHeight)
+				continue ;
 			P->buf3D[y][x2] = color;
+		}
+
+	}
 }
 
 //NOTE: border를 지나는 경우
