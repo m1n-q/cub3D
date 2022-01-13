@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 19:26:53 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 20:49:17 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,27 @@ int load_image(PARAM *P)
 	P->img2D.addr = (int *)mlx_get_data_addr(P->img2D.img, &P->img2D.bpp, &P->img2D.linesize, &P->img2D.endian);
 
 	// for 2D map
-	P->grid.img = mlx_png_file_to_image(P->mlx, "rscs/grid20.png", &P->grid.width, &P->grid.height);
+	P->grid.img = mlx_new_image(P->mlx, BLOCK_SIZE, BLOCK_SIZE);
 	P->grid.addr = (int *)mlx_get_data_addr(P->grid.img, &P->grid.bpp, &P->grid.linesize, &P->grid.endian);
 
-	P->block.img = mlx_xpm_file_to_image(P->mlx, "rscs/block_blue.xpm", &P->block.width, &P->block.height);
+	P->block.img = mlx_new_image(P->mlx, BLOCK_SIZE, BLOCK_SIZE);
 	P->block.addr = (int *)mlx_get_data_addr(P->block.img, &P->block.bpp, &P->block.linesize, &P->block.endian);
 
-	P->hblock.img = mlx_png_file_to_image(P->mlx, "rscs/block_cyan.png", &P->hblock.width, &P->hblock.height);
+	P->hblock.img = mlx_new_image(P->mlx, BLOCK_SIZE, BLOCK_SIZE);
 	P->hblock.addr = (int *)mlx_get_data_addr(P->hblock.img, &P->hblock.bpp, &P->hblock.linesize, &P->hblock.endian);
+
+	for (int x = 0; x < BLOCK_SIZE; x++)
+	{
+		for (int y = 0; y < BLOCK_SIZE; y++)
+		{
+			P->grid.addr[y * P->block.linesize / sizeof(int) + x]	= 0x000000 ;
+			P->block.addr[y * P->block.linesize / sizeof(int) + x]	= 0x5a7dbd ;
+			P->hblock.addr[y * P->hblock.linesize / sizeof(int) + x] = 0x00fdff;
+
+			if (x == 0 || y == 0 || x == BLOCK_SIZE -1 || y == BLOCK_SIZE -1)
+				P->grid.addr[y * P->block.linesize / sizeof(int) + x] = RGB_Grey;
+		}
+	}
 
 	// for 3D map
 	P->wall1.img = mlx_png_file_to_image(P->mlx, "rscs/mybrick_256.png", &P->wall1.width, &P->wall1.height);
