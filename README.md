@@ -1,3 +1,9 @@
+## Add Sliding Effect
+
+![2022-01-13 16 21 20](https://user-images.githubusercontent.com/68891716/149284222-7197eaf2-3898-4cb9-be0f-3b0494035798.gif)
+
+
+------
 ## Issue Closed
 
 - ###### 벽에 근접, 사선방향으로 바라보면 텍스쳐가 깨짐
