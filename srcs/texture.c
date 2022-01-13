@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 19:05:18 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:24:10 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 //NOTE: texture		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 int	init_texture(PARAM *P)
 {
-	int	texnum = 5;
-	P->texture = (int **)ft_calloc(texnum ,sizeof(int *));
-	for (int i = 0; i < texnum; i++)
+	P->texture = (int **)ft_calloc(texNum ,sizeof(int *));
+	for (int i = 0; i < texNum; i++)
 		P->texture[i] = ft_calloc(texHeight * texWidth, sizeof(int));
 
 	image_to_texture(P->texture[BORDER], P->wall1);
@@ -28,7 +27,19 @@ int	init_texture(PARAM *P)
 		for (int y = 0; y < texHeight; y++)
 			P->texture[4][texWidth * y + x] = 128 + 256 * 128 + 65536 * 128; //flat grey texture
 
+	mlx_destroy_image(P->mlx, P->wall1.img);
+	mlx_destroy_image(P->mlx, P->wall2.img);
+	mlx_destroy_image(P->mlx, P->wall3.img);
+	mlx_destroy_image(P->mlx, P->wall4.img);
+
 	return (0);
+}
+
+void	destroy_texture(PARAM *P)
+{
+	for (int i = 0; i < texNum; i++)
+		free(P->texture[i]);
+	free(P->texture);
 }
 
 int image_to_texture(int *texture, IMG teximg)
@@ -89,8 +100,3 @@ void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
 	}
 }
 
-//TODO: free(P->texture);
-void	destroy_texture(PARAM *P, size_t idx)
-{
-	free(P->texture[idx]);
-}

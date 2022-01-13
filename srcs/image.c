@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 18:55:20 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:23:40 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,3 @@ int load_image(PARAM *P)
 	return (0);
 }
 
-int destroy_image(PARAM *P)
-{
-	mlx_destroy_image(P->mlx, P->img3D.img);
-	mlx_destroy_image(P->mlx, P->img2D.img);
-	mlx_destroy_image(P->mlx, P->grid.img);
-	mlx_destroy_image(P->mlx, P->block.img);
-	mlx_destroy_image(P->mlx, P->hblock.img);
-	mlx_destroy_image(P->mlx, P->wall1.img);
-	mlx_destroy_image(P->mlx, P->wall2.img);
-	mlx_destroy_image(P->mlx, P->wall3.img);
-	mlx_destroy_image(P->mlx, P->wall4.img);
-
-	return (0);
-}
