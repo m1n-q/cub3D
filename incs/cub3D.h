@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 18:46:41 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 18:59:02 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ int		render(PARAM *P);
 
 /* screen buffer */
 int		init_buffer(PARAM *P);
+void	destroy_buffer(PARAM* P);
 void	buffer_to_img(PARAM *P, int **buffer, IMG img, int w, int h);
 void	clear_buffer(PARAM *P, int **buffer);
 void	clear_img(PARAM *P, IMG img);
-void	destroy_buffer(PARAM* P);
 
 /* image */
 int		load_image(PARAM *P);
@@ -68,6 +68,7 @@ int		destroy_image(PARAM *P);
 
 /* texture */
 int		init_texture(PARAM *P);
+void	destroy_texture(PARAM *P, size_t idx);
 int		image_to_texture(int *texture, IMG teximg);
 VECTOR	get_texture_pos(DDA D);
 void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw);

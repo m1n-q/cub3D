@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 15:43:34 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:02:22 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,12 @@ int	draw_2Dsquare(PARAM *P, int x, int y, IMG img)
 	return (1);
 }
 
-
-
 void	draw_2Dmap(PARAM *P)
 {
 	for (int y=0; y < mapHeight; y++)
 		for (int x=0; x < mapWidth; x++)
 			if (draw_2Dsquare(P, x, y, P->grid) && worldMap[y][x])
 				draw_2Dsquare(P, x, y, P->block);
-
 }
 
 void	draw_dir(PARAM *P)
@@ -132,7 +129,6 @@ void	draw_2DCircle(PARAM *P)
 	}
 }
 
-
 void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P)
 {
 	for (int x2 = x; x2 < x + SCALE; x2++)
@@ -164,11 +160,5 @@ int render(PARAM *P)
 	mlx_put_image_to_window(P->mlx, P->win, P->img2D.img, 0, 0);
 	mlx_put_image_to_window(P->mlx, P->win, P->img3D.img, screenWidth, 0);
 
-	// test wall texture
-	// for (int row = 0; row < texWidth; row++)
-	// 	for (int col = 0; col < texWidth; col++)
-	// 		P->buf2D[row][col] = P->texture[0][row * texWidth + col];
-	// buffer_to_img(P, P->buf2D, P->img2D, texWidth, texHeight);
-  	// mlx_put_image_to_window(P->mlx, P->win, P->img2D.img, 0, 0);
 	return (0);
 }

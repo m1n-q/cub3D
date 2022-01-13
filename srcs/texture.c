@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 18:55:33 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 18:59:26 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,10 @@ void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
 
 		texpos.y += tex_stepY;
 	}
+}
+
+//TODO: free(P->texture);
+void	destroy_texture(PARAM *P, size_t idx)
+{
+	free(P->texture[idx]);
 }
