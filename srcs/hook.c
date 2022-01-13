@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 17:18:35 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 17:21:58 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ int	move(int keycode, PARAM *P)
  		movedir.x = -P->dir.x;
 		movedir.y = -P->dir.y;
 	}
-	else if (keycode == KEY_A) //dir 의 -90도 회전방향
+	else if (keycode == KEY_A)
 	{
 		movedir.x = (cos(-PI / 2) * P->dir.x - sin(-PI / 2) * P->dir.y);
 		movedir.y = (sin(-PI / 2) * P->dir.x + cos(-PI / 2) * P->dir.y);
 	}
-	else if (keycode == KEY_D) //dir 의 +90도 회전방향
+	else if (keycode == KEY_D)
 	{
 		movedir.x = (cos(PI / 2) * P->dir.x - sin(PI / 2) * P->dir.y);
 		movedir.y = (sin(PI / 2) * P->dir.x + cos(PI / 2) * P->dir.y);
@@ -97,7 +97,7 @@ int	quit(int keycode, PARAM *P)
 	mlx_destroy_window(P->mlx, P->win);
 	exit(0);
 
-	return (0);	//NOREACH
+	return (0);
 }
 
 int	keymap(int keycode, PARAM *P)

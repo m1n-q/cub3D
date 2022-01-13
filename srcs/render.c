@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 17:18:45 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 17:22:53 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,11 +163,5 @@ int render(PARAM *P)
 	mlx_put_image_to_window(P->mlx, P->win, P->img2D.img, 0, 0);
 	mlx_put_image_to_window(P->mlx, P->win, P->img3D.img, screenWidth, 0);
 
-	// test wall texture
-	// for (int row = 0; row < texWidth; row++)
-	// 	for (int col = 0; col < texWidth; col++)
-	// 		P->buf2D[row][col] = P->texture[0][row * texWidth + col];
-	// buffer_to_img(P, P->buf2D, P->img2D, texWidth, texHeight);
-  	// mlx_put_image_to_window(P->mlx, P->win, P->img2D.img, 0, 0);
 	return (0);
 }
