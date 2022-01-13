@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/12 16:31:20 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 15:43:34 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	draw_2Dsquare(PARAM *P, int x, int y, IMG img)
 	return (1);
 }
 
+
+
 void	draw_2Dmap(PARAM *P)
 {
 	for (int y=0; y < mapHeight; y++)
@@ -105,6 +107,31 @@ void	draw_2Dplayer(PARAM *P)
 	}
 }
 
+void	draw_2DCircle(PARAM *P)
+{
+
+	if (worldMap[(int)((int)P->pos.y / BLOCK_SIZE)][(int)((int)P->pos.x / BLOCK_SIZE)] == 0)
+	{
+		for (double r = 0.0; r <= PI * 2 ; r += 0.03)
+		{
+			double dX = 0.0, dY = 0.0;
+			VECTOR newdir;
+
+			newdir.x = cos(r) * P->dir.x - sin(r) * P->dir.y;
+			newdir.y = sin(r) * P->dir.x + cos(r) * P->dir.y;
+			for (int linelength = 0; linelength < collisionRange; linelength++)
+			{
+				dX += newdir.x;
+				dY += newdir.y;
+				if (worldMap[(int)((int)(P->pos.y + dY) / BLOCK_SIZE)][(int)((int)(P->pos.x + dX) / BLOCK_SIZE)])
+					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Yellow;
+				else
+					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_White;
+			}
+		}
+	}
+}
+
 
 void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P)
 {
@@ -126,6 +153,7 @@ int render(PARAM *P)
 	mlx_clear_window(P->mlx, P->win);
 	draw_2Dmap(P);
 	draw_2Dplayer(P);
+	draw_2DCircle(P);
 	raycasting(P);
 
 	draw_dir(P);

@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:37:02 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/11 11:38:05 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/12 17:55:33 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define BLOCK_SIZE		(screenWidth / mapWidth)
 # define NUM_RAYS		screenWidth
 # define SCALE			(screenWidth / NUM_RAYS)
-
+# define collisionRange	5
 # define texWidth		256
 # define texHeight		256
 

@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/11 11:45:34 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/12 17:51:01 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,34 @@ int	rotate(int keycode, PARAM *P)
 }
 
 
+
+//TODO: 충돌감지 원
+int	checkCollision(PARAM *P, double radius)
+{
+	for (double r = 0.0; r <= PI * 2 ; r += 0.03)
+	{
+		double dX = 0.0, dY = 0.0;
+		VECTOR newdir;
+
+		newdir.x = cos(r) * P->dir.x - sin(r) * P->dir.y;
+		newdir.y = sin(r) * P->dir.x + cos(r) * P->dir.y;
+		for (int linelength = 0; linelength < radius; linelength++)
+		{
+			dX += newdir.x;
+			dY += newdir.y;
+			if (worldMap[(int)((int)(P->pos.y + dY) / BLOCK_SIZE)][(int)((int)(P->pos.x + dX) / BLOCK_SIZE)])
+				return (1);
+		}
+	}
+	return (0);
+}
+
 //NOTE: dir.x == 0 || dir.y == 0 일 때와 움직이는 양이 다른가...?
 //NOTE: 벽따라 미끄러지는 느낌으로?
-//TODO: 충돌감지 원
 int	move(int keycode, PARAM *P)
 {
 	int		amount = 5;
 	VECTOR	oldpos = P->pos;
-
 	if (keycode == KEY_W)
 	{
 		P->pos.x += P->dir.x * amount;
@@ -62,8 +82,10 @@ int	move(int keycode, PARAM *P)
 		P->pos.y += (sin(PI / 2) * P->dir.x + cos(PI / 2) * P->dir.y) * amount;
 	}
 
-	if (worldMap[(int)P->pos.y / BLOCK_SIZE][(int)P->pos.x / BLOCK_SIZE])
+	if (checkCollision(P, collisionRange))
 		P->pos = oldpos;
+
+	// if (worldMap[(int)P->pos.y / BLOCK_SIZE][(int)P->pos.x / BLOCK_SIZE])
 
 	return (0);
 }

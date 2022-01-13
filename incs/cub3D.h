@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/11 11:40:33 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/12 17:14:36 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,12 @@ DDA		get_DDA_info(VECTOR pos, VECTOR dir, double r);
 void	run_DDA(DDA *D);
 
 /* render */
-void	draw_dir(PARAM *param);
+void	draw_dir(PARAM *P);
 void	draw_perpdir(PARAM *P, VECTOR perp_dir);
 void	draw_ray(PARAM *P, DDA D);
-void	draw_2Dmap(PARAM *param);
-void	draw_2Dplayer(PARAM *param);
+void	draw_2Dmap(PARAM *P);
+void	draw_2Dplayer(PARAM *P);
+void	draw_2DCircle(PARAM *P);
 void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P);
 int		draw_2Dsquare(PARAM *P, int x, int y, IMG img);
 int		render(PARAM *P);
