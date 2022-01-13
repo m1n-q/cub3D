@@ -16,7 +16,7 @@
 
 ------
 
-	<img src="https://user-images.githubusercontent.com/68891716/149085929-db4b3818-7d9f-4778-ac08-45058e8ca3d5.png"  width="300" height="300"/>
+<img src="https://user-images.githubusercontent.com/68891716/149085929-db4b3818-7d9f-4778-ac08-45058e8ca3d5.png"  width="300" height="300"/>
 
 
 1. ~~texture in front of a player~~
