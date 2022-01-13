@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/12 17:51:01 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 17:21:58 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ int	rotate(int keycode, PARAM *P)
 	return (0);
 }
 
-
-
-//TODO: 충돌감지 원
 int	checkCollision(PARAM *P, double radius)
 {
 	for (double r = 0.0; r <= PI * 2 ; r += 0.03)
@@ -56,36 +53,41 @@ int	checkCollision(PARAM *P, double radius)
 }
 
 //NOTE: dir.x == 0 || dir.y == 0 일 때와 움직이는 양이 다른가...?
-//NOTE: 벽따라 미끄러지는 느낌으로?
 int	move(int keycode, PARAM *P)
 {
 	int		amount = 5;
 	VECTOR	oldpos = P->pos;
+	VECTOR	movedir;
 	if (keycode == KEY_W)
 	{
-		P->pos.x += P->dir.x * amount;
-		P->pos.y += P->dir.y * amount;
+		movedir.x = P->dir.x;
+		movedir.y = P->dir.y;
 	}
 	else if (keycode == KEY_S)
 	{
- 		P->pos.x -= P->dir.x * amount;
-		P->pos.y -= P->dir.y * amount;
+ 		movedir.x = -P->dir.x;
+		movedir.y = -P->dir.y;
 	}
-	else if (keycode == KEY_A) //dir 의 -90도 회전방향
+	else if (keycode == KEY_A)
 	{
-		P->pos.x += (cos(-PI / 2) * P->dir.x - sin(-PI / 2) * P->dir.y) * amount;
-		P->pos.y += (sin(-PI / 2) * P->dir.x + cos(-PI / 2) * P->dir.y) * amount;
+		movedir.x = (cos(-PI / 2) * P->dir.x - sin(-PI / 2) * P->dir.y);
+		movedir.y = (sin(-PI / 2) * P->dir.x + cos(-PI / 2) * P->dir.y);
 	}
-	else if (keycode == KEY_D) //dir 의 +90도 회전방향
+	else if (keycode == KEY_D)
 	{
-		P->pos.x += (cos(PI / 2) * P->dir.x - sin(PI / 2) * P->dir.y) * amount;
-		P->pos.y += (sin(PI / 2) * P->dir.x + cos(PI / 2) * P->dir.y) * amount;
+		movedir.x = (cos(PI / 2) * P->dir.x - sin(PI / 2) * P->dir.y);
+		movedir.y = (sin(PI / 2) * P->dir.x + cos(PI / 2) * P->dir.y);
 	}
 
+
+	P->pos.x += movedir.x * amount;
 	if (checkCollision(P, collisionRange))
 		P->pos = oldpos;
 
-	// if (worldMap[(int)P->pos.y / BLOCK_SIZE][(int)P->pos.x / BLOCK_SIZE])
+	oldpos = P->pos;
+	P->pos.y += movedir.y * amount;
+	if (checkCollision(P, collisionRange))
+		P->pos = oldpos;
 
 	return (0);
 }
@@ -95,7 +97,7 @@ int	quit(int keycode, PARAM *P)
 	mlx_destroy_window(P->mlx, P->win);
 	exit(0);
 
-	return (0);	//NOREACH
+	return (0);
 }
 
 int	keymap(int keycode, PARAM *P)

@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/11 11:08:33 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 17:21:12 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ DDA	get_DDA_info(VECTOR pos, VECTOR dir, double r)
 	D.delta_vert	= sqrt(1 + pow(D.raydir.y, 2.0) / (pow(D.raydir.x + 0.0001, 2.0))) * BLOCK_SIZE;
 	D.delta_horz	= sqrt(1 + pow(D.raydir.x, 2.0) / (pow(D.raydir.y + 0.0001, 2.0))) * BLOCK_SIZE;
 
-	// check step direction
 	D.step			= get_stepdir(pos, D);
 	D.dist_vert		= get_dist_vh(pos, D).x;
 	D.dist_horz		= get_dist_vh(pos, D).y;
@@ -74,7 +73,6 @@ void	run_DDA(DDA *D)
 	hit = 0;
 	while (hit == 0)
 	{
-		// jump to next map square, either in x-direction, or in y-direction
 		if (D->dist_vert < D->dist_horz)
 		{
 			D->dist_vert	+= D->delta_vert;
@@ -87,8 +85,6 @@ void	run_DDA(DDA *D)
 			D->hit.y		+= D->step.y;
 			D->side			= HORZ;
 		}
-
-		// Check if ray has hit a wall
 		if (worldMap[(int)(D->hit.y / BLOCK_SIZE)][(int)(D->hit.x / BLOCK_SIZE)] > 0)
 			hit = 1;
 	}
