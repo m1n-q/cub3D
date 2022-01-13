@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 19:40:59 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 21:52:25 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ VECTOR	get_stepdir(DDA D)
 {
 	VECTOR	step;
 
-	step.x = 1.0;	//NOTE: to BLOCK_SIZE?
+	step.x = 1.0;
 	step.y = 1.0;
 	if (D.raydir.x < 0)
 		step.x *= -1.0;
@@ -34,7 +34,6 @@ VECTOR	get_stepdir(DDA D)
 	return (step);
 }
 
-//NOTE: BLOCK_SIZE
 VECTOR	get_dist_vh(VECTOR pos, DDA D)
 {
 	double	dist_vert;
@@ -51,7 +50,6 @@ VECTOR	get_dist_vh(VECTOR pos, DDA D)
 	return ((VECTOR){dist_vert, dist_horz});
 }
 
-//NOTE: BLOCK_SIZE
 DDA	get_DDA_info(VECTOR pos, VECTOR dir, double r)
 {
 	DDA	D;
@@ -66,7 +64,6 @@ DDA	get_DDA_info(VECTOR pos, VECTOR dir, double r)
 	return (D);
 }
 
-//NOTE: BLOCK_SIZE
 void	run_DDA(DDA *D)
 {
 	int	hit;

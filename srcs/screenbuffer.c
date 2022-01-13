@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:16:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 19:11:52 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 21:53:54 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ int	init_buffer(PARAM *P)
 			P->buf2D[i][j] = 0;
 		}
 	}
-
 	return (0);
 }
 
 void	destroy_buffer(PARAM* P)
 {
-
 	for (int i = 0; i < screenHeight; i++)
 	{
 		free(P->buf3D[i]);

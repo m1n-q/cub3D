@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 21:36:41 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 21:54:11 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int image_to_texture(int *texture, IMG teximg)
 	for (int y = 0; y < texHeight; y++)
 		for (int x = 0; x < texWidth; x++)
 			texture[texWidth * y + x] = teximg.addr[y * teximg.linesize / sizeof(int) + x];
-
 	return (0);
 }
 
@@ -94,8 +93,6 @@ void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
 			color = (color >> 1) & 8355711;	// make color darker for horizontal sides
 		P->buf3D[y][draw.x]	= color;
 
-
 		texpos.y += tex_stepY;
 	}
 }
-
