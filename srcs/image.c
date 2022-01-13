@@ -6,12 +6,13 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 18:38:31 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 18:55:20 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+//NOTE: IMG		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 int load_image(PARAM *P)
 {
 	P->img3D.img = mlx_new_image(P->mlx, screenWidth, screenHeight);

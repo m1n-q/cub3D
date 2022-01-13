@@ -6,12 +6,13 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 18:48:37 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 18:55:33 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+//NOTE: texture		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 int	init_texture(PARAM *P)
 {
 	int	texnum = 5;

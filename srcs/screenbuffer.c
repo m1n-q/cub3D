@@ -6,14 +6,13 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:16:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 18:50:17 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 18:55:10 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 //NOTE: buffer	=> 직관적으로 생각할 수 있는 2차원 배열 형태
-//NOTE: IMG		=> mlx에서 사용되는 1차원 배열 형태
 int	init_buffer(PARAM *P)
 {
 	P->buf3D = (int **)malloc(sizeof(int *) * screenHeight);
