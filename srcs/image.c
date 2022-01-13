@@ -6,12 +6,13 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/11 11:24:07 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 18:55:20 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+//NOTE: IMG		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 int load_image(PARAM *P)
 {
 	P->img3D.img = mlx_new_image(P->mlx, screenWidth, screenHeight);
@@ -40,6 +41,21 @@ int load_image(PARAM *P)
 
 	P->wall4.img = mlx_png_file_to_image(P->mlx, "rscs/wood3_256.png", &P->wall4.width, &P->wall4.height);
 	P->wall4.addr = (int *)mlx_get_data_addr(P->wall4.img, &P->wall4.bpp, &P->wall4.linesize, &P->wall4.endian);
+
+	return (0);
+}
+
+int destroy_image(PARAM *P)
+{
+	mlx_destroy_image(P->mlx, P->img3D.img);
+	mlx_destroy_image(P->mlx, P->img2D.img);
+	mlx_destroy_image(P->mlx, P->grid.img);
+	mlx_destroy_image(P->mlx, P->block.img);
+	mlx_destroy_image(P->mlx, P->hblock.img);
+	mlx_destroy_image(P->mlx, P->wall1.img);
+	mlx_destroy_image(P->mlx, P->wall2.img);
+	mlx_destroy_image(P->mlx, P->wall3.img);
+	mlx_destroy_image(P->mlx, P->wall4.img);
 
 	return (0);
 }

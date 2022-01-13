@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:33:58 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/11 11:45:06 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 18:54:58 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ typedef struct paramset
 {
 	void	*mlx;
 	void	*win;
-	int		**buf3D;
+	int		**buf3D;	//NOTE: buffer	=> 직관적으로 생각할 수 있는 2차원 배열 형태
 	int		**buf2D;
-	int		**texture;
+	int		**texture;	//NOTE: texture	=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 
 	VECTOR	pos;
 	VECTOR	dir;
 
-	IMG		img3D;
+	IMG		img3D;		//NOTE: IMG		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 	IMG		img2D;
 
 	IMG		wall1;

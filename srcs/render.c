@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 17:22:53 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:05:32 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,12 @@ int	draw_2Dsquare(PARAM *P, int x, int y, IMG img)
 	return (1);
 }
 
-
-
 void	draw_2Dmap(PARAM *P)
 {
 	for (int y=0; y < mapHeight; y++)
 		for (int x=0; x < mapWidth; x++)
 			if (draw_2Dsquare(P, x, y, P->grid) && worldMap[y][x])
 				draw_2Dsquare(P, x, y, P->block);
-
 }
 
 void	draw_dir(PARAM *P)
@@ -131,7 +128,6 @@ void	draw_2DCircle(PARAM *P)
 		}
 	}
 }
-
 
 void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P)
 {

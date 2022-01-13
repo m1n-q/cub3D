@@ -6,12 +6,13 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 17:23:59 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 19:05:18 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+//NOTE: texture		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 int	init_texture(PARAM *P)
 {
 	int	texnum = 5;
@@ -86,4 +87,10 @@ void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
 
 		texpos.y += tex_stepY;
 	}
+}
+
+//TODO: free(P->texture);
+void	destroy_texture(PARAM *P, size_t idx)
+{
+	free(P->texture[idx]);
 }
