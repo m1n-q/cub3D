@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 19:09:53 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 21:42:26 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-int main(void)//(int argc, char *argv[])
+int main(void) //(int argc, char *argv[])
 {
 	PARAM P;
 
@@ -50,13 +50,15 @@ int main(void)//(int argc, char *argv[])
 	P.dir.x = 0;
 	P.dir.y = 1;
 
-  P.mlx = mlx_init();
+	P.mlx = mlx_init();
 	P.win = mlx_new_window(P.mlx, screenWidth * 2, screenHeight, "Raycaster");
-  load_image(&P);
-  init_buffer(&P);
-  init_texture(&P);
-  render(&P);
+	init_mlx_image(&P);
+	load_image(&P);
+	make_block_image(&P);
+	init_buffer(&P);
+	init_texture(&P);
+	render(&P);
 	mlx_hook(P.win, KeyPress, 0, keymap, &P);
-  mlx_loop_hook(P.mlx, render , &P);
+	mlx_loop_hook(P.mlx, render, &P);
 	mlx_loop(P.mlx);
 }

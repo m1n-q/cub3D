@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:33:58 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 18:54:58 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 21:34:46 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct paramset
 	IMG		wall2;
 	IMG		wall3;
 	IMG		wall4;
+	IMG		wall5;
 
 	IMG		grid;
 	IMG		block;

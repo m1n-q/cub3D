@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 20:08:00 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 21:36:41 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,22 @@
 //NOTE: texture		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 int	init_texture(PARAM *P)
 {
-	P->texture = (int **)ft_calloc(texNum ,sizeof(int *));
-	for (int i = 0; i < texNum; i++)
-		P->texture[i] = ft_calloc(texHeight * texWidth, sizeof(int));
+	int	i;
 
+	P->texture = (int **)ft_calloc(texNum ,sizeof(int *));
+	i = -1;
+	while (++i < texNum)
+		P->texture[i] = ft_calloc(texHeight * texWidth, sizeof(int));
 	image_to_texture(P->texture[BORDER], P->wall1);
 	image_to_texture(P->texture[1], P->wall2);
 	image_to_texture(P->texture[2], P->wall3);
 	image_to_texture(P->texture[3], P->wall4);
-	for (int x = 0; x < texWidth; x++)
-		for (int y = 0; y < texHeight; y++)
-			P->texture[4][texWidth * y + x] = 128 + 256 * 128 + 65536 * 128; //flat grey texture
-
+	image_to_texture(P->texture[4], P->wall5);
 	mlx_destroy_image(P->mlx, P->wall1.img);
 	mlx_destroy_image(P->mlx, P->wall2.img);
 	mlx_destroy_image(P->mlx, P->wall3.img);
 	mlx_destroy_image(P->mlx, P->wall4.img);
-
+	mlx_destroy_image(P->mlx, P->wall5.img);
 	return (0);
 }
 
@@ -70,7 +69,6 @@ VECTOR	get_texture_pos(DDA D)
 	return (texpos);
 }
 
-//NOTE: BLOCK_SIZE
 void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
 {
 	int		color;

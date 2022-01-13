@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 21:12:39 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 21:30:05 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	get_perp_dist(PARAM *P, DDA *D)
 	perp_delta		= (perp_dir.y / perp_dir.x);
 	k 				= P->pos.y - P->pos.x * perp_delta;						// constant for perpendicular linear
 	D->perp_dist	= fabs(perp_delta * D->hit.x - D->hit.y + k) / sqrt(pow(perp_delta, 2.0) + 1);
-
 	// draw_perpdir(P, perp_dir);
 }
 
@@ -38,7 +37,6 @@ LINEDRAW	get_draw_info(double perp_dist)
 	return (draw);
 }
 
-//NOTE: BLOCK_SIZE
 int	raycasting(PARAM *P)
 {
 	DDA			D;
