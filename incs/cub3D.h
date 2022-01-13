@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 21:28:15 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 01:02:45 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 # define PI		3.141592
 
-extern int worldMap[mapWidth][mapHeight];
+extern int worldMap[mapHeight][mapWidth];
 
 int		raycasting(PARAM *P);
 
