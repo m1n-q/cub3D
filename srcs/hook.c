@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 17:14:38 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 17:18:35 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ int	rotate(int keycode, PARAM *P)
 	return (0);
 }
 
-
-
-//TODO: 충돌감지 원
 int	checkCollision(PARAM *P, double radius)
 {
 	for (double r = 0.0; r <= PI * 2 ; r += 0.03)

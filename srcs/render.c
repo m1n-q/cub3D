@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 15:43:34 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/13 17:18:45 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,6 @@ void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P)
 	}
 }
 
-//NOTE: border를 지나는 경우
 int render(PARAM *P)
 {
 	mlx_clear_window(P->mlx, P->win);
