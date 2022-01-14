@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 17:08:17 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 23:04:24 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,31 @@
 
 int main(int argc, char *argv[])
 {
-  PARAM P;
+	PARAM P;
+	CONFIG C;
 
-// -----------MAP parsing----------------
+	// -----------MAP parsing----------------
 	ft_memset(&P, 0, sizeof(P));
+	P.cfg = &C;
 
 	if (argc != 2)
 		err_exit("ERROR: CHECK PARAMETER", NULL);
 
 	parse_file(&P, argv[1]);
 	print_worldMap(&P);
-  	//err_exit("test end", &P);
+	init_config(P.cfg);
+	// err_exit("test end", &P);
 
-// -------------test line-------------
+	// -------------test line-------------
 
-
-	P.pos.x = 10 * blockScale;
-	P.pos.y = 11 * blockScale;
+	P.pos.x = 10 * P.cfg->blockScale;
+	P.pos.y = 11 * P.cfg->blockScale;
 	P.dir.x = 0;
 	P.dir.y = 1;
-  printf("BLOCK SIZE=%d\n", blockScale);
+	//   printf("BLOCK SIZE=%d\n", P.cfg->blockScale);
 
 	P.mlx = mlx_init();
-	P.win = mlx_new_window(P.mlx, screenWidth, screenHeight, "Raycaster");
+	P.win = mlx_new_window(P.mlx, P.cfg->screenWidth, P.cfg->screenHeight, "Raycaster");
 	init_mlx_image(&P);
 	load_image(&P);
 	make_block_image(&P);

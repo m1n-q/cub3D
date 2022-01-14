@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:16:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 16:37:09 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 22:44:28 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 int	init_buffer(PARAM *P)
 {
 
-	P->buf3D = (int **)ft_calloc(screenHeight, sizeof(int *));
-	for (int i = 0; i < screenHeight; i++)
-		P->buf3D[i] = (int *)ft_calloc(screenWidth, sizeof(int));
+	P->buf3D = (int **)ft_calloc(P->cfg->screenHeight, sizeof(int *));
+	for (int i = 0; i < P->cfg->screenHeight; i++)
+		P->buf3D[i] = (int *)ft_calloc(P->cfg->screenWidth, sizeof(int));
 
-	P->buf2D = (int **)ft_calloc(mapHeight * minimapScale, sizeof(int *));
-	for (int i = 0; i < mapHeight * minimapScale; i++)
-		P->buf2D[i] = (int *)ft_calloc(mapWidth * minimapScale, sizeof(int));
+	P->buf2D = (int **)ft_calloc(P->cfg->mapHeight * P->cfg->minimapScale, sizeof(int *));
+	for (int i = 0; i < P->cfg->mapHeight * P->cfg->minimapScale; i++)
+		P->buf2D[i] = (int *)ft_calloc(P->cfg->mapWidth * P->cfg->minimapScale, sizeof(int));
 	return (0);
 }
 
 void	destroy_buffer(PARAM* P)
 {
-	for (int i = 0; i < screenHeight; i++)
+	for (int i = 0; i < P->cfg->screenHeight; i++)
 		free(P->buf3D[i]);
-	for (int i = 0; i < mapHeight * minimapScale; i++)
+	for (int i = 0; i < P->cfg->mapHeight * P->cfg->minimapScale; i++)
 		free(P->buf2D[i]);
 
 	free(P->buf3D);

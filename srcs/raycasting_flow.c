@@ -25,7 +25,7 @@ VECTOR	raycasting(PARAM *P)
 
 
 	double	angle = (PI / 6);
-	double	dr = (angle * 2.0 / NUM_RAYS);
+	double	dr = (angle * 2.0 / P->cfg->NUM_RAYS);
 	// printf("dr = %f\n", dr);
 
 	for (double r = -angle; r <= angle; r+=dr)
@@ -34,30 +34,30 @@ VECTOR	raycasting(PARAM *P)
 		raydir.y = sin(r) * P->dir.x  + cos(r) * P->dir.y;
 		hit.x = P->pos.x;
 		hit.y = P->pos.y;
-		delta_vert = sqrt(1 + pow(raydir.y, 2.0) / (pow(raydir.x + 0.0001, 2.0))) * blockScale;
-		delta_horz = sqrt(1 + pow(raydir.x, 2.0) / (pow(raydir.y + 0.0001, 2.0))) * blockScale;
+		delta_vert = sqrt(1 + pow(raydir.y, 2.0) / (pow(raydir.x + 0.0001, 2.0))) * P->cfg->blockScale;
+		delta_horz = sqrt(1 + pow(raydir.x, 2.0) / (pow(raydir.y + 0.0001, 2.0))) * P->cfg->blockScale;
 
 		// check step direction
 		if (raydir.x < 0)
 		{
 			step.x = -1.0;
-			dist_vert = (P->pos.x - (int)P->pos.x) * delta_vert / blockScale;
+			dist_vert = (P->pos.x - (int)P->pos.x) * delta_vert / P->cfg->blockScale;
 		}
 		else
 		{
 			step.x = 1.0;
-			dist_vert = ((int)P->pos.x + blockScale - P->pos.x) * delta_vert / blockScale;
+			dist_vert = ((int)P->pos.x + P->cfg->blockScale - P->pos.x) * delta_vert / P->cfg->blockScale;
 		}
 		if (raydir.y > 0)
 		{
 			step.y = 1.0;
-			dist_horz = ((int)P->pos.y + blockScale - P->pos.y) * delta_horz / blockScale;
+			dist_horz = ((int)P->pos.y + P->cfg->blockScale - P->pos.y) * delta_horz / P->cfg->blockScale;
 
 		}
 		else
 		{
 			step.y = -1.0;
-			dist_horz = (P->pos.y - (int)P->pos.y) * delta_horz / blockScale;
+			dist_horz = (P->pos.y - (int)P->pos.y) * delta_horz / P->cfg->blockScale;
 		}
 
 
@@ -80,12 +80,12 @@ VECTOR	raycasting(PARAM *P)
 			}
 
 			// Check if ray has hit a wall
-			if (worldMap[(int)(hit.y / blockScale)][(int)(hit.x / blockScale)] > 0)
+			if (worldMap[(int)(hit.y / P->cfg->blockScale)][(int)(hit.x / P->cfg->blockScale)] > 0)
 				hitt = 1;
 		}
 
 		// draw hit block on 2Dmap
-		draw_2Dsquare(P, (int)(hit.x / blockScale), (int)(hit.y / blockScale), P->hblock);
+		draw_2Dsquare(P, (int)(hit.x / P->cfg->blockScale), (int)(hit.y / P->cfg->blockScale), P->hblock);
 
 
 		if (side == VERT)perpendicular_dist = dist_vert - delta_vert;
@@ -101,24 +101,24 @@ VECTOR	raycasting(PARAM *P)
 
 
 		//   Calculate height of line to draw on screen
-		int lineHeight = (int)(screenHeight * sqrt(texHeight)) / perpendicular_dist;
-		int drawStart = -lineHeight / 2 + screenHeight / 2;
+		int lineHeight = (int)(P->cfg->screenHeight * sqrt(P->cfg->texHeight)) / perpendicular_dist;
+		int drawStart = -lineHeight / 2 + P->cfg->screenHeight / 2;
 		if (drawStart < 0)
 			drawStart = 0;
-		int drawEnd = lineHeight / 2 + screenHeight / 2;
-		if (drawEnd >= screenHeight)
-			drawEnd = screenHeight - 1;
+		int drawEnd = lineHeight / 2 + P->cfg->screenHeight / 2;
+		if (drawEnd >= P->cfg->screenHeight)
+			drawEnd = P->cfg->screenHeight - 1;
 
 
 
 		draw_perpdir(P, perp_dir);
 
 		int	pixel_x;
-		pixel_x = (((r + (PI / 6)) / dr) * SCALE);
+		pixel_x = (((r + (PI / 6)) / dr) * P->cfg->SCALE);
 
 		//   choose wall color
 		// int color;
-		// switch (worldMap[(int)hit.y / blockScale][(int)hit.x / blockScale])
+		// switch (worldMap[(int)hit.y / P->cfg->blockScale][(int)hit.x / P->cfg->blockScale])
 		// {
 		// 	case 1:color = RGB_Red;		break; // red
 		// 	case 2:color = RGB_Green;	break; // green
@@ -136,36 +136,36 @@ VECTOR	raycasting(PARAM *P)
 
 		draw_ray(P, hit, raydir, side);
 
-		int texNum = worldMap[(int)(hit.y / blockScale)][(int)(hit.x / blockScale)] - 1;
+		int texNum = worldMap[(int)(hit.y / P->cfg->blockScale)][(int)(hit.x / P->cfg->blockScale)] - 1;
 		double wall_hit;
-		if (side == 0)	wall_hit = hit.y / blockScale;
-		else			wall_hit = hit.x / blockScale;
+		if (side == 0)	wall_hit = hit.y / P->cfg->blockScale;
+		else			wall_hit = hit.x / P->cfg->blockScale;
 		// wall_hit -= floor(wall_hit);
 
 
-		// 1칸에서 어느만큼인지 * texWidth
-		int texX = (int)((wall_hit - floor(wall_hit)) * (double)texWidth);
+		// 1칸에서 어느만큼인지 * P->cfg->texWidth
+		int texX = (int)((wall_hit - floor(wall_hit)) * (double)P->cfg->texWidth);
 		// 좌우반전
 		if (side == HORZ && raydir.y > 0)
-			texX = texWidth - texX - 1;
+			texX = P->cfg->texWidth - texX - 1;
 		if (side == VERT && raydir.x < 0)
-			texX = texWidth - texX - 1;
+			texX = P->cfg->texWidth - texX - 1;
 		// printf("hit %s side, wallhit: %f tex.X : %d\n", side ? "horz" : "vert", wall_hit, texX);
 
 		// How much to increase the texture coordinate perscreen pixel
 
 		//전체 그릴 높이 : LineHeight
-		double texstep =  (double)texHeight / (double)lineHeight;
+		double texstep =  (double)P->cfg->texHeight / (double)lineHeight;
 
-		//tesPos => drawStart 일때 0, drawEnd 일때 texHeight 되도록
+		//tesPos => drawStart 일때 0, drawEnd 일때 P->cfg->texHeight 되도록
 		double texPos = 0.0;
 		for (int y = drawStart; y < drawEnd; y++)
 		{
-			// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-			int texY = (int)texPos & (texHeight - 1);
+			// Cast the texture coordinate to integer, and mask with (P->cfg->texHeight - 1) in case of overflow
+			int texY = (int)texPos & (P->cfg->texHeight - 1);
 			texPos += texstep;
-			int color = P->texture[texNum][texY * texHeight + texX];
-			// P->buf2D[row][col] = P->texture[0][row * texWidth + col];
+			int color = P->texture[texNum][texY * P->cfg->texHeight + texX];
+			// P->buf2D[row][col] = P->texture[0][row * P->cfg->texWidth + col];
 
 
 			// make color darker for y-sides: R, G and B byte each divided through two with a "shift" and an "and"
@@ -176,7 +176,7 @@ VECTOR	raycasting(PARAM *P)
 
 		// fill floor and ceiling
 		verLine(pixel_x, 0, drawStart, 0x000044, P);
-		verLine(pixel_x, drawEnd, screenHeight - 1, 0x446600, P);
+		verLine(pixel_x, drawEnd, P->cfg->screenHeight - 1, 0x446600, P);
 	}
 
 	return (VECTOR){1.0, 1.0};

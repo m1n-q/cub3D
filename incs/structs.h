@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:33:58 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 21:34:46 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 22:52:07 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,21 @@ typedef struct	s_lst
 	struct s_lst	*next;
 }				t_lst;
 
+typedef struct config
+{
+	int	mapWidth;
+	int mapHeight;
+	int screenWidth;
+	int screenHeight;
+	int blockScale;			//	(screenWidth / mapWidth)	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
+	int NUM_RAYS;			//	screenWidth
+	int SCALE;				// (screenWidth / NUM_RAYS)
+	int collisionRange;		// (blockScale / 10)
+	int	minimapScale;		// (blockScale / 10)
+
+}	CONFIG;
+
+
 typedef struct paramset
 {
 	void	*mlx;
@@ -53,17 +68,18 @@ typedef struct paramset
 	int		**texture;	//NOTE: texture	=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 
 // -------추가--------------------
-	t_lst		*map;
-	int			width;
-	int			height;
+	CONFIG	*cfg;
+	t_lst	*map;
+	int		width;
+	int		height;
 
 	char		*tex_path[4];
 	int			type_set[7];
 
-	int			floor_color[3]; 
-	int			ceili_color[3]; 
-	int			**worldMap;	
-// ------------------------------ 
+	int			floor_color[3];
+	int			ceili_color[3];
+	int			**worldMap;
+// ------------------------------
 
 	VECTOR	pos;
 	VECTOR	dir;
@@ -99,5 +115,6 @@ typedef struct dda
 
 	int		side;			// was a NS or a EW wall hit?
 } DDA;
+
 
 #endif

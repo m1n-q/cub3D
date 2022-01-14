@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 17:08:17 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 22:43:42 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	checkCollision(PARAM *P, double radius)
 		{
 			d.x += newdir.x;
 			d.y += newdir.y;
-			if (P->worldMap[(int)((int)(P->pos.y + d.y) / blockScale)][(int)((int)(P->pos.x + d.x) / blockScale)])
+			if (P->worldMap[(int)((int)(P->pos.y + d.y) / P->cfg->blockScale)][(int)((int)(P->pos.x + d.x) / P->cfg->blockScale)])
 				return (1);
 			linelength++;
 		}
@@ -68,11 +68,11 @@ int	move_(PARAM *P, VECTOR movedir)
 	amount = 5;
 	oldpos = P->pos;
 	P->pos.x += movedir.x * amount;
-	if (checkCollision(P, collisionRange))
+	if (checkCollision(P, P->cfg->collisionRange))
 		P->pos = oldpos;
 	oldpos = P->pos;
 	P->pos.y += movedir.y * amount;
-	if (checkCollision(P, collisionRange))
+	if (checkCollision(P, P->cfg->collisionRange))
 		P->pos = oldpos;
 	return (0);
 }

@@ -18,6 +18,7 @@ SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/screenbuffer.c \
 		$(SRC_DIR)/image.c \
 		$(SRC_DIR)/texture.c \
+		$(SRC_DIR)/config.c \
 		$(SRC_DIR)/parse_file.c \
 		$(SRC_DIR)/parse_line.c \
 		$(SRC_DIR)/parse_rgb.c \

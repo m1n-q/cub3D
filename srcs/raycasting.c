@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 17:08:17 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 22:51:22 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	get_perp_dist(PARAM *P, DDA *D)
 	// draw_perpdir(P, perp_dir);
 }
 
-LINEDRAW	get_draw_info(double perp_dist)
+LINEDRAW	get_draw_info(PARAM *P, double perp_dist)
 {
 	LINEDRAW	draw;
 
-	draw.length		= (int)(screenWidth) / perp_dist * blockScale;		// blockScale와 비례해야 함..!
-	draw.start_y	= screenHeight / 2 - draw.length / 2;
-	draw.end_y		= screenHeight / 2 + draw.length / 2;
+	draw.length		= (int)(P->cfg->screenWidth) / perp_dist * P->cfg->blockScale;		// P->cfg->blockScale와 비례해야 함..!
+	draw.start_y	= P->cfg->screenHeight / 2 - draw.length / 2;
+	draw.end_y		= P->cfg->screenHeight / 2 + draw.length / 2;
 	// printf("draw length = %d\n", draw.length);
 	return (draw);
 }
@@ -43,30 +43,30 @@ int	raycasting(PARAM *P)
 	VECTOR		texpos;
 	LINEDRAW	draw;
 	double		angle = (PI / 6);
-	double		dr = (angle * 2.0 / NUM_RAYS);
+	double		dr = (angle * 2.0 / P->cfg->NUM_RAYS);
 
 	for (double r = -angle; r <= angle; r+=dr)
 	{
-		D = get_DDA_info(P->pos, P->dir, r);
+		D = get_DDA_info(P, r);
 		run_DDA(P, &D);
 
 
 		// draw hit block on 2Dmap
 		draw_ray(P, D);
-		// draw_2Dsquare(P, (int)(D.hit.x / blockScale), (int)(D.hit.y / blockScale), P->hblock);
+		// draw_2Dsquare(P, (int)(D.hit.x / P->cfg->blockScale), (int)(D.hit.y / P->cfg->blockScale), P->hblock);
 
 		get_perp_dist(P, &D);
 
 		// Calculate height of line to draw on screen
-		draw	= get_draw_info(D.perp_dist);
-		draw.x	= (((r + (PI / 6)) / dr) * SCALE);		// draw starting X (pixel)
+		draw	= get_draw_info(P, D.perp_dist);
+		draw.x	= (((r + (PI / 6)) / dr) * P->cfg->SCALE);		// draw starting X (pixel)
 
-		texpos	= get_texture_pos(D);
+		texpos	= get_texture_pos(P, D);
 		fill_by_texture(P, D, texpos, draw);
 
 		// fill floor and ceiling
 		draw_verLine(draw.x, 0, draw.start_y, 0x000044, P);
-		draw_verLine(draw.x, draw.end_y, screenHeight - 1, 0x446600, P);
+		draw_verLine(draw.x, draw.end_y, P->cfg->screenHeight - 1, 0x446600, P);
 	}
 
 	return (0);

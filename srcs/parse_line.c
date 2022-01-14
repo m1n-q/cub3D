@@ -22,16 +22,17 @@ void	set_max_width(PARAM *P, char *line)
 	int len;
 	int max;
 
+	P->cfg->mapWidth = 0;
 	len = ft_strlen(line);
 	max = len;
 	while (line[--len] == ' ')
 		max--;
-	if (max > P->width)
-		P->width = max;
+	if (max > P->cfg->mapWidth)
+		P->cfg->mapWidth = max;
 }
 
 // map파일의 한 줄을 읽어 파싱하는 곳
-// 리턴값 : 실패 0, 성공 1 
+// 리턴값 : 실패 0, 성공 1
 void	parse_line(PARAM *P, char *line)
 {
 	int	type;
@@ -39,7 +40,7 @@ void	parse_line(PARAM *P, char *line)
 	if (!line)
 		return ;
 	type = get_type(line);
-	
+
 	if (ft_strlen(line) == 0) // 빈 라인이면 1리턴
 		return ;
 
@@ -63,7 +64,7 @@ void	parse_line(PARAM *P, char *line)
 
 //---------------라인이 지정된 키값으로 시작할 때(지도정보는 여길 지나가지 않음)---------------------
 	P->type_set[type] = 1; // type 체크 (중복방지)
-	
+
 	// line의 시작이 NO, SO, WE, EA 중의 하나일 때 (0 ~ 4)
 	if (type >= NO && type <= EA)
 		return (parse_texture(P, type, line));
@@ -72,7 +73,7 @@ void	parse_line(PARAM *P, char *line)
 	else if (type == FLOOR || type == CEILI)
 		return (parse_rgb(P, type, line));
 		// config.c[TEX_SKY || TEX_FLOOR]에 RGB값 세팅
-	
+
 	// 모든 type값들이 아직 setting되지 않았는데 중간에 undefine(map정보)이 나온 경우 (빈줄,온리공백줄은 위에서 걸러진다)
 	return ;
 }

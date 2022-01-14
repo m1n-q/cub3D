@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 16:56:22 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 22:44:28 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int render(PARAM *P)	//Top level
 	raycasting(P);
 
 	draw_dir(P);
-	buffer_to_img(P->buf2D, P->img2D, mapWidth * minimapScale, mapHeight * minimapScale);
-	buffer_to_img(P->buf3D, P->img3D, screenWidth, screenHeight);
+	buffer_to_img(P->buf2D, P->img2D, P->cfg->mapWidth * P->cfg->minimapScale, P->cfg->mapHeight * P->cfg->minimapScale);
+	buffer_to_img(P->buf3D, P->img3D, P->cfg->screenWidth, P->cfg->screenHeight);
 	// clear_buffer(P->buf2D);
 	// clear_buffer(P->buf3D);	//NOTE: is needed?
 	mlx_put_image_to_window(P->mlx, P->win, P->img3D.img, 0, 0);
@@ -32,11 +32,11 @@ int render(PARAM *P)	//Top level
 
 void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P)
 {
-	for (int x2 = x; x2 < x + SCALE; x2++)
+	for (int x2 = x; x2 < x + P->cfg->SCALE; x2++)
 	{
 		for (int y = drawStart; y <= drawEnd; y++)
 		{
-			if (y < 0 || y >= screenHeight)
+			if (y < 0 || y >= P->cfg->screenHeight)
 				continue ;
 			P->buf3D[y][x2] = color;
 		}

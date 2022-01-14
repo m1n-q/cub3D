@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 16:36:54 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 22:51:14 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,10 @@
 
 int		raycasting(PARAM *P);
 
+void	init_config(CONFIG* C);
+
 /* DDA algorithm */
-DDA		get_DDA_info(VECTOR pos, VECTOR dir, double r);
+DDA		get_DDA_info(PARAM *P, double r);
 void	run_DDA(PARAM *P, DDA *D);
 
 /* render */
@@ -73,7 +75,7 @@ int		init_mlx_image(PARAM *P);
 int		init_texture(PARAM *P);
 void	destroy_texture(PARAM *P);
 int		image_to_texture(int *texture, IMG teximg);
-VECTOR	get_texture_pos(DDA D);
+VECTOR	get_texture_pos(PARAM *P, DDA D);
 void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw);
 
 /* event hook */

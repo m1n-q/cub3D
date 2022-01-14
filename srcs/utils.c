@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/11 11:29:35 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 22:37:23 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	print_worldMap(PARAM *P)
 {
 	int i = 0;
 	int j = 0;
-	while (i < P->height)
+	while (i < P->cfg->mapHeight)
 	{
 		j = 0;
-		while (j < P->width)
+		while (j < P->cfg->mapWidth)
 		{
 			if (P->worldMap[i][j] == 0 || P->worldMap[i][j] == 1)
 				printf("%d", P->worldMap[i][j]);
@@ -45,14 +45,14 @@ void	err_exit(char *msg, PARAM *P)
 	{
 		while (i < 4)
 			free(P->tex_path[i++]);
-	
+
 		if (P->map)
 			lst_clear(&P->map);
-		
+
 		if (P->worldMap)
 		{
 			i = 0;
-			while (i < P->height)
+			while (i < P->cfg->mapHeight)
 				free(P->worldMap[i++]);
 			free(P->worldMap);
 		}

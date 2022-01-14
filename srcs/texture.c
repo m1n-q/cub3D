@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 17:08:17 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 22:51:46 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,15 @@ int image_to_texture(int *texture, IMG teximg)
 	return (0);
 }
 
-VECTOR	get_texture_pos(DDA D)
+VECTOR	get_texture_pos(PARAM *P, DDA D)
 {
 	double wall_hit;
 	VECTOR texpos;
 
-	if (D.side == 0)	wall_hit = D.hit.y / blockScale;
-	else				wall_hit = D.hit.x / blockScale;
+	if (D.side == 0)	wall_hit = D.hit.y / P->cfg->blockScale;
+	else				wall_hit = D.hit.x / P->cfg->blockScale;
 
-	// 1칸에서 어느만큼인지 * texWidth
+	// 1칸에서 어느만큼인지 * P->cfg->texWidth
 	texpos.x = ((wall_hit - floor(wall_hit)) * (double)texWidth);
 
 	// 좌우반전
@@ -78,10 +78,10 @@ void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
 	//How much to increase the texture coordinate per screen pixel
 	tex_stepY = (double)texHeight / (double)draw.length;	// drawStart 일때 tespos.y == 0, drawEnd 일때 tespos.y == 0 되도록
 
-	texnum = P->worldMap[(int)(D.hit.y / blockScale)][(int)(D.hit.x / blockScale)] - 1;
+	texnum = P->worldMap[(int)(D.hit.y / P->cfg->blockScale)][(int)(D.hit.x / P->cfg->blockScale)] - 1;
 	for (int y = draw.start_y; y < draw.end_y; y++)
 	{
-		if (y < 0 || y >= screenHeight)
+		if (y < 0 || y >= P->cfg->screenHeight)
 		{
 			texpos.y += tex_stepY;
 			continue ;
