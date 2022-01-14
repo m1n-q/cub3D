@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 21:30:16 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 16:44:09 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,47 @@
 void	draw_ray(PARAM *P, DDA D)
 {
 	double	dX=0, dY=0;
-	for (int linelength = 0; (P->pos.x + dX > 0) && (P->pos.y + dY > 0) && (P->pos.x + dX < screenWidth) && (P->pos.y + dY < screenHeight); linelength++)
+	VECTOR	minipos;
+	VECTOR	minihit;
+
+	minipos.x = P->pos.x / BLOCK_SIZE * minimapScale;
+	minipos.y = P->pos.y / BLOCK_SIZE * minimapScale;
+	minihit.x = D.hit.x / BLOCK_SIZE * minimapScale;
+	minihit.y = D.hit.y / BLOCK_SIZE * minimapScale;
+	for (int linelength = 0; (minipos.x + dX > 0) && (P->pos.y + dY > 0) && (minipos.x + dX < mapWidth * minimapScale) && (minipos.y + dY < mapHeight * minimapScale); linelength++)
 	{
 		dX += D.raydir.x;
 		dY += D.raydir.y;
-		if(!((P->pos.x + dX > 0) && (P->pos.y + dY > 0) && (P->pos.x + dX < screenWidth) && (P->pos.y + dY < screenHeight)))
+		if(!((minipos.x + dX > 0) && (minipos.y + dY > 0) && (minipos.x + dX < mapWidth * minimapScale) && (minipos.y + dY < mapHeight * minimapScale)))
 			break;
 
 
 		if (D.side == 0)
 		{
-			if (P->pos.x <= (D.hit.x))
+			if (minipos.x <= (minihit.x))
 			{
-				if (P->pos.x + dX <= (D.hit.x))
-					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Green;
+				if (minipos.x + dX <= (minihit.x))
+					P->buf2D[(int)(minipos.y + dY)][(int)(minipos.x + dX)] = RGB_Green;
 			}
 
-			else if (P->pos.x > (D.hit.x))
+			else if (minipos.x > (minihit.x))
 			{
-				if (P->pos.x + dX >= (D.hit.x))
-					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Green;
+				if (minipos.x + dX >= (minihit.x))
+					P->buf2D[(int)(minipos.y + dY)][(int)(minipos.x + dX)] = RGB_Green;
 			}
 		}
 		else if (D.side == 1)
 		{
-			if (P->pos.y <= (D.hit.y))
+			if (minipos.y <= (minihit.y))
 			{
-				if (P->pos.y + dY <= (D.hit.y))
-					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Green;
+				if (minipos.y + dY <= (minihit.y))
+					P->buf2D[(int)(minipos.y + dY)][(int)(minipos.x + dX)] = RGB_Green;
 			}
 
-			else if (P->pos.y > (D.hit.y))
+			else if (minipos.y > (minihit.y))
 			{
-				if (P->pos.y + dY >= (D.hit.y))
-					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Green;
+				if (minipos.y + dY >= (minihit.y))
+					P->buf2D[(int)(minipos.y + dY)][(int)(minipos.x + dX)] = RGB_Green;
 			}
 		}
 	}
@@ -56,9 +63,9 @@ void	draw_ray(PARAM *P, DDA D)
 
 int	draw_2Dsquare(PARAM *P, int x, int y, IMG img)
 {
-	for (int row = 0; row < BLOCK_SIZE; row++)
-		for (int col = 0; col < BLOCK_SIZE; col++)
-			P->buf2D[y * BLOCK_SIZE + row][x * BLOCK_SIZE + col] = img.addr[row * img.linesize / sizeof(int) + col];
+	for (int row = 0; row < minimapScale; row++)
+		for (int col = 0; col < minimapScale; col++)
+			P->buf2D[y * minimapScale + row][x * minimapScale + col] = img.addr[row * img.linesize / sizeof(int) + col];
 	return (1);
 }
 
@@ -74,11 +81,15 @@ void	draw_dir(PARAM *P)
 {
 	double dX, dY; dX=0, dY=0;
 
-	for (int linelength = 0; linelength < 25; linelength++)
+	VECTOR	minipos;
+	minipos.x = P->pos.x / BLOCK_SIZE * minimapScale;
+	minipos.y = P->pos.y / BLOCK_SIZE * minimapScale;
+
+	for (int linelength = 0; linelength < 3; linelength++)
 	{
 		dX += P->dir.x;
 		dY += P->dir.y;
-		P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Red;
+		P->buf2D[(int)(minipos.y + dY)][(int)(minipos.x + dX)] = RGB_Red;
 	}
 }
 
@@ -92,15 +103,18 @@ void	draw_perpdir(PARAM *P, VECTOR perp_dir)
 
 void	draw_2Dplayer(PARAM *P)
 {
+	VECTOR	minipos;
+	minipos.x = P->pos.x / BLOCK_SIZE * minimapScale;
+	minipos.y = P->pos.y / BLOCK_SIZE * minimapScale;
 
 	if (worldMap[(int)((int)P->pos.y / BLOCK_SIZE)][(int)((int)P->pos.x / BLOCK_SIZE)] == 0)
 	{
-		for (int y = -4; y <= 0; y++)
-			for (int x = -(y + 4); x <= (y + 4); x++)
-				P->buf2D[(int)(P->pos.y + (y))][(int)(P->pos.x + (x))] = RGB_Red;
-		for (int y = 0; y <= 4; y++)
-			for (int x = (y - 4); x <= -(y - 4); x++)
-				P->buf2D[(int)(P->pos.y + (y))][(int)(P->pos.x + (x))] = RGB_Red;
+		for (int y = -2; y <= 0; y++)
+			for (int x = -(y + 2); x <= (y + 2); x++)
+				P->buf2D[(int)(minipos.y + (y))][(int)(minipos.x + (x))] = RGB_Red;
+		for (int y = 0; y <= 2; y++)
+			for (int x = (y - 2); x <= -(y - 2); x++)
+				P->buf2D[(int)(minipos.y + (y))][(int)(minipos.x + (x))] = RGB_Red;
 	}
 }
 
