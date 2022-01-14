@@ -17,7 +17,14 @@ SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/raycasting.c \
 		$(SRC_DIR)/screenbuffer.c \
 		$(SRC_DIR)/image.c \
-		$(SRC_DIR)/texture.c
+		$(SRC_DIR)/texture.c \
+		$(SRC_DIR)/parse_file.c \
+		$(SRC_DIR)/parse_line.c \
+		$(SRC_DIR)/parse_rgb.c \
+		$(SRC_DIR)/parse_texture.c \
+		$(SRC_DIR)/utils_lst.c \
+		$(SRC_DIR)/get_next_line.c \
+
 
 # colors
 BG_BLACK   = \033[40m

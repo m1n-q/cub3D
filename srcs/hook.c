@@ -51,7 +51,7 @@ int	checkCollision(PARAM *P, double radius)
 		{
 			d.x += newdir.x;
 			d.y += newdir.y;
-			if (worldMap[(int)((int)(P->pos.y + d.y) / blockScale)][(int)((int)(P->pos.x + d.x) / blockScale)])
+			if (P->worldMap[(int)((int)(P->pos.y + d.y) / blockScale)][(int)((int)(P->pos.x + d.x) / blockScale)])
 				return (1);
 			linelength++;
 		}

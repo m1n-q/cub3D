@@ -76,7 +76,7 @@ void	draw_2Dmap(PARAM *P)
 {
 	for (int y=0; y < mapHeight; y++)
 		for (int x=0; x < mapWidth; x++)
-			if (draw_2Dsquare(P, x, y, P->grid) && worldMap[y][x])
+			if (draw_2Dsquare(P, x, y, P->grid) && P->worldMap[y][x])
 				draw_2Dsquare(P, x, y, P->block);
 }
 
@@ -122,7 +122,7 @@ void	draw_2Dplayer(PARAM *P)
 void	draw_2DCircle(PARAM *P)
 {
 
-	if (worldMap[(int)((int)P->pos.y / blockScale)][(int)((int)P->pos.x / blockScale)] == 0)
+	if (P->worldMap[(int)((int)P->pos.y / blockScale)][(int)((int)P->pos.x / blockScale)] == 0)
 	{
 		for (double r = 0.0; r <= PI * 2 ; r += 0.03)
 		{
@@ -135,7 +135,7 @@ void	draw_2DCircle(PARAM *P)
 			{
 				dX += newdir.x;
 				dY += newdir.y;
-				if (worldMap[(int)((int)(P->pos.y + dY) / blockScale)][(int)((int)(P->pos.x + dX) / blockScale)])
+				if (P->worldMap[(int)((int)(P->pos.y + dY) / blockScale)][(int)((int)(P->pos.x + dX) / blockScale)])
 					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Yellow;
 				else
 					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_White;

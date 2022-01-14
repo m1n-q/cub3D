@@ -64,7 +64,7 @@ DDA	get_DDA_info(VECTOR pos, VECTOR dir, double r)
 	return (D);
 }
 
-void	run_DDA(DDA *D)
+void	run_DDA(PARAM *P, DDA *D)
 {
 	int	hit;
 
@@ -84,7 +84,7 @@ void	run_DDA(DDA *D)
 			D->side = HORZ;
 		}
 
-		if (worldMap[(int)(D->hit.y / blockScale)][(int)(D->hit.x / blockScale)] > 0)
+		if (P->worldMap[(int)(D->hit.y / blockScale)][(int)(D->hit.x / blockScale)] > 0)
 			hit = 1;
 	}
 }

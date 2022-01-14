@@ -24,6 +24,7 @@
 # include "color.h"
 # include "config.h"
 # include "structs.h"
+# include "map.h"
 
 # define BORDER	0
 # define N		1
@@ -36,13 +37,11 @@
 
 # define PI		3.141592
 
-extern int worldMap[mapHeight][mapWidth];
-
 int		raycasting(PARAM *P);
 
 /* DDA algorithm */
 DDA		get_DDA_info(VECTOR pos, VECTOR dir, double r);
-void	run_DDA(DDA *D);
+void	run_DDA(PARAM *P, DDA *D);
 
 /* render */
 int		render(PARAM *P);
@@ -79,6 +78,20 @@ void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw);
 
 /* event hook */
 int		keymap(int keycode, PARAM *param);
+
+/* map_parsing */
+void	parse_file(PARAM *P, char *filename);
+void	parse_line(PARAM *P, char *line);
+void	parse_texture(PARAM *P, int type, char *line);
+void	parse_rgb(PARAM *P, int type, char *line);
+
+void	err_exit(char *msg, PARAM *P);
+int		get_next_line(int fd, char **line);
+t_lst	*lst_add_back(t_lst *node, char *content);
+void	lst_print(t_lst *head);
+void	lst_clear(t_lst **head);
+int		lst_get_len(t_lst *node);
+void	print_worldMap(PARAM *P);
 
 /* utils */
 
