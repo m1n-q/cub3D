@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 13:33:04 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 17:08:17 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ VECTOR	get_dist_vh(VECTOR pos, DDA D)
 	double	dist_horz;
 
 	if (D.raydir.x < 0)
-		dist_vert = (pos.x - (int)pos.x) * D.delta_vert / BLOCK_SIZE;
+		dist_vert = (pos.x - (int)pos.x) * D.delta_vert / blockScale;
 	else
-		dist_vert = ((int)pos.x + BLOCK_SIZE - pos.x) * D.delta_vert / BLOCK_SIZE;
+		dist_vert = ((int)pos.x + blockScale - pos.x) * D.delta_vert / blockScale;
 	if (D.raydir.y > 0)
-		dist_horz = ((int)pos.y + BLOCK_SIZE - pos.y) * D.delta_horz / BLOCK_SIZE;
+		dist_horz = ((int)pos.y + blockScale - pos.y) * D.delta_horz / blockScale;
 	else
-		dist_horz = (pos.y - (int)pos.y) * D.delta_horz / BLOCK_SIZE;
+		dist_horz = (pos.y - (int)pos.y) * D.delta_horz / blockScale;
 	return ((VECTOR){dist_vert, dist_horz});
 }
 
@@ -57,8 +57,8 @@ DDA	get_DDA_info(VECTOR pos, VECTOR dir, double r)
 	D.hit = pos;
 	D.raydir = get_raydir(dir, r);
 	D.step = get_stepdir(D);
-	D.delta_vert = sqrt(1 + pow(D.raydir.y, 2.0) / (pow(D.raydir.x + 0.0001, 2.0))) * BLOCK_SIZE;
-	D.delta_horz = sqrt(1 + pow(D.raydir.x, 2.0) / (pow(D.raydir.y + 0.0001, 2.0))) * BLOCK_SIZE;
+	D.delta_vert = sqrt(1 + pow(D.raydir.y, 2.0) / (pow(D.raydir.x + 0.0001, 2.0))) * blockScale;
+	D.delta_horz = sqrt(1 + pow(D.raydir.x, 2.0) / (pow(D.raydir.y + 0.0001, 2.0))) * blockScale;
 	D.dist_vert = get_dist_vh(pos, D).x;
 	D.dist_horz = get_dist_vh(pos, D).y;
 	return (D);
@@ -84,7 +84,7 @@ void	run_DDA(DDA *D)
 			D->side = HORZ;
 		}
 
-		if (worldMap[(int)(D->hit.y / BLOCK_SIZE)][(int)(D->hit.x / BLOCK_SIZE)] > 0)
+		if (worldMap[(int)(D->hit.y / blockScale)][(int)(D->hit.x / blockScale)] > 0)
 			hit = 1;
 	}
 }

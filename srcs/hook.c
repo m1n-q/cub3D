@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 21:48:00 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 17:08:17 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	checkCollision(PARAM *P, double radius)
 		{
 			d.x += newdir.x;
 			d.y += newdir.y;
-			if (worldMap[(int)((int)(P->pos.y + d.y) / BLOCK_SIZE)][(int)((int)(P->pos.x + d.x) / BLOCK_SIZE)])
+			if (worldMap[(int)((int)(P->pos.y + d.y) / blockScale)][(int)((int)(P->pos.x + d.x) / blockScale)])
 				return (1);
 			linelength++;
 		}

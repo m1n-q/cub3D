@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 16:59:25 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 17:08:17 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	draw_ray(PARAM *P, DDA D)
 	VECTOR	minipos;
 	VECTOR	minihit;
 
-	minipos.x = P->pos.x / BLOCK_SIZE * minimapScale;
-	minipos.y = P->pos.y / BLOCK_SIZE * minimapScale;
-	minihit.x = D.hit.x / BLOCK_SIZE * minimapScale;
-	minihit.y = D.hit.y / BLOCK_SIZE * minimapScale;
+	minipos.x = P->pos.x / blockScale * minimapScale;
+	minipos.y = P->pos.y / blockScale * minimapScale;
+	minihit.x = D.hit.x / blockScale * minimapScale;
+	minihit.y = D.hit.y / blockScale * minimapScale;
 
 	// printf("mpos = (%lf, %lf)\n", minipos.x, minipos.y);
 	// printf("mhit = (%lf, %lf)\n", minihit.x, minihit.y);
@@ -85,8 +85,8 @@ void	draw_dir(PARAM *P)
 	double dX, dY; dX=0, dY=0;
 
 	VECTOR	minipos;
-	minipos.x = P->pos.x / BLOCK_SIZE * minimapScale;
-	minipos.y = P->pos.y / BLOCK_SIZE * minimapScale;
+	minipos.x = P->pos.x / blockScale * minimapScale;
+	minipos.y = P->pos.y / blockScale * minimapScale;
 
 	for (int linelength = 0; linelength < minimapScale; linelength++)
 	{
@@ -107,8 +107,8 @@ void	draw_perpdir(PARAM *P, VECTOR perp_dir)
 void	draw_2Dplayer(PARAM *P)
 {
 	VECTOR	minipos;
-	minipos.x = P->pos.x / BLOCK_SIZE * minimapScale;
-	minipos.y = P->pos.y / BLOCK_SIZE * minimapScale;
+	minipos.x = P->pos.x / blockScale * minimapScale;
+	minipos.y = P->pos.y / blockScale * minimapScale;
 
 	for (int y = -2; y <= 0; y++)
 		for (int x = -(y + 2); x <= (y + 2); x++)
@@ -122,7 +122,7 @@ void	draw_2Dplayer(PARAM *P)
 void	draw_2DCircle(PARAM *P)
 {
 
-	if (worldMap[(int)((int)P->pos.y / BLOCK_SIZE)][(int)((int)P->pos.x / BLOCK_SIZE)] == 0)
+	if (worldMap[(int)((int)P->pos.y / blockScale)][(int)((int)P->pos.x / blockScale)] == 0)
 	{
 		for (double r = 0.0; r <= PI * 2 ; r += 0.03)
 		{
@@ -135,7 +135,7 @@ void	draw_2DCircle(PARAM *P)
 			{
 				dX += newdir.x;
 				dY += newdir.y;
-				if (worldMap[(int)((int)(P->pos.y + dY) / BLOCK_SIZE)][(int)((int)(P->pos.x + dX) / BLOCK_SIZE)])
+				if (worldMap[(int)((int)(P->pos.y + dY) / blockScale)][(int)((int)(P->pos.x + dX) / blockScale)])
 					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_Yellow;
 				else
 					P->buf2D[(int)(P->pos.y + dY)][(int)(P->pos.x + dX)] = RGB_White;

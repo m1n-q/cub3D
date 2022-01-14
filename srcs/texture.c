@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 13:33:00 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 17:08:17 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ VECTOR	get_texture_pos(DDA D)
 	double wall_hit;
 	VECTOR texpos;
 
-	if (D.side == 0)	wall_hit = D.hit.y / BLOCK_SIZE;
-	else				wall_hit = D.hit.x / BLOCK_SIZE;
+	if (D.side == 0)	wall_hit = D.hit.y / blockScale;
+	else				wall_hit = D.hit.x / blockScale;
 
 	// 1칸에서 어느만큼인지 * texWidth
 	texpos.x = ((wall_hit - floor(wall_hit)) * (double)texWidth);
@@ -78,7 +78,7 @@ void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
 	//How much to increase the texture coordinate per screen pixel
 	tex_stepY = (double)texHeight / (double)draw.length;	// drawStart 일때 tespos.y == 0, drawEnd 일때 tespos.y == 0 되도록
 
-	texnum = worldMap[(int)(D.hit.y / BLOCK_SIZE)][(int)(D.hit.x / BLOCK_SIZE)] - 1;
+	texnum = worldMap[(int)(D.hit.y / blockScale)][(int)(D.hit.x / blockScale)] - 1;
 	for (int y = draw.start_y; y < draw.end_y; y++)
 	{
 		if (y < 0 || y >= screenHeight)

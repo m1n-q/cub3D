@@ -34,30 +34,30 @@ VECTOR	raycasting(PARAM *P)
 		raydir.y = sin(r) * P->dir.x  + cos(r) * P->dir.y;
 		hit.x = P->pos.x;
 		hit.y = P->pos.y;
-		delta_vert = sqrt(1 + pow(raydir.y, 2.0) / (pow(raydir.x + 0.0001, 2.0))) * BLOCK_SIZE;
-		delta_horz = sqrt(1 + pow(raydir.x, 2.0) / (pow(raydir.y + 0.0001, 2.0))) * BLOCK_SIZE;
+		delta_vert = sqrt(1 + pow(raydir.y, 2.0) / (pow(raydir.x + 0.0001, 2.0))) * blockScale;
+		delta_horz = sqrt(1 + pow(raydir.x, 2.0) / (pow(raydir.y + 0.0001, 2.0))) * blockScale;
 
 		// check step direction
 		if (raydir.x < 0)
 		{
 			step.x = -1.0;
-			dist_vert = (P->pos.x - (int)P->pos.x) * delta_vert / BLOCK_SIZE;
+			dist_vert = (P->pos.x - (int)P->pos.x) * delta_vert / blockScale;
 		}
 		else
 		{
 			step.x = 1.0;
-			dist_vert = ((int)P->pos.x + BLOCK_SIZE - P->pos.x) * delta_vert / BLOCK_SIZE;
+			dist_vert = ((int)P->pos.x + blockScale - P->pos.x) * delta_vert / blockScale;
 		}
 		if (raydir.y > 0)
 		{
 			step.y = 1.0;
-			dist_horz = ((int)P->pos.y + BLOCK_SIZE - P->pos.y) * delta_horz / BLOCK_SIZE;
+			dist_horz = ((int)P->pos.y + blockScale - P->pos.y) * delta_horz / blockScale;
 
 		}
 		else
 		{
 			step.y = -1.0;
-			dist_horz = (P->pos.y - (int)P->pos.y) * delta_horz / BLOCK_SIZE;
+			dist_horz = (P->pos.y - (int)P->pos.y) * delta_horz / blockScale;
 		}
 
 
@@ -80,12 +80,12 @@ VECTOR	raycasting(PARAM *P)
 			}
 
 			// Check if ray has hit a wall
-			if (worldMap[(int)(hit.y / BLOCK_SIZE)][(int)(hit.x / BLOCK_SIZE)] > 0)
+			if (worldMap[(int)(hit.y / blockScale)][(int)(hit.x / blockScale)] > 0)
 				hitt = 1;
 		}
 
 		// draw hit block on 2Dmap
-		draw_2Dsquare(P, (int)(hit.x / BLOCK_SIZE), (int)(hit.y / BLOCK_SIZE), P->hblock);
+		draw_2Dsquare(P, (int)(hit.x / blockScale), (int)(hit.y / blockScale), P->hblock);
 
 
 		if (side == VERT)perpendicular_dist = dist_vert - delta_vert;
@@ -118,7 +118,7 @@ VECTOR	raycasting(PARAM *P)
 
 		//   choose wall color
 		// int color;
-		// switch (worldMap[(int)hit.y / BLOCK_SIZE][(int)hit.x / BLOCK_SIZE])
+		// switch (worldMap[(int)hit.y / blockScale][(int)hit.x / blockScale])
 		// {
 		// 	case 1:color = RGB_Red;		break; // red
 		// 	case 2:color = RGB_Green;	break; // green
@@ -136,10 +136,10 @@ VECTOR	raycasting(PARAM *P)
 
 		draw_ray(P, hit, raydir, side);
 
-		int texNum = worldMap[(int)(hit.y / BLOCK_SIZE)][(int)(hit.x / BLOCK_SIZE)] - 1;
+		int texNum = worldMap[(int)(hit.y / blockScale)][(int)(hit.x / blockScale)] - 1;
 		double wall_hit;
-		if (side == 0)	wall_hit = hit.y / BLOCK_SIZE;
-		else			wall_hit = hit.x / BLOCK_SIZE;
+		if (side == 0)	wall_hit = hit.y / blockScale;
+		else			wall_hit = hit.x / blockScale;
 		// wall_hit -= floor(wall_hit);
 
 
