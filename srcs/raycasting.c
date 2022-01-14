@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 13:51:24 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 16:45:37 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	raycasting(PARAM *P)
 
 
 		// draw hit block on 2Dmap
-		// draw_ray(P, D);
+		draw_ray(P, D);
 		// draw_2Dsquare(P, (int)(D.hit.x / BLOCK_SIZE), (int)(D.hit.y / BLOCK_SIZE), P->hblock);
 
 		get_perp_dist(P, &D);
