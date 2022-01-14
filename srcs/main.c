@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 
 	parse_file(&P, argv[1]);
 	print_worldMap(&P);
-  	err_exit("test end", &P);
+  	//err_exit("test end", &P);
 
 // -------------test line-------------
 
