@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 22:44:28 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 02:10:00 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,47 @@ int	init_mlx_image(PARAM *P)
 	return (0);
 }
 
-int load_image(PARAM *P)
+
+int load_image(PARAM *P, IMG *I, char *filename)
 {
-	P->wall1.img = mlx_png_file_to_image(P->mlx, "rscs/mybrick_256.png", \
-										&P->wall1.width, &P->wall1.height);
-	P->wall1.addr = (int *)mlx_get_data_addr(P->wall1.img, &P->wall1.bpp, \
-											&P->wall1.linesize, &P->wall1.endian);
-	P->wall2.img = mlx_png_file_to_image(P->mlx, "rscs/wood1_256.png", \
-										&P->wall2.width, &P->wall2.height);
-	P->wall2.addr = (int *)mlx_get_data_addr(P->wall2.img, &P->wall2.bpp, \
-											&P->wall2.linesize, &P->wall2.endian);
-	P->wall3.img = mlx_png_file_to_image(P->mlx, "rscs/wood2_256.png", \
-										&P->wall3.width, &P->wall3.height);
-	P->wall3.addr = (int *)mlx_get_data_addr(P->wall3.img, &P->wall3.bpp, \
-											&P->wall3.linesize, &P->wall3.endian);
-	P->wall4.img = mlx_png_file_to_image(P->mlx, "rscs/wood3_256.png", \
-										&P->wall4.width, &P->wall4.height);
-	P->wall4.addr = (int *)mlx_get_data_addr(P->wall4.img, &P->wall4.bpp, \
-										&P->wall4.linesize, &P->wall4.endian);
-	P->wall5.img = mlx_png_file_to_image(P->mlx, "rscs/wall2_256.png", \
-										&P->wall5.width, &P->wall5.height);
-	P->wall5.addr = (int *)mlx_get_data_addr(P->wall5.img, &P->wall5.bpp, \
-										&P->wall5.linesize, &P->wall5.endian);
+	char		*ext;
+	loadfunc	f;
+
+	printf("loading %s. . .\n", filename);
+
+	f = NULL;
+	ext = ft_substr(filename, ft_strlen(filename) - 3, 3);
+
+	if (ft_strncmp(ext, "xpm", 3) == 0)
+		f = mlx_xpm_file_to_image;
+	else if (ft_strncmp(ext, "png", 3) == 0)
+		f = mlx_png_file_to_image;
+	else
+		err_exit("Not supported ext : ===", P);	//TODO
+
+	I->img = f(P->mlx, filename, &I->width, &I->height);
+	I->addr = (int *)mlx_get_data_addr(I->img, &I->bpp, &I->linesize, &I->endian);
+	printf("%s loaded : %p.\n\n", filename, I->img);
+	return (0);
+}
+
+int load_images(PARAM *P)
+{
+	int	any;
+
+	any = 0;	//for err
+	// wall texture
+	load_image(P, &P->wall1, "rscs/mybrick_256.png");
+	load_image(P, &P->wall2, "rscs/wood1_256.png");
+	load_image(P, &P->wall3, "rscs/wood2_256.png");
+	load_image(P, &P->wall4, "rscs/wood3_256.png");
+	load_image(P, &P->wall5, "rscs/wall2_256.png");
+
+	// NSWE
+	load_image(P, &P->wall_N, P->tex_path[N]);
+	load_image(P, &P->wall_S, P->tex_path[S]);
+	load_image(P, &P->wall_W, P->tex_path[W]);
+	load_image(P, &P->wall_E, P->tex_path[E]);
+
 	return (0);
 }

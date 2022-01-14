@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 22:51:14 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 02:07:58 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,21 @@
 # include "color.h"
 # include "config.h"
 # include "structs.h"
+# include "get_next_line_bonus.h"
 # include "map.h"
 
-# define BORDER	0
-# define N		1
-# define S		2
+# define N		0
+# define S		1
+# define W		2
 # define E		3
-# define W		4
+# define BORDER	4
 
 # define VERT	0
 # define HORZ	1
 
 # define PI		3.141592
+
+typedef void* (*loadfunc)(void*, char*, int*, int*);
 
 int		raycasting(PARAM *P);
 
@@ -67,7 +70,8 @@ void	clear_buffer(int **buffer, int w, int h);
 void	clear_img(IMG img, int w, int h);
 
 /* image */
-int		load_image(PARAM *P);
+int		load_image(PARAM *P, IMG *I, char *filename);
+int		load_images(PARAM *P);
 int		make_block_image(PARAM *P);
 int		init_mlx_image(PARAM *P);
 

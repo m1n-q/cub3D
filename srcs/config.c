@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:30:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 23:42:01 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 01:52:42 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void	init_config(CONFIG* C)
 	C->NUM_RAYS = %d\n \
 	C->SCALE = %d\n \
 	C->collisionRange = %d\n \
-	C->minimapScale = %d\n \
-	",
+	C->minimapScale = %d\n",
 	C->screenWidth,
 	C->screenHeight,
 	C->blockScale,

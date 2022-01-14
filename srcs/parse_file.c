@@ -81,7 +81,9 @@ void	parse_file(PARAM *P, char *filename)
 		err_exit("Error: open() failure", P);
 
 	P->cfg->mapWidth = 0;
-	while (get_next_line(fd, &line)) // 마지막 라인이면 0을, 아니면 1을, 에러는 -1을 리턴한다
+
+	// 여기서 에러가 떠서 일단 다른 gnl로 바꾸어놨습니다
+	while (get_next_line_(fd, &line)) // 마지막 라인이면 0을, 아니면 1을, 에러는 -1을 리턴한다
 	{
 		parse_line(P, line);
 		free(line);

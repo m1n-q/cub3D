@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:33:58 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 22:52:07 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 00:43:47 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,11 @@ typedef struct paramset
 	int		width;
 	int		height;
 
-	char		*tex_path[4];
-	int			type_set[7];
-
-	int			floor_color[3];
-	int			ceili_color[3];
-	int			**worldMap;
+	char	*tex_path[4];
+	int		type_set[7];
+	int		floor_color[3];
+	int		ceili_color[3];
+	int		**worldMap;
 // ------------------------------
 
 	VECTOR	pos;
@@ -92,6 +91,12 @@ typedef struct paramset
 	IMG		wall3;
 	IMG		wall4;
 	IMG		wall5;
+
+	IMG		wall_N;
+	IMG		wall_S;
+	IMG		wall_E;
+	IMG		wall_W;
+
 
 	IMG		grid;
 	IMG		block;

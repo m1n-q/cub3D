@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 00:07:12 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 02:13:24 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int main(int argc, char *argv[])
 
 	// -------------test line-------------
 
-	P.pos.x = 30 * P.cfg->blockScale;
-	P.pos.y = 2 * P.cfg->blockScale;
+	P.pos.x = 25 * P.cfg->blockScale;
+	P.pos.y = 4 * P.cfg->blockScale;
 	P.dir.x = 0;
 	P.dir.y = 1;
 	//   printf("BLOCK SIZE=%d\n", P.cfg->blockScale);
@@ -40,11 +40,11 @@ int main(int argc, char *argv[])
 	P.mlx = mlx_init();
 	P.win = mlx_new_window(P.mlx, P.cfg->screenWidth, P.cfg->screenHeight, "Raycaster");
 	init_mlx_image(&P);
-	load_image(&P);
+	load_images(&P);
 	make_block_image(&P);
 	init_buffer(&P);
 	init_texture(&P);
-	printf("here!\n");
+
 	render(&P);
 	mlx_hook(P.win, KeyPress, 0, keymap, &P);
 	mlx_loop_hook(P.mlx, render, &P);

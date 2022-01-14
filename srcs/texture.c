@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 22:51:46 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 02:08:32 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,22 @@ int	init_texture(PARAM *P)
 	i = -1;
 	while (++i < texNum)
 		P->texture[i] = ft_calloc(texHeight * texWidth, sizeof(int));
+	image_to_texture(P->texture[N], P->wall_N);
+	image_to_texture(P->texture[S], P->wall_S);
+	image_to_texture(P->texture[W], P->wall_W);
+	image_to_texture(P->texture[E], P->wall_E);
 	image_to_texture(P->texture[BORDER], P->wall1);
-	image_to_texture(P->texture[1], P->wall2);
-	image_to_texture(P->texture[2], P->wall3);
-	image_to_texture(P->texture[3], P->wall4);
-	image_to_texture(P->texture[4], P->wall5);
+
 	mlx_destroy_image(P->mlx, P->wall1.img);
 	mlx_destroy_image(P->mlx, P->wall2.img);
 	mlx_destroy_image(P->mlx, P->wall3.img);
 	mlx_destroy_image(P->mlx, P->wall4.img);
 	mlx_destroy_image(P->mlx, P->wall5.img);
+
+	mlx_destroy_image(P->mlx, P->wall_N.img);
+	mlx_destroy_image(P->mlx, P->wall_S.img);
+	mlx_destroy_image(P->mlx, P->wall_W.img);
+	mlx_destroy_image(P->mlx, P->wall_E.img);
 	return (0);
 }
 
@@ -78,7 +84,23 @@ void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
 	//How much to increase the texture coordinate per screen pixel
 	tex_stepY = (double)texHeight / (double)draw.length;	// drawStart 일때 tespos.y == 0, drawEnd 일때 tespos.y == 0 되도록
 
-	texnum = P->worldMap[(int)(D.hit.y / P->cfg->blockScale)][(int)(D.hit.x / P->cfg->blockScale)] - 1;
+	if (D.side == HORZ)
+	{
+		if (D.raydir.y >= 0)
+			texnum = N;
+		else
+			texnum = S;
+	}
+	else
+	{
+		if (D.raydir.x >= 0)
+			texnum = W;
+		else
+			texnum = E;
+	}
+
+
+	// P->worldMap[(int)(D.hit.y / P->cfg->blockScale)][(int)(D.hit.x / P->cfg->blockScale)] - 1;
 	for (int y = draw.start_y; y < draw.end_y; y++)
 	{
 		if (y < 0 || y >= P->cfg->screenHeight)
