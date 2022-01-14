@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:37:02 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 16:31:32 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 17:03:23 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@
 # define texWidth		256
 # define texHeight		256
 # define texNum			5
-# define minimapScale	3
+# define minimapScale	(BLOCK_SIZE / 10)
 
 #endif

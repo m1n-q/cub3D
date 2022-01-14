@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 16:44:09 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 16:59:25 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	draw_ray(PARAM *P, DDA D)
 	minipos.y = P->pos.y / BLOCK_SIZE * minimapScale;
 	minihit.x = D.hit.x / BLOCK_SIZE * minimapScale;
 	minihit.y = D.hit.y / BLOCK_SIZE * minimapScale;
+
+	// printf("mpos = (%lf, %lf)\n", minipos.x, minipos.y);
+	// printf("mhit = (%lf, %lf)\n", minihit.x, minihit.y);
 	for (int linelength = 0; (minipos.x + dX > 0) && (P->pos.y + dY > 0) && (minipos.x + dX < mapWidth * minimapScale) && (minipos.y + dY < mapHeight * minimapScale); linelength++)
 	{
 		dX += D.raydir.x;
@@ -85,7 +88,7 @@ void	draw_dir(PARAM *P)
 	minipos.x = P->pos.x / BLOCK_SIZE * minimapScale;
 	minipos.y = P->pos.y / BLOCK_SIZE * minimapScale;
 
-	for (int linelength = 0; linelength < 3; linelength++)
+	for (int linelength = 0; linelength < minimapScale; linelength++)
 	{
 		dX += P->dir.x;
 		dY += P->dir.y;
@@ -107,15 +110,13 @@ void	draw_2Dplayer(PARAM *P)
 	minipos.x = P->pos.x / BLOCK_SIZE * minimapScale;
 	minipos.y = P->pos.y / BLOCK_SIZE * minimapScale;
 
-	if (worldMap[(int)((int)P->pos.y / BLOCK_SIZE)][(int)((int)P->pos.x / BLOCK_SIZE)] == 0)
-	{
-		for (int y = -2; y <= 0; y++)
-			for (int x = -(y + 2); x <= (y + 2); x++)
-				P->buf2D[(int)(minipos.y + (y))][(int)(minipos.x + (x))] = RGB_Red;
-		for (int y = 0; y <= 2; y++)
-			for (int x = (y - 2); x <= -(y - 2); x++)
-				P->buf2D[(int)(minipos.y + (y))][(int)(minipos.x + (x))] = RGB_Red;
-	}
+	for (int y = -2; y <= 0; y++)
+		for (int x = -(y + 2); x <= (y + 2); x++)
+			P->buf2D[(int)(minipos.y + (y))][(int)(minipos.x + (x))] = RGB_Red;
+	for (int y = 0; y <= 2; y++)
+		for (int x = (y - 2); x <= -(y - 2); x++)
+			P->buf2D[(int)(minipos.y + (y))][(int)(minipos.x + (x))] = RGB_Red;
+
 }
 
 void	draw_2DCircle(PARAM *P)

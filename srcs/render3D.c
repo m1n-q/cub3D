@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 16:46:38 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 16:56:22 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int render(PARAM *P)	//Top level
 	// draw_2DCircle(P);
 	raycasting(P);
 
-	// draw_dir(P);
+	draw_dir(P);
 	buffer_to_img(P->buf2D, P->img2D, mapWidth * minimapScale, mapHeight * minimapScale);
 	buffer_to_img(P->buf3D, P->img3D, screenWidth, screenHeight);
 	// clear_buffer(P->buf2D);
