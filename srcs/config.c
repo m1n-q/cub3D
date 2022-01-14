@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:30:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 22:55:24 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 23:42:01 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,23 @@ void	init_config(CONFIG* C)
 	C->NUM_RAYS = C->screenWidth;
 	C->SCALE =	C->screenWidth / C->NUM_RAYS;
 	C->collisionRange = C->blockScale / 10;
-	C->minimapScale = C->blockScale / 10;
+	C->minimapScale = C->blockScale / 2;
+
+	printf("\
+	C->screenWidth = %d\n \
+	C->screenHeight = %d\n \
+	C->blockScale = %d\n \
+	C->NUM_RAYS = %d\n \
+	C->SCALE = %d\n \
+	C->collisionRange = %d\n \
+	C->minimapScale = %d\n \
+	",
+	C->screenWidth,
+	C->screenHeight,
+	C->blockScale,
+	C->NUM_RAYS,
+	C->SCALE,
+	C->collisionRange,
+	C->minimapScale
+	);
 }

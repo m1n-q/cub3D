@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 22:48:36 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 23:40:37 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ void	run_DDA(PARAM *P, DDA *D)
 		if (P->worldMap[(int)(D->hit.y / P->cfg->blockScale)][(int)(D->hit.x / P->cfg->blockScale)] > 0)
 			hit = 1;
 	}
+	// printf("dda done\n");
 }
