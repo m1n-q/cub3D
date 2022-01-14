@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 01:02:45 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 16:36:54 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ int		draw_2Dsquare(PARAM *P, int x, int y, IMG img);
 int		init_buffer(PARAM *P);
 void	destroy_buffer(PARAM* P);
 void	buffer_to_img(int **buffer, IMG img, int w, int h);
-void	clear_buffer(int **buffer);
-void	clear_img(IMG img);
+void	clear_buffer(int **buffer, int w, int h);
+void	clear_img(IMG img, int w, int h);
 
 /* image */
 int		load_image(PARAM *P);

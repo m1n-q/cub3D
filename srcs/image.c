@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 21:38:59 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 16:33:42 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@
 
 int make_block_image(PARAM *P)
 {
-	P->grid.img = mlx_new_image(P->mlx, BLOCK_SIZE, BLOCK_SIZE);
+	P->grid.img = mlx_new_image(P->mlx, mapWidth * minimapScale, mapHeight * minimapScale);
 	P->grid.addr = (int *)mlx_get_data_addr(P->grid.img, &P->grid.bpp, &P->grid.linesize, &P->grid.endian);
-	P->block.img = mlx_new_image(P->mlx, BLOCK_SIZE, BLOCK_SIZE);
+	P->block.img = mlx_new_image(P->mlx, mapWidth * minimapScale, mapHeight * minimapScale);
 	P->block.addr = (int *)mlx_get_data_addr(P->block.img, &P->block.bpp, &P->block.linesize, &P->block.endian);
-	P->hblock.img = mlx_new_image(P->mlx, BLOCK_SIZE, BLOCK_SIZE);
+	P->hblock.img = mlx_new_image(P->mlx, mapWidth * minimapScale, mapHeight * minimapScale);
 	P->hblock.addr = (int *)mlx_get_data_addr(P->hblock.img, &P->hblock.bpp, &P->hblock.linesize, &P->hblock.endian);
-	for (int x = 0; x < BLOCK_SIZE; x++)
+	for (int x = 0; x < mapWidth * minimapScale; x++)
 	{
-		for (int y = 0; y < BLOCK_SIZE; y++)
+		for (int y = 0; y < mapHeight * minimapScale; y++)
 		{
 			P->grid.addr[y * P->block.linesize / sizeof(int) + x]	= 0x000000 ;
 			P->block.addr[y * P->block.linesize / sizeof(int) + x]	= 0x5a7dbd ;
 			P->hblock.addr[y * P->hblock.linesize / sizeof(int) + x] = 0x00fdff;
 
-			if (x == 0 || y == 0 || x == BLOCK_SIZE -1 || y == BLOCK_SIZE -1)
+			if (x == 0 || y == 0 || x == mapWidth * minimapScale - 1 || y == mapHeight * minimapScale -1)
 				P->grid.addr[y * P->block.linesize / sizeof(int) + x] = RGB_Grey;
 		}
 	}
@@ -41,7 +41,7 @@ int	init_mlx_image(PARAM *P)
 {
 	P->img3D.img = mlx_new_image(P->mlx, screenWidth, screenHeight);
 	P->img3D.addr = (int *)mlx_get_data_addr(P->img3D.img, &P->img3D.bpp, &P->img3D.linesize, &P->img3D.endian);
-	P->img2D.img = mlx_new_image(P->mlx, screenWidth, screenHeight);
+	P->img2D.img = mlx_new_image(P->mlx, mapWidth * minimapScale, mapHeight * minimapScale);
 	P->img2D.addr = (int *)mlx_get_data_addr(P->img2D.img, &P->img2D.bpp, &P->img2D.linesize, &P->img2D.endian);
 	return (0);
 }
