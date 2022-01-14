@@ -38,6 +38,12 @@ typedef struct vector
 	double	y;
 } VECTOR;
 
+typedef struct	s_lst
+{
+	char			*content;
+	struct s_lst	*next;
+}				t_lst;
+
 typedef struct paramset
 {
 	void	*mlx;
@@ -45,6 +51,19 @@ typedef struct paramset
 	int		**buf3D;	//NOTE: buffer	=> 직관적으로 생각할 수 있는 2차원 배열 형태
 	int		**buf2D;
 	int		**texture;	//NOTE: texture	=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
+
+// -------추가--------------------
+	t_lst		*map;
+	int			width;
+	int			height;
+
+	char		*tex_path[4];
+	int			type_set[7];
+
+	int			floor_color[3]; 
+	int			ceili_color[3]; 
+	int			**worldMap;	
+// ------------------------------ 
 
 	VECTOR	pos;
 	VECTOR	dir;

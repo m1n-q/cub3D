@@ -78,7 +78,7 @@ void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
 	//How much to increase the texture coordinate per screen pixel
 	tex_stepY = (double)texHeight / (double)draw.length;	// drawStart 일때 tespos.y == 0, drawEnd 일때 tespos.y == 0 되도록
 
-	texnum = worldMap[(int)(D.hit.y / blockScale)][(int)(D.hit.x / blockScale)] - 1;
+	texnum = P->worldMap[(int)(D.hit.y / blockScale)][(int)(D.hit.x / blockScale)] - 1;
 	for (int y = draw.start_y; y < draw.end_y; y++)
 	{
 		if (y < 0 || y >= screenHeight)

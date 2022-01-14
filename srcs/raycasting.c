@@ -48,7 +48,7 @@ int	raycasting(PARAM *P)
 	for (double r = -angle; r <= angle; r+=dr)
 	{
 		D = get_DDA_info(P->pos, P->dir, r);
-		run_DDA(&D);
+		run_DDA(P, &D);
 
 
 		// draw hit block on 2Dmap
