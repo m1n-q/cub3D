@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 21:52:50 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 13:11:18 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 int render(PARAM *P)	//Top level
 {
 	mlx_clear_window(P->mlx, P->win);
-	draw_2Dmap(P);
-	draw_2Dplayer(P);
-	draw_2DCircle(P);
+	// draw_2Dmap(P);
+	// draw_2Dplayer(P);
+	// draw_2DCircle(P);
 	raycasting(P);
 
-	draw_dir(P);
+	// draw_dir(P);
 	buffer_to_img(P->buf2D, P->img2D, screenWidth, screenHeight);
 	buffer_to_img(P->buf3D, P->img3D, screenWidth, screenHeight);
 	// clear_buffer(P->buf2D);

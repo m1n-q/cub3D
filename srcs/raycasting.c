@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 21:30:05 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 13:51:24 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ LINEDRAW	get_draw_info(double perp_dist)
 {
 	LINEDRAW	draw;
 
-	draw.length		= (int)(screenHeight * sqrt(texHeight)) / perp_dist;		// BLOCK_SIZE와 비례해야 함..!
+	draw.length		= (int)(screenWidth) / perp_dist * BLOCK_SIZE;		// BLOCK_SIZE와 비례해야 함..!
 	draw.start_y	= screenHeight / 2 - draw.length / 2;
 	draw.end_y		= screenHeight / 2 + draw.length / 2;
-
+	// printf("draw length = %d\n", draw.length);
 	return (draw);
 }
 
@@ -50,9 +50,10 @@ int	raycasting(PARAM *P)
 		D = get_DDA_info(P->pos, P->dir, r);
 		run_DDA(&D);
 
+
 		// draw hit block on 2Dmap
-		draw_ray(P, D);
-		draw_2Dsquare(P, (int)(D.hit.x / BLOCK_SIZE), (int)(D.hit.y / BLOCK_SIZE), P->hblock);
+		// draw_ray(P, D);
+		// draw_2Dsquare(P, (int)(D.hit.x / BLOCK_SIZE), (int)(D.hit.y / BLOCK_SIZE), P->hblock);
 
 		get_perp_dist(P, &D);
 

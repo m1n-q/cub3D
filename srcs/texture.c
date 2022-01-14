@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 21:54:11 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 13:33:00 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,13 @@ void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
 			continue ;
 		}
 		texpos.y	= fmin(texpos.y, texHeight - 1);
+
 		color		= P->texture[texnum][(int)texpos.y * texHeight + (int)texpos.x];
 
 		if (D.side == HORZ)
 			color = (color >> 1) & 8355711;	// make color darker for horizontal sides
+
+
 		P->buf3D[y][draw.x]	= color;
 
 		texpos.y += tex_stepY;

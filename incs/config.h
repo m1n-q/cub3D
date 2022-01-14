@@ -6,19 +6,19 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:37:02 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 21:40:13 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 13:51:15 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONFIG_H
 # define CONFIG_H
 
-# define mapWidth		25
-# define mapHeight		25
-# define screenWidth	500
-# define screenHeight	500
-# define NUM_RAYS		screenWidth	//Resolution
-# define BLOCK_SIZE		(screenWidth / mapWidth)
+# define mapWidth		13
+# define mapHeight		20
+# define screenWidth	1920
+# define screenHeight	1080
+# define BLOCK_SIZE		(screenWidth / mapWidth)	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
+# define NUM_RAYS		screenWidth
 # define SCALE			(screenWidth / NUM_RAYS)
 # define collisionRange	5
 # define texWidth		256

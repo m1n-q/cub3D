@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/13 21:52:25 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/14 13:33:04 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	run_DDA(DDA *D)
 			D->hit.y += D->step.y;
 			D->side = HORZ;
 		}
+
 		if (worldMap[(int)(D->hit.y / BLOCK_SIZE)][(int)(D->hit.x / BLOCK_SIZE)] > 0)
 			hit = 1;
 	}
