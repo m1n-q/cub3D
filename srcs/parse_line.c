@@ -22,7 +22,6 @@ void	set_max_width(PARAM *P, char *line)
 	int len;
 	int max;
 
-	P->cfg->mapWidth = 0;
 	len = ft_strlen(line);
 	max = len;
 	while (line[--len] == ' ')

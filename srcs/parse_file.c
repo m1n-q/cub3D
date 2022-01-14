@@ -80,6 +80,7 @@ void	parse_file(PARAM *P, char *filename)
 	if (fd < 3)
 		err_exit("Error: open() failure", P);
 
+	P->cfg->mapWidth = 0;
 	while (get_next_line(fd, &line)) // 마지막 라인이면 0을, 아니면 1을, 에러는 -1을 리턴한다
 	{
 		parse_line(P, line);
