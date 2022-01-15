@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 19:28:55 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 19:32:31 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	raycasting(PARAM *P)
 		// Calculate height of line to draw on screen
 		get_perp_dist(P, &D);
 		draw	= get_draw_info(P, D.perp_dist);
-		draw.x	= (((r + (PI / 6)) / dr) * P->cfg->SCALE);		// draw starting X (pixel)
+		draw.x	= ((r + angle) / dr) * P->cfg->SCALE;		// draw starting X (pixel)
 
 		texpos	= get_texture_pos(P, D);
 		fill_by_texture(P, D, texpos, draw);
