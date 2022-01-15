@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 19:20:58 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 19:38:27 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //NOTE: IMG		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 
-int make_block_image(PARAM *P)
+int make_minimap_image(PARAM *P)
 {
 	P->grid.img = mlx_new_image(P->mlx, P->cfg->mapWidth * P->cfg->minimapScale, P->cfg->mapHeight * P->cfg->minimapScale);
 	P->grid.addr = (int *)mlx_get_data_addr(P->grid.img, &P->grid.bpp, &P->grid.linesize, &P->grid.endian);

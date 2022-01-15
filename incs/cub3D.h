@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 02:07:58 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 19:38:27 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	clear_img(IMG img, int w, int h);
 /* image */
 int		load_image(PARAM *P, IMG *I, char *filename);
 int		load_images(PARAM *P);
-int		make_block_image(PARAM *P);
+int		make_minimap_image(PARAM *P);
 int		init_mlx_image(PARAM *P);
 
 /* texture */

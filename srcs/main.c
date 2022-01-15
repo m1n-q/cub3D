@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 02:13:24 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 19:38:27 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 	P.win = mlx_new_window(P.mlx, P.cfg->screenWidth, P.cfg->screenHeight, "Raycaster");
 	init_mlx_image(&P);
 	load_images(&P);
-	make_block_image(&P);
+	make_minimap_image(&P);
 	init_buffer(&P);
 	init_texture(&P);
 
