@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 02:10:00 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 19:20:58 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ int load_image(PARAM *P, IMG *I, char *filename)
 	char		*ext;
 	loadfunc	f;
 
-	printf("loading %s. . .\n", filename);
-
+	printf("loading %s", filename);
 	f = NULL;
 	ext = ft_substr(filename, ft_strlen(filename) - 3, 3);
 
@@ -66,7 +65,8 @@ int load_image(PARAM *P, IMG *I, char *filename)
 
 	I->img = f(P->mlx, filename, &I->width, &I->height);
 	I->addr = (int *)mlx_get_data_addr(I->img, &I->bpp, &I->linesize, &I->endian);
-	printf("%s loaded : %p.\n\n", filename, I->img);
+	if (I->img && I->addr)
+		printf("\r%s loaded.\n", filename);
 	return (0);
 }
 
