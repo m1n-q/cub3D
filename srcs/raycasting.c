@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 00:08:20 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 19:28:55 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,35 +45,26 @@ int	raycasting(PARAM *P)
 	LINEDRAW	draw;
 	double		angle = (PI / 6);
 	double		dr = (angle * 2.0 / P->cfg->NUM_RAYS);
-	double		prev = 0.0;
 
 	for (double r = -angle; r <= angle; r+=dr)
 	{
 		D = get_DDA_info(P, r);
 		run_DDA(P, &D);
 
-
 		// draw hit block on 2Dmap
 		draw_ray(P, D);
-		// draw_2Dsquare(P, (int)(D.hit.x / P->cfg->blockScale), (int)(D.hit.y / P->cfg->blockScale), P->hblock);
-
-		get_perp_dist(P, &D);
-
+		draw_2Dsquare(P, (int)(D.hit.x / P->cfg->blockScale), (int)(D.hit.y / P->cfg->blockScale), P->hblock);
 
 		// Calculate height of line to draw on screen
+		get_perp_dist(P, &D);
 		draw	= get_draw_info(P, D.perp_dist);
 		draw.x	= (((r + (PI / 6)) / dr) * P->cfg->SCALE);		// draw starting X (pixel)
 
-
 		texpos	= get_texture_pos(P, D);
 		fill_by_texture(P, D, texpos, draw);
-		// printf("there\n");
 
-		// fill floor and ceiling
 		draw_verLine(draw.x, 0, draw.start_y, 0x000044, P);
 		draw_verLine(draw.x, draw.end_y, P->cfg->screenHeight - 1, 0x446600, P);
-
-		prev = draw.length;
 	}
 
 	return (0);
