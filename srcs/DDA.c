@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 18:46:11 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/15 18:49:50 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,10 @@ DDA	get_DDA_info(PARAM *P, double r)
 void	run_DDA(PARAM *P, DDA *D)
 {
 	int	hit;
+	int	Scale;
 
 	hit = 0;
+	Scale = P->cfg->blockScale;
 	while (hit == 0)
 	{
 		if (D->dist_vert < D->dist_horz)
@@ -83,9 +85,7 @@ void	run_DDA(PARAM *P, DDA *D)
 			D->hit.y += D->step.y;
 			D->side = HORZ;
 		}
-
-		if (P->worldMap[(int)(D->hit.y / P->cfg->blockScale)][(int)(D->hit.x / P->cfg->blockScale)] > 0)
+		if (P->worldMap[(int)(D->hit.y / Scale)][(int)(D->hit.x / Scale)] > 0)
 			hit = 1;
 	}
-	// printf("dda done\n");
 }
