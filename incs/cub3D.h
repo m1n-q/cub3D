@@ -90,15 +90,21 @@ void	parse_file(PARAM *P, char *filename);
 void	parse_line(PARAM *P, char *line);
 void	parse_texture(PARAM *P, int type, char *line);
 void	parse_rgb(PARAM *P, int type, char *line);
+void	check_worldMap(PARAM *P, CONFIG *C);
+void	check_hole(PARAM *P, int y);
+void	check_wall(PARAM *P);
 
-void	err_exit(char *msg, PARAM *P);
 int		get_next_line(int fd, char **line);
 t_lst	*lst_add_back(t_lst *node, char *content);
 void	lst_print(t_lst *head);
 void	lst_clear(t_lst **head);
 int		lst_get_len(t_lst *node);
-void	print_worldMap(PARAM *P);
 
 /* utils */
+char	**ft_split2(char *str, char *ch);
+void	err_exit(char *msg, PARAM *P);
+void	print_worldMap(PARAM *P);
+int		check_val(int c);
+void	wall_leaks_exit(int y, int x, PARAM *P);
 
 #endif

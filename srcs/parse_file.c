@@ -1,105 +1,87 @@
 #include "cub3D.h"
 
-int	is_dir(char c)
+void	malloc_worldMap(PARAM *P)
 {
-	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		return (1);
-	return (0);
+	int	i;
+
+	P->worldMap = (int **)malloc(sizeof(int *) * P->cfg->mapHeight);
+	if (!P->worldMap)
+		err_exit("Error: malloc failure", P);
+	i = 0;
+	while (i < P->cfg->mapHeight)
+	{
+		P->worldMap[i] = (int *)ft_calloc(P->cfg->mapWidth, sizeof(int));
+		if (!P->worldMap[i++])
+			err_exit("Error: malloc failure", P);
+	}
 }
 
 void	fill_worldMap(PARAM *P)
 {
-	int i;
-	int j;
-	int **world;
+	int		y;
+	int		x;
 	t_lst	*tmp;
 
-	world = (int **)malloc(sizeof(int *) * P->cfg->mapHeight);
-	i = 0;
-	while (i < P->cfg->mapHeight)
-	{
-		world[i++] = (int *)malloc(sizeof(int) * P->cfg->mapWidth);
-	}
-	i = 0;
+	malloc_worldMap(P);
+	y = -1;
 	tmp = P->map;
-	while (i < P->cfg->mapHeight)
+	while (++y < P->cfg->mapHeight)
 	{
-		j = 0;
-		while (j < P->cfg->mapWidth)
+		x = -1;
+		while (++x < P->cfg->mapWidth)
 		{
-			if (tmp->content[j] == '\0')
+			if (tmp->content[x] == '\0')
 			{
-				while (j < P->cfg->mapWidth)
-					world[i][j++] = 9;
+				while (x < P->cfg->mapWidth)
+					P->worldMap[y][x++] = ' ';
 				break ;
 			}
-			if (ft_isdigit(tmp->content[j]))
-				world[i][j] = tmp->content[j] - 48;
+			if (ft_isdigit(tmp->content[x]))
+				P->worldMap[y][x] = tmp->content[x] - 48;
 			else
-				world[i][j] = tmp->content[j];
-			j++;
+				P->worldMap[y][x] = tmp->content[x];
 		}
 		tmp = tmp->next;
-		i++;
 	}
-	P->worldMap = world;
 }
-// e.g.
-// filename == "map_file_name.cub"
-// extension == ".cub"
-// did_filename_include_extension
+
 void	filename_check(char *filename, char *extension, PARAM *P)
 {
-	int	f_len; // filename length
-	int	e_len; // extension length
+	int	f_len;
+	int	e_len;
 
 	f_len = ft_strlen(filename);
-	e_len = ft_strlen(extension); // 4글자
-
-	// 확장자 .cub 보다 길어야한다 같거나 짧다면 리턴 0
+	e_len = ft_strlen(extension);
 	if (f_len <= e_len)
 		err_exit("Error: invalid filename", P);
-
-	// str의 마지막 4글자, end 4글자를 비교
-	// 같으면 1, 다른면 0 리턴
 	if (ft_strncmp(filename + f_len - e_len, extension, e_len) != 0)
 		err_exit("Error: invalid extension", P);
 }
 
-
-
 void	parse_file(PARAM *P, char *filename)
 {
-	int			fd;
-	char		*line;
+	int		fd;
+	char	*line;
 
-	// 파일이름에 확장자(.cub)가 포함됬는지 확인
 	filename_check(filename, ".cub", P);
-
 	fd = open(filename, O_RDONLY);
 	if (fd < 3)
 		err_exit("Error: open() failure", P);
-
 	P->cfg->mapWidth = 0;
-
-	// 여기서 에러가 떠서 일단 다른 gnl로 바꾸어놨습니다
-	while (get_next_line_(fd, &line)) // 마지막 라인이면 0을, 아니면 1을, 에러는 -1을 리턴한다
+	while (get_next_line_(fd, &line))
 	{
 		parse_line(P, line);
 		free(line);
-		//line = NULL;
+		line = NULL;
 	}
-	parse_line(P, line); // 마지막 라인
+	parse_line(P, line);
 	free(line);
-
 	close(fd);
-
 	P->cfg->mapHeight = lst_get_len(P->map);
-
-	printf("w:%d, h:%d\n", P->cfg->mapWidth, P->cfg->mapHeight);
-
 	fill_worldMap(P);
-
-
 }
 
+// 55 확장자 .cub 보다 길어야한다 같거나 짧다면 리턴 0
+// 57 str의 마지막 4글자, end 4글자를 비교 (같으면 1, 다른면 0 리턴)
+// 66 파일이름에 확장자(.cub)가 포함됬는지 확인
+// 71 마지막 라인이면 0을, 아니면 1을, 에러는 -1을 리턴한다

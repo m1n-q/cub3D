@@ -27,6 +27,9 @@ SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/get_next_line.c \
 		$(SRC_DIR)/get_next_line_utils_bonus.c \
 		$(SRC_DIR)/get_next_line_bonus.c \
+		$(SRC_DIR)/check_worldMap.c \
+		$(SRC_DIR)/check_wall.c \
+		$(SRC_DIR)/check_hole.c
 
 
 # colors

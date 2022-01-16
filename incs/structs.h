@@ -75,8 +75,8 @@ typedef struct paramset
 
 	char	*tex_path[4];
 	int		type_set[7];
-	int		floor_color[3];
-	int		ceili_color[3];
+	int		floor_color;
+	int		ceili_color;
 	int		**worldMap;
 // ------------------------------
 
