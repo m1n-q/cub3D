@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:33:58 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 18:31:02 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 18:57:41 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ typedef struct config
 {
 	int	mapWidth;
 	int mapHeight;
-	int screenWidth;
-	int screenHeight;
 	int blockScale;			//	(screenWidth / mapWidth)	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
 	int NUM_RAYS;			//	screenWidth
 	int collisionRange;		// (blockScale / 10)

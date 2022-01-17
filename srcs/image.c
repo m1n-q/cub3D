@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 13:26:10 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 18:56:21 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ int make_minimap_image(PARAM *P)
 
 int	init_mlx_image(PARAM *P)
 {
-	P->img3D.img = mlx_new_image(P->mlx, P->cfg->screenWidth, \
-								P->cfg->screenHeight);
+	P->img3D.img = mlx_new_image(P->mlx, screenWidth, \
+								screenHeight);
 	P->img3D.addr = (int *)mlx_get_data_addr(P->img3D.img, &P->img3D.bpp, \
 										&P->img3D.linesize, &P->img3D.endian);
 	P->img2D.img = mlx_new_image(P->mlx, P->cfg->mapWidth * P->cfg->minimapScale, \

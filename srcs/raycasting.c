@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 18:30:58 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 19:04:24 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ LINEDRAW	get_draw_info(PARAM *P, double perp_dist)
 {
 	LINEDRAW	draw;
 
-	draw.length = (P->cfg->screenWidth) / perp_dist * P->cfg->blockScale;		// P->cfg->blockScale와 비례해야 함..!
-	draw.start_y = P->cfg->screenHeight / 2 - draw.length / 2;
-	draw.end_y = P->cfg->screenHeight / 2 + draw.length / 2;
+	draw.length = (screenWidth) / perp_dist * P->cfg->blockScale;		// P->cfg->blockScale와 비례해야 함..!
+	draw.start_y = screenHeight / 2 - draw.length / 2;
+	draw.end_y = screenHeight / 2 + draw.length / 2;
 	return (draw);
 }
 
@@ -58,7 +58,7 @@ int	raycasting(PARAM *P)
 		draw.x = ((r + angle) / dr);
 		fill_by_texture(P, D, draw);
 		draw_verLine(draw.x, 0, draw.start_y, P->ceili_color, P);
-		draw_verLine(draw.x, draw.end_y, P->cfg->screenHeight - 1, P->floor_color, P);
+		draw_verLine(draw.x, draw.end_y, screenHeight - 1, P->floor_color, P);
 		r += dr;
 	}
 	return (0);

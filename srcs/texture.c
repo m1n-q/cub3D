@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 18:28:24 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 18:56:21 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	fill_by_texture(PARAM *P, DDA D, LINEDRAW draw)
 	y = draw.start_y - 1;
 	while (++y < draw.end_y)
 	{
-		if (y < 0 || y >= P->cfg->screenHeight)
+		if (y < 0 || y >= screenHeight)
 		{
 			texpos.y += tex_stepY;
 			continue ;

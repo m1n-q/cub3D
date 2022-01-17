@@ -101,13 +101,13 @@ VECTOR	raycasting(PARAM *P)
 
 
 		//   Calculate height of line to draw on screen
-		int lineHeight = (int)(P->cfg->screenHeight * sqrt(P->cfg->texHeight)) / perpendicular_dist;
-		int drawStart = -lineHeight / 2 + P->cfg->screenHeight / 2;
+		int lineHeight = (int)(screenHeight * sqrt(P->cfg->texHeight)) / perpendicular_dist;
+		int drawStart = -lineHeight / 2 + screenHeight / 2;
 		if (drawStart < 0)
 			drawStart = 0;
-		int drawEnd = lineHeight / 2 + P->cfg->screenHeight / 2;
-		if (drawEnd >= P->cfg->screenHeight)
-			drawEnd = P->cfg->screenHeight - 1;
+		int drawEnd = lineHeight / 2 + screenHeight / 2;
+		if (drawEnd >= screenHeight)
+			drawEnd = screenHeight - 1;
 
 
 
@@ -176,7 +176,7 @@ VECTOR	raycasting(PARAM *P)
 
 		// fill floor and ceiling
 		verLine(pixel_x, 0, drawStart, 0x000044, P);
-		verLine(pixel_x, drawEnd, P->cfg->screenHeight - 1, 0x446600, P);
+		verLine(pixel_x, drawEnd, screenHeight - 1, 0x446600, P);
 	}
 
 	return (VECTOR){1.0, 1.0};

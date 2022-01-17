@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:16:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 14:05:04 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 18:56:21 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	init_buffer(PARAM *P)
 {
 	int	i;
 
-	P->buf3D = (int **)ft_calloc(P->cfg->screenHeight, sizeof(int *));
+	P->buf3D = (int **)ft_calloc(screenHeight, sizeof(int *));
 	i = -1;
-	while (++i < P->cfg->screenHeight)
-		P->buf3D[i] = (int *)ft_calloc(P->cfg->screenWidth, sizeof(int));
+	while (++i < screenHeight)
+		P->buf3D[i] = (int *)ft_calloc(screenWidth, sizeof(int));
 
 	P->buf2D = (int **)ft_calloc(P->cfg->mapHeight * P->cfg->minimapScale, sizeof(int *));
 	i = -1;
@@ -34,7 +34,7 @@ void	destroy_buffer(PARAM* P)
 	int	i;
 
 	i = -1;
-	while (++i < P->cfg->screenHeight)
+	while (++i < screenHeight)
 		free(P->buf3D[i]);
 	i = -1;
 	while (++i < P->cfg->mapHeight * P->cfg->minimapScale)
