@@ -4,10 +4,11 @@
 	NO   	     ./rscs/N256.xpm    	
 
 
-F		220	,	100,      	    0  	
+F		220	,	100,      00  
         SO   	 ./rscs/S256.xpm
 
   	EA ./rscs/E256.xpm 
+
 
     C		225   ,	30,0 	    
 

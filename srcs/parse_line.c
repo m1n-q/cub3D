@@ -34,12 +34,11 @@ void	set_max_width(PARAM *P, char *line)
 		else
 			break ;
 	}
-	//printf("hello\n");
 	if (width > P->cfg->mapWidth)
 		P->cfg->mapWidth = width;
 }
 
-int		check_type_set(PARAM *P)
+int	check_type_set(PARAM *P)
 {
 	return (P->type_set[NO] && P->type_set[SO]
 		&& P->type_set[WE] && P->type_set[EA]

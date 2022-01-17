@@ -76,7 +76,6 @@ void	cnt_mapHeight(PARAM *P)
 			break ;
 	}
 	P->cfg->mapHeight = lst_get_len(P->map) - cnt;
-
 }
 
 void	parse_file(PARAM *P, char *filename)
@@ -89,7 +88,7 @@ void	parse_file(PARAM *P, char *filename)
 	if (fd < 3)
 		err_exit("Error: open() failure", P);
 	P->cfg->mapWidth = 0;
-	while (get_next_line_(fd, &line))
+	while (get_next_line_(fd, &line) > 0)
 	{
 		parse_line(P, line);
 		free(line);

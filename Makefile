@@ -24,6 +24,7 @@ SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/parse_rgb.c \
 		$(SRC_DIR)/parse_texture.c \
 		$(SRC_DIR)/utils_lst.c \
+		$(SRC_DIR)/utils_map.c \
 		$(SRC_DIR)/get_next_line.c \
 		$(SRC_DIR)/get_next_line_utils_bonus.c \
 		$(SRC_DIR)/get_next_line_bonus.c \

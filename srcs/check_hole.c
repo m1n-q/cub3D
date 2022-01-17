@@ -26,7 +26,6 @@ static void	check_y_axis(PARAM *P, int y, int x)
 	}
 	if (block == 2)
 		err_exit("ERROR: found a hole in map", P);
-	
 }
 
 void	check_hole(PARAM *P, int y)
@@ -38,15 +37,13 @@ void	check_hole(PARAM *P, int y)
 	start = 0;
 	while (P->worldMap[y][start] == ' ')
 		start++;
-	
 	end = P->cfg->mapWidth - 1;
 	while (P->worldMap[y][end] == ' ')
 		end--;
-
 	x = start;
 	while (x < end)
 	{
-		if(P->worldMap[y][x] == ' ')
+		if (P->worldMap[y][x] == ' ')
 			check_y_axis(P, y, x);
 		x++;
 	}

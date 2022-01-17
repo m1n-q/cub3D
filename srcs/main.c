@@ -25,20 +25,19 @@ int main(int argc, char *argv[])
 		err_exit("ERROR: CHECK PARAMETER", NULL);
 
 	parse_file(&P, argv[1]);
-	print_worldMap(&P);
-
 	check_worldMap(&P, &C);
 
-	printf("w:%d, h:%d\n", P.cfg->mapWidth, P.cfg->mapHeight);
-	printf("NO [%s]\n", P.tex_path[NO]);
-	printf("SO [%s]\n", P.tex_path[SO]);
-	printf("WE [%s]\n", P.tex_path[WE]);
-	printf("EA [%s]\n", P.tex_path[EA]);
-	printf("floor RGB [%X]\n", P.floor_color);  // [DC6400]
-	printf("ceili RGB [%X]\n", P.ceili_color); // [E11E00]
+	//print_worldMap(&P);
+	//printf("w:%d, h:%d\n", P.cfg->mapWidth, P.cfg->mapHeight);
+	//printf("NO [%s]\n", P.tex_path[NO]);
+	//printf("SO [%s]\n", P.tex_path[SO]);
+	//printf("WE [%s]\n", P.tex_path[WE]);
+	//printf("EA [%s]\n", P.tex_path[EA]);
+	//printf("floor RGB [%X]\n", P.floor_color);  // [DC6400]
+	//printf("ceili RGB [%X]\n", P.ceili_color); // [E11E00]
 
 	init_config(P.cfg);
-	err_exit("test end", &P);
+	//err_exit("test end", &P);
 
 	// -------------test line-------------
 
