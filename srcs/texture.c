@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 18:56:21 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 20:13:50 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ void	fill_by_texture(PARAM *P, DDA D, LINEDRAW draw)
 
 	// 전체 그릴 높이 == draw.length
 	tex_stepY = (double)texHeight / (double)draw.length;
-
 	y = draw.start_y - 1;
 	while (++y < draw.end_y)
 	{
