@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 19:06:14 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 21:10:16 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int main(int argc, char *argv[])
 {
-	PARAM P;
-	CONFIG C;
+	PARAM	P;
+	CONFIG	C;
 
 	// -----------MAP parsing----------------
 	ft_memset(&P, 0, sizeof(P));
@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
 
 	parse_file(&P, argv[1]);
 	check_worldMap(&P, &C);
+	init_config(P.cfg);
 
 	//print_worldMap(&P);
 	//printf("w:%d, h:%d\n", P.cfg->mapWidth, P.cfg->mapHeight);
@@ -36,16 +37,9 @@ int main(int argc, char *argv[])
 	//printf("floor RGB [%X]\n", P.floor_color);  // [DC6400]
 	//printf("ceili RGB [%X]\n", P.ceili_color); // [E11E00]
 
-	init_config(P.cfg);
 	//err_exit("test end", &P);
 
 	// -------------test line-------------
-
-	P.pos.x = 25 * P.cfg->blockScale;
-	P.pos.y = 4 * P.cfg->blockScale;
-	P.dir.x = 0;
-	P.dir.y = 1;
-	printf("BLOCK SIZE=%d\n", P.cfg->blockScale);
 
 	P.mlx = mlx_init();
 	P.win = mlx_new_window(P.mlx, screenWidth, screenHeight, "Raycaster");

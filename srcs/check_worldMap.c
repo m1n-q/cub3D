@@ -53,7 +53,7 @@ void	check_worldMap(PARAM *P, CONFIG *C)
 			if (!check_val(P->worldMap[y][x]))
 				err_exit("ERROR: invalid val in map", P);
 			if (check_val(P->worldMap[y][x]) == 1)
-				player++;
+				player = (set_dir(P, P->worldMap[y][x]) && set_pos(P, x, y));
 			x++;
 		}
 		check_left_right_wall(P, y);

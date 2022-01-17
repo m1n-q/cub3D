@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 19:29:29 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 21:01:39 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	run_DDA(PARAM *P, DDA *D)
 			D->hit.y += D->step.y;
 			D->side = HORZ;
 		}
-		if (P->worldMap[(int)(D->hit.y / Scale)][(int)(D->hit.x / Scale)] > 0)
+		if (P->worldMap[(int)(D->hit.y / Scale)][(int)(D->hit.x / Scale)] == 1)
 			hit = 1;
 
 		// printf("dist_vh => (%f, %f)\n", D->dist_vert, D->dist_horz);

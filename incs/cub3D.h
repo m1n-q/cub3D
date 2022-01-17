@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 19:57:08 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 20:44:51 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,7 @@ void	err_exit(char *msg, PARAM *P);
 void	print_worldMap(PARAM *P);
 int		check_val(int c);
 void	wall_leaks_exit(int y, int x, PARAM *P);
+int		set_dir(PARAM* P, int c);
+int		set_pos(PARAM* P, int x, int y);
 
 #endif
