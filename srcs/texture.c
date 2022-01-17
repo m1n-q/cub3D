@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 16:12:49 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 17:57:53 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,18 @@ int	image_to_texture(int *texture, IMG teximg)
 
 VECTOR	get_texture_pos(PARAM *P, DDA D)
 {
-	double	wall_hit;
+	double	pos_on_wall;
 	VECTOR	texpos;
 
-	if (D.side == 0)
-		wall_hit = D.hit.y / P->cfg->blockScale;
+	// 한칸에서 어느만큼인지 : hit.x =87, scale =40 -> 3번째 칸에서 7번째 위치
+	if (D.side == HORZ)
+		pos_on_wall = (int)D.hit.x % P->cfg->blockScale;
 	else
-		wall_hit = D.hit.x / P->cfg->blockScale;
-	// 1칸에서 어느만큼인지 * P->cfg->texWidth
-	texpos.x = ((wall_hit - floor(wall_hit)) * (double)texWidth);
+		pos_on_wall = (int)D.hit.y % P->cfg->blockScale;
+
+	// textureWidth 에서 7 / 40 위치 가져와야 함	(method 2: using floor)
+	texpos.x = (pos_on_wall / P->cfg->blockScale) * texWidth;
+
 	// 좌우반전
 	if (D.side == HORZ && D.raydir.y > 0)
 		texpos.x = texWidth - texpos.x - 1;
@@ -110,11 +113,10 @@ void	fill_by_texture(PARAM *P, DDA D, LINEDRAW draw)
 	double	tex_stepY;
 	VECTOR	texpos;
 
-	texpos = get_texture_pos(P, D);
 	texidx = get_texture_idx(D);
+	texpos = get_texture_pos(P, D);
+
 	// 전체 그릴 높이 == draw.length
-	// How much to increase the texture coordinate per screen pixel
-	// drawStart 일때 tespos.y == 0, drawEnd 일때 tespos.y == 0 되도록
 	tex_stepY = (double)texHeight / (double)draw.length;
 
 	y = draw.start_y - 1;
