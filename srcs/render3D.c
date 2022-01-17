@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 19:05:11 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 19:10:59 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int render(PARAM *P)	//Top level
 	draw_2Dplayer(P);
 	raycasting(P);
 	draw_dir(P);
+	// draw_verLine(5 * P->cfg->minimapScale - 2, 0, screenHeight - 1, P->floor_color, P);
 	buffer_to_img(P->buf2D, P->img2D, P->cfg->mapWidth * P->cfg->minimapScale, \
 									P->cfg->mapHeight * P->cfg->minimapScale);
 	buffer_to_img(P->buf3D, P->img3D, screenWidth, \

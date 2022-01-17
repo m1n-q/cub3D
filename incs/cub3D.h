@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 18:28:12 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 19:46:02 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define HORZ	1
 
 # define PI		3.141592
+// # define PI		M_PI
 
 typedef void* (*loadfunc)(void*, char*, int*, int*);
 

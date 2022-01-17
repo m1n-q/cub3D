@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 19:04:24 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 19:45:47 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ int	raycasting(PARAM *P)
 	double		dr;
 	double		r;
 
-	angle = (PI / 6);
+	LINEDRAW	prev;
+	prev.x = 0;
+
+	angle = (PI / 6.0);
 	dr = (angle * 2.0 / P->cfg->NUM_RAYS);
 	r = -(angle);
 	while (r <= angle)
@@ -56,10 +59,23 @@ int	raycasting(PARAM *P)
 		get_perp_dist(P, &D);
 		draw = get_draw_info(P, D.perp_dist);
 		draw.x = ((r + angle) / dr);
+
+		// if (abs(draw.x - prev.x) > 1)
+		// {
+		// 	// printf("draw.x = %d, prev.x = %d (%d)\n",draw.x, prev.x, 5 * P->cfg->minimapScale - 2);
+		// 	printf("r = %f, dr = %f\n", r, dr);
+		// 	prev.x += 1;
+		// 	fill_by_texture(P, D, prev);
+		// 	draw_verLine(prev.x, 0, prev.start_y, P->ceili_color, P);
+		// 	draw_verLine(prev.x, prev.end_y, screenHeight - 1, P->floor_color, P);
+		// }
+
 		fill_by_texture(P, D, draw);
 		draw_verLine(draw.x, 0, draw.start_y, P->ceili_color, P);
 		draw_verLine(draw.x, draw.end_y, screenHeight - 1, P->floor_color, P);
 		r += dr;
+
+		prev = draw;
 	}
 	return (0);
 }
