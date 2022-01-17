@@ -26,22 +26,25 @@ t_lst	*lst_get_tail(t_lst *node)
 // 리스트의 맨 뒤(tail)에 연결해준다
 // head가 NULL이면 head에 추가된다
 // 무조건 head를 리턴하니 리턴값을 헤드로 잘 받아서 쓰자
-t_lst *lst_add_back(t_lst *head, char *content)
+t_lst	*lst_add_back(t_lst *head, char *content)
 {
 	t_lst	*new;
 	t_lst	*tail;
 
 	if (!content)
 		return (NULL);
-	if (!(new = (t_lst *)malloc(sizeof(t_lst))))
+	new = (t_lst *)malloc(sizeof(t_lst));
+	if (!new)
 		return (NULL);
 	new->content = ft_strdup(content);
 	if (!new->content)
 		return (NULL);
 	new->next = NULL;
+	new->prev = NULL;
 	if (head)
 	{
 		tail = lst_get_tail(head);
+		new->prev = tail;
 		tail->next = new;
 	}
 	else
@@ -51,7 +54,7 @@ t_lst *lst_add_back(t_lst *head, char *content)
 
 void	lst_print(t_lst *head)
 {
-	t_lst *node;
+	t_lst	*node;
 
 	node = head;
 	while (node)
@@ -63,8 +66,8 @@ void	lst_print(t_lst *head)
 
 void	lst_clear(t_lst **head)
 {
-	t_lst *tmp;
-	t_lst *node;
+	t_lst	*tmp;
+	t_lst	*node;
 
 	node = *head;
 	while (node)

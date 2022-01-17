@@ -4,3 +4,5 @@
 *.swiftdoc
 *.swiftmodule
 cub3d
+
+.vscode/

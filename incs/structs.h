@@ -42,6 +42,7 @@ typedef struct	s_lst
 {
 	char			*content;
 	struct s_lst	*next;
+	struct s_lst	*prev;
 }				t_lst;
 
 typedef struct config
@@ -75,8 +76,8 @@ typedef struct paramset
 
 	char	*tex_path[4];
 	int		type_set[7];
-	int		floor_color[3];
-	int		ceili_color[3];
+	int		floor_color;
+	int		ceili_color;
 	int		**worldMap;
 // ------------------------------
 

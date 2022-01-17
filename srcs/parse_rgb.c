@@ -14,64 +14,59 @@ void	set_color(PARAM *P, int type, char **rgb)
 		if (tmp < 0 || tmp > 255)
 			err_exit("Error: invalid value of RGB", P);
 		color = color | (tmp << (16 - (i * 8)));
-		// tmp값은 0~255로 8비트(1byte)로 표현한다 
-		// int 는 4byte의 공간이 있다
-		// i값에 따라 
-		// 첫번째 Red값은 16비트(2byte) 왼쪽으로 이동시킨 값으로 변환한다
-			// (int변수의 왼쪽에서 부터 2번째 byte에 위치한다)
-		// 두번째 Green값은 8비트(1byte) 왼족으로 이동시킨 값으로 변환한다
-			// (int변수의 왼쪽에서 부터 3번째 byte에 위치한다)
-		// 세번째 Blue값은 0비트, 즉 그대로 놔둔다
-			// (int변수의 왼쪽에서 부터 4번째(마지막) byte에 위치한다)
-		// or 연산을 통해 color의 왼쪽부터 Red비트,Green비트,Blue비트가 추가되며 자리잡는다
-		if (type == FLOOR)
-			P->floor_color[i] = color;
-		else if (type == CEILI)
-			P->ceili_color[i] = color;
 		i++;
 	}
+	if (type == FLOOR)
+		P->floor_color = color;
+	else if (type == CEILI)
+		P->ceili_color = color;
 }
 
-void parse_rgb(PARAM *P, int type, char *line)
+void	parse_rgb(PARAM *P, int type, char *line)
 {
-	int			i;
-
-	i = 2;  // key가 "F " 또는 "C "이기 때문에 2부터 시작
-	while (line[i])  
-		if (!ft_strchr(" ,0123456789", line[i++]))
-			err_exit("Error: invalid character in RGB", P);
-			// line[i] 는 '공백'이거나, ','이거나 '숫자'이어야 한다 아니면 리턴 0
-	
-
-	char **rgb;
-	char *tmp;
-	int j;
-
-	line = ft_strtrim(line + 2, " \t");
-	if (!line)
-		err_exit("Error: malloc failure", P);
-
-	rgb = ft_split(line, ',');
+	int		i;
+	char	*rgb_str;
+	char	**rgb_val;
 
 	i = 0;
-	while (rgb[i])
-	{
-		tmp = rgb[i];
-		rgb[i] = ft_strtrim(rgb[i], " \t");
-		if (!rgb[i])
-			err_exit("Error: malloc failure", P);
-		free(tmp);
-		j = 0;
-		while(rgb[i][j])
-			if (ft_isdigit(rgb[i][j++]) == 0)
-				err_exit("Error: invalid character in RGB", P);
+	while (line[i] == ' ' || line[i] == '\t')
 		i++;
-	}
-
+	rgb_str = ft_strtrim(&line[i + 1], " \t");
+	if (!rgb_str)
+		err_exit("Error: ft_strtrim() failure", P);
+	i = 0;
+	while (rgb_str[i])
+		if (!ft_strchr(" \t,0123456789", rgb_str[i++]))
+			err_exit("Error: invalid character in RGB", P);
+	rgb_val = ft_split2(rgb_str, " ,\t");
+	if (!rgb_val)
+		err_exit("Error: ft_split2 failure", P);
+	i = 0;
+	while (rgb_val[i])
+		i++;
 	if (i != 3)
-		err_exit("Error: invalid value of RGB", P);
-
-	set_color(P, type, rgb);
-	
+		err_exit("Error: there are more than 3 RGB val ", P);
+	set_color(P, type, rgb_val);
 	return ;
 }
+
+/*  <line 16>
+	tmp값은 0~255로 8비트(1byte)로 표현한다 
+	int 는 4byte의 공간이 있다
+	i값에 따라 
+	첫번째 Red값은 16비트(2byte) 왼쪽으로 이동시킨 값으로 변환한다
+	(int변수의 왼쪽에서 부터 2번째 byte에 위치한다)
+	두번째 Green값은 8비트(1byte) 왼족으로 이동시킨 값으로 변환한다
+	(int변수의 왼쪽에서 부터 3번째 byte에 위치한다)
+	세번째 Blue값은 0비트, 즉 그대로 놔둔다
+	(int변수의 왼쪽에서 부터 4번째(마지막) byte에 위치한다)
+	or 연산을 통해 color의 왼쪽부터 Red비트,Green비트,Blue비트가 추가되며 자리잡는다
+*/
+
+// 25 여기함수에 들어왔다는 것은 line은 (white space제외)F 또는 C로 시작한다
+// 34 여기서부터 line[i]은 F 또는 C 중 하나다 
+// 39 line은 (공백)(컴마)(숫자)의 문자로만 구성되어야 한다 아니면 리턴 0
+// 41 (공백)(컴마)(탭) 을 기준으로 split을 한다 
+//     여기서 (공백)(컴마)(탭)문자들은 빠지고 오직 숫자로면 구성된 2차원 문자열이 생성된다
+// 45 ~ 48 split된 갯수가 3개(RGB) 인지 체크
+// 49 각 RGB값을 세팅한다

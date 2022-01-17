@@ -19,6 +19,9 @@
 // 
 # define UN_DEF			6  // undefine
 
+//# define P_SKY		"\x1b[1;34m"
+# define P_RED		"\x1b[31m"
+# define P_RESET	"\x1b[0m"
 
 
 
