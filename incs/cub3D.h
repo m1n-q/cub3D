@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 13:53:12 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 18:28:12 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int		init_mlx_image(PARAM *P);
 /* texture */
 int		init_texture(PARAM *P);
 void	destroy_texture(PARAM *P);
-int		image_to_texture(int *texture, IMG teximg);
+int		image_to_texture(int texture[][texWidth], IMG teximg);
 void	fill_by_texture(PARAM *P, DDA D, LINEDRAW draw);
 
 /* event hook */

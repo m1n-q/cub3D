@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 13:57:10 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 18:30:58 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	raycasting(PARAM *P)
 		draw_2Dsquare(P, (int)(D.hit.x / P->cfg->blockScale), (int)(D.hit.y / P->cfg->blockScale), P->hblock);
 		get_perp_dist(P, &D);
 		draw = get_draw_info(P, D.perp_dist);
-		draw.x = ((r + angle) / dr) * P->cfg->SCALE;
+		draw.x = ((r + angle) / dr);
 		fill_by_texture(P, D, draw);
 		draw_verLine(draw.x, 0, draw.start_y, P->ceili_color, P);
 		draw_verLine(draw.x, draw.end_y, P->cfg->screenHeight - 1, P->floor_color, P);

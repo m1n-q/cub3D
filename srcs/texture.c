@@ -6,26 +6,31 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 17:57:53 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 18:28:24 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-//NOTE: texture		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 int	init_texture(PARAM *P)
 {
-	int	i;
+	// int	i;
+	// int	j;
 
-	P->texture = (int **)ft_calloc(texNum ,sizeof(int *));
-	i = -1;
-	while (++i < texNum)
-		P->texture[i] = ft_calloc(texHeight * texWidth, sizeof(int));
-	image_to_texture(P->texture[N], P->wall_N);
-	image_to_texture(P->texture[S], P->wall_S);
-	image_to_texture(P->texture[W], P->wall_W);
-	image_to_texture(P->texture[E], P->wall_E);
-	image_to_texture(P->texture[BORDER], P->wall1);
+	// P->textures = ft_calloc(texNum ,sizeof(int **));
+	// i = -1;
+	// while (++i < texNum)
+	// {
+	// 	P->textures[i]= ft_calloc(texHeight, sizeof(int *));
+	// 	j = -1;
+	// 	while (++j < texHeight)
+	// 		P->textures[i][j] = ft_calloc(texWidth, sizeof(int));
+	// }
+	image_to_texture(P->textures[N], P->wall_N);
+	image_to_texture(P->textures[S], P->wall_S);
+	image_to_texture(P->textures[W], P->wall_W);
+	image_to_texture(P->textures[E], P->wall_E);
+	image_to_texture(P->textures[BORDER], P->wall1);
 	mlx_destroy_image(P->mlx, P->wall1.img);
 	mlx_destroy_image(P->mlx, P->wall2.img);
 	mlx_destroy_image(P->mlx, P->wall3.img);
@@ -41,14 +46,21 @@ int	init_texture(PARAM *P)
 void	destroy_texture(PARAM *P)
 {
 	int	i;
+	int	j;
+
 
 	i = -1;
 	while (++i < texNum)
-		free(P->texture[i]);
-	free(P->texture);
+	{
+		j = -1;
+		while (++j < texHeight)
+			free(P->textures[i][j]);
+		free(P->textures[i]);
+	}
+	free(P->textures);
 }
 
-int	image_to_texture(int *texture, IMG teximg)
+int	image_to_texture(int texture[][texWidth], IMG teximg)
 {
 	int	x;
 	int	y;
@@ -58,8 +70,7 @@ int	image_to_texture(int *texture, IMG teximg)
 	{
 		x = -1;
 		while (++x < texWidth)
-			texture[texWidth * y + x] = \
-							teximg.addr[y * teximg.linesize / sizeof(int) + x];
+			texture[y][x] = teximg.addr[y * teximg.linesize / sizeof(int) + x];
 	}
 	return (0);
 }
@@ -128,7 +139,7 @@ void	fill_by_texture(PARAM *P, DDA D, LINEDRAW draw)
 			continue ;
 		}
 		texpos.y = fmin(texpos.y, texHeight - 1);
-		color = P->texture[texidx][(int)texpos.y * texHeight + (int)texpos.x];
+		color = P->textures[texidx][(int)texpos.y][(int)texpos.x];
 		if (D.side == HORZ)
 			color = (color >> 1) & 8355711;
 		P->buf3D[y][draw.x]	= color;
