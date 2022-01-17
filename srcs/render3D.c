@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 19:10:59 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 19:56:54 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,8 @@ int render(PARAM *P)	//Top level
 	return (0);
 }
 
-void	draw_verLine(int x, int drawStart, int drawEnd, int* rgb, PARAM *P)
+void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P)
 {
-	int	color;
-
-	color = (0 | rgb[0] | rgb[1] | rgb[2]);
 	for (int y = drawStart; y <= drawEnd; y++)
 	{
 		if (y < 0 || y >= screenHeight)

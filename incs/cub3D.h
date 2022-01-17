@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 19:46:02 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 19:57:08 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	draw_2Dplayer(PARAM *P);
 void	draw_2DCircle(PARAM *P);
 
 //3D
-void	draw_verLine(int x, int drawStart, int drawEnd, int* rgb, PARAM *P);
+void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P);
 int		draw_2Dsquare(PARAM *P, int x, int y, IMG img);
 
 /* screen buffer */
