@@ -42,6 +42,7 @@ typedef struct	s_lst
 {
 	char			*content;
 	struct s_lst	*next;
+	struct s_lst	*prev;
 }				t_lst;
 
 typedef struct config

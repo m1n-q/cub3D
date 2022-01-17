@@ -27,10 +27,23 @@ void	set_max_width(PARAM *P, char *line)
 	int	width;
 
 	width = ft_strlen(line);
-	while (line[width - 1] == ' ' || line[width - 1] == '\t')
-		width--;
+	while (width > 0)
+	{
+		if (line[width - 1] == ' ' || line[width - 1] == '\t')
+			width--;
+		else
+			break ;
+	}
+	//printf("hello\n");
 	if (width > P->cfg->mapWidth)
 		P->cfg->mapWidth = width;
+}
+
+int		check_type_set(PARAM *P)
+{
+	return (P->type_set[NO] && P->type_set[SO]
+		&& P->type_set[WE] && P->type_set[EA]
+		&& P->type_set[FLOOR] && P->type_set[CEILI]);
 }
 
 void	parse_line(PARAM *P, char *line)
@@ -40,13 +53,11 @@ void	parse_line(PARAM *P, char *line)
 	if (!line)
 		return ;
 	type = get_type(line);
-	if (ft_strlen(line) == 0)
+	if (ft_strlen(line) == 0 && !P->map)
 		return ;
 	if (type != UN_DEF && P->type_set[type])
 		err_exit("Error: double keys", P);
-	if (P->type_set[NO] && P->type_set[SO]
-		&& P->type_set[WE] && P->type_set[EA]
-		&& P->type_set[FLOOR] && P->type_set[CEILI])
+	if (check_type_set(P))
 	{
 		set_max_width(P, line);
 		P->map = lst_add_back(P->map, line);

@@ -39,9 +39,11 @@ t_lst *lst_add_back(t_lst *head, char *content)
 	if (!new->content)
 		return (NULL);
 	new->next = NULL;
+	new->prev = NULL;
 	if (head)
 	{
 		tail = lst_get_tail(head);
+		new->prev = tail;
 		tail->next = new;
 	}
 	else

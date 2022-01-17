@@ -99,6 +99,7 @@ t_lst	*lst_add_back(t_lst *node, char *content);
 void	lst_print(t_lst *head);
 void	lst_clear(t_lst **head);
 int		lst_get_len(t_lst *node);
+t_lst	*lst_get_tail(t_lst *node);
 
 /* utils */
 char	**ft_split2(char *str, char *ch);

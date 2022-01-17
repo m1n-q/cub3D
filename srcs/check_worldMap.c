@@ -5,7 +5,7 @@ void	check_left_right_wall(PARAM *P, int y)
 	int	x;
 
 	x = 0;
-	while (check_val(P->worldMap[y][x]) == 3)
+	while (check_val(P->worldMap[y][x]) == 3 && x < P->cfg->mapWidth - 1)
 		x++;
 	if (P->worldMap[y][x] != 1) // 가장 왼쪽 벽을 체크합니다 in a line
 		wall_leaks_exit(y, x, P);
@@ -25,7 +25,7 @@ void	check_top_bottom_wall(PARAM *P)
 	while (++x < P->cfg->mapWidth)
 	{
 		y = 0;
-		while (check_val(P->worldMap[y][x]) == 3)
+		while (check_val(P->worldMap[y][x]) == 3 && y < P->cfg->mapHeight - 1)
 			y++;
 		if (P->worldMap[y][x] != 1) // (해당 열에서) 가장 윗쪽 벽을 체크합니다
 			wall_leaks_exit(y, x, P);

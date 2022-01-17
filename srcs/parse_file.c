@@ -58,6 +58,27 @@ void	filename_check(char *filename, char *extension, PARAM *P)
 		err_exit("Error: invalid extension", P);
 }
 
+void	cnt_mapHeight(PARAM *P)
+{
+	t_lst	*tail;
+	int		cnt;
+
+	cnt = 0;
+	tail = lst_get_tail(P->map);
+	while (tail)
+	{
+		if (ft_strlen(tail->content) == 0)
+		{
+			cnt++;
+			tail = tail->prev;
+		}
+		else
+			break ;
+	}
+	P->cfg->mapHeight = lst_get_len(P->map) - cnt;
+
+}
+
 void	parse_file(PARAM *P, char *filename)
 {
 	int		fd;
@@ -77,7 +98,7 @@ void	parse_file(PARAM *P, char *filename)
 	parse_line(P, line);
 	free(line);
 	close(fd);
-	P->cfg->mapHeight = lst_get_len(P->map);
+	cnt_mapHeight(P);
 	fill_worldMap(P);
 }
 
