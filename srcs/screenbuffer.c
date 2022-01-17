@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:16:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 22:44:28 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 18:56:21 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,46 +15,72 @@
 //NOTE: buffer	=> 직관적으로 생각할 수 있는 2차원 배열 형태
 int	init_buffer(PARAM *P)
 {
+	int	i;
 
-	P->buf3D = (int **)ft_calloc(P->cfg->screenHeight, sizeof(int *));
-	for (int i = 0; i < P->cfg->screenHeight; i++)
-		P->buf3D[i] = (int *)ft_calloc(P->cfg->screenWidth, sizeof(int));
+	P->buf3D = (int **)ft_calloc(screenHeight, sizeof(int *));
+	i = -1;
+	while (++i < screenHeight)
+		P->buf3D[i] = (int *)ft_calloc(screenWidth, sizeof(int));
 
 	P->buf2D = (int **)ft_calloc(P->cfg->mapHeight * P->cfg->minimapScale, sizeof(int *));
-	for (int i = 0; i < P->cfg->mapHeight * P->cfg->minimapScale; i++)
+	i = -1;
+	while (++i < P->cfg->mapHeight * P->cfg->minimapScale)
 		P->buf2D[i] = (int *)ft_calloc(P->cfg->mapWidth * P->cfg->minimapScale, sizeof(int));
 	return (0);
 }
 
 void	destroy_buffer(PARAM* P)
 {
-	for (int i = 0; i < P->cfg->screenHeight; i++)
-		free(P->buf3D[i]);
-	for (int i = 0; i < P->cfg->mapHeight * P->cfg->minimapScale; i++)
-		free(P->buf2D[i]);
+	int	i;
 
+	i = -1;
+	while (++i < screenHeight)
+		free(P->buf3D[i]);
+	i = -1;
+	while (++i < P->cfg->mapHeight * P->cfg->minimapScale)
+		free(P->buf2D[i]);
 	free(P->buf3D);
 	free(P->buf2D);
 }
 
 void	buffer_to_img(int **buffer, IMG img, int w, int h)
 {
-	for (int y = 0; y < h; y++)
-		for (int x = 0; x < w; x++)
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < h)
+	{
+		x = -1;
+		while (++x < w)
 			img.addr[(y * img.linesize / sizeof(int) + x)] = buffer[y][x];
+	}
 }
 
 void	clear_buffer(int **buffer, int w, int h)
 {
-	for (int y = 0; y < h; y++)
-		for (int x = 0; x < w; x++)
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < h)
+	{
+		x = -1;
+		while (++x < w)
 			buffer[y][x] = 0;
+	}
 }
 
 void	clear_img(IMG img, int w, int h)
 {
-	for (int y = 0; y < h; y++)
-		for (int x = 0; x < w; x++)
-			img.addr[(y * img.linesize / sizeof(int) + x)] = 0;
-}
+	int	x;
+	int	y;
 
+	y = -1;
+	while (++y < h)
+	{
+		x = -1;
+		while (++x < w)
+			img.addr[(y * img.linesize / sizeof(int) + x)] = 0;
+	}
+}

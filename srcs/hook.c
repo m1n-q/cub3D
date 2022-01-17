@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 22:43:42 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 13:30:29 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,15 @@ int	rotate(int keycode, PARAM *P)
 	return (0);
 }
 
-int	checkCollision(PARAM *P, double radius)
+int	check_collision(PARAM *P, double radius)
 {
 	double	r;
 	VECTOR	d;
 	VECTOR	newdir;
 	int		linelength;
+	int		scale;
 
+	scale = P->cfg->blockScale;
 	r = 0.0;
 	while (r <= 2 * PI)
 	{
@@ -51,7 +53,7 @@ int	checkCollision(PARAM *P, double radius)
 		{
 			d.x += newdir.x;
 			d.y += newdir.y;
-			if (P->worldMap[(int)((int)(P->pos.y + d.y) / P->cfg->blockScale)][(int)((int)(P->pos.x + d.x) / P->cfg->blockScale)])
+			if (P->worldMap[(int)((int)(P->pos.y + d.y) / scale)][(int)((int)(P->pos.x + d.x) / scale)])
 				return (1);
 			linelength++;
 		}
@@ -68,11 +70,11 @@ int	move_(PARAM *P, VECTOR movedir)
 	amount = 5;
 	oldpos = P->pos;
 	P->pos.x += movedir.x * amount;
-	if (checkCollision(P, P->cfg->collisionRange))
+	if (check_collision(P, P->cfg->collisionRange))
 		P->pos = oldpos;
 	oldpos = P->pos;
 	P->pos.y += movedir.y * amount;
-	if (checkCollision(P, P->cfg->collisionRange))
+	if (check_collision(P, P->cfg->collisionRange))
 		P->pos = oldpos;
 	return (0);
 }

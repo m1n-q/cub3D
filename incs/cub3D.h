@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 19:38:27 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 19:46:02 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define HORZ	1
 
 # define PI		3.141592
+// # define PI		M_PI
 
 typedef void* (*loadfunc)(void*, char*, int*, int*);
 
@@ -59,7 +60,7 @@ void	draw_2Dplayer(PARAM *P);
 void	draw_2DCircle(PARAM *P);
 
 //3D
-void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P);
+void	draw_verLine(int x, int drawStart, int drawEnd, int* rgb, PARAM *P);
 int		draw_2Dsquare(PARAM *P, int x, int y, IMG img);
 
 /* screen buffer */
@@ -78,9 +79,8 @@ int		init_mlx_image(PARAM *P);
 /* texture */
 int		init_texture(PARAM *P);
 void	destroy_texture(PARAM *P);
-int		image_to_texture(int *texture, IMG teximg);
-VECTOR	get_texture_pos(PARAM *P, DDA D);
-void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw);
+int		image_to_texture(int texture[][texWidth], IMG teximg);
+void	fill_by_texture(PARAM *P, DDA D, LINEDRAW draw);
 
 /* event hook */
 int		keymap(int keycode, PARAM *param);

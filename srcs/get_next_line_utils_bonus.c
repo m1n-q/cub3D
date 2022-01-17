@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 19:20:57 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 02:02:35 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 13:22:34 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ ssize_t	find_nl(char *buf)
 	return (BUFFER_SIZE);
 }
 
-int		buffer_clear(t_fd_set *set)
+int	buffer_clear(t_fd_set *set)
 {
 	ssize_t	i;
 

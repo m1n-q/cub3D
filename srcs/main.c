@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 19:38:27 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 19:06:14 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ int main(int argc, char *argv[])
 	P.pos.y = 4 * P.cfg->blockScale;
 	P.dir.x = 0;
 	P.dir.y = 1;
-	//   printf("BLOCK SIZE=%d\n", P.cfg->blockScale);
+	printf("BLOCK SIZE=%d\n", P.cfg->blockScale);
 
 	P.mlx = mlx_init();
-	P.win = mlx_new_window(P.mlx, P.cfg->screenWidth, P.cfg->screenHeight, "Raycaster");
+	P.win = mlx_new_window(P.mlx, screenWidth, screenHeight, "Raycaster");
 	init_mlx_image(&P);
 	load_images(&P);
 	make_minimap_image(&P);

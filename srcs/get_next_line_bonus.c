@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 19:20:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 02:00:49 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 13:22:26 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	save_rmd(t_fd_set *set, char *buf, int idx_n, ssize_t size)
 	set->rmd_len = ft_strlen(set->rmd_buf);
 }
 
-int		check_rmd(t_fd_set *set, char **line, char **prev)
+int	check_rmd(t_fd_set *set, char **line, char **prev)
 {
 	ssize_t	idx_n;
 
@@ -77,7 +77,7 @@ int		check_rmd(t_fd_set *set, char **line, char **prev)
 	return (0);
 }
 
-int		read_line(t_fd_set *arr, int fd, char **line, char *buf)
+int	read_line(t_fd_set *arr, int fd, char **line, char *buf)
 {
 	ssize_t	size;
 	ssize_t	idx_n;
@@ -87,7 +87,8 @@ int		read_line(t_fd_set *arr, int fd, char **line, char *buf)
 		return (1);
 	while (1)
 	{
-		if ((size = read(fd, buf, BUFFER_SIZE)) < 0)
+		size = read(fd, buf, BUFFER_SIZE);
+		if (size < 0)
 			return (-1);
 		if (!size)
 			return (buffer_clear(&arr[fd]));
@@ -105,16 +106,18 @@ int		read_line(t_fd_set *arr, int fd, char **line, char *buf)
 	}
 }
 
-int		get_next_line_(int fd, char **line)
+int	get_next_line_(int fd, char **line)
 {
 	static t_fd_set	arr[1025];
 	char			*buf;
 	int				ret;
 	ssize_t			tmp;
 
-	if ((tmp = read(fd, NULL, 0)) < 0 || !line)
+	tmp = read(fd, NULL, 0);
+	if (tmp < 0 || !line)
 		return (-1);
-	if (!(buf = (char *)ft_calloc(BUFFER_SIZE, 1)))
+	buf = (char *)ft_calloc(BUFFER_SIZE, 1);
+	if (!buf)
 		return (-1);
 	if (!(arr[fd].was_called))
 	{

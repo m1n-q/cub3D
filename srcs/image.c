@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 19:38:27 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 18:56:21 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,16 @@ int make_minimap_image(PARAM *P)
 
 int	init_mlx_image(PARAM *P)
 {
-	P->img3D.img = mlx_new_image(P->mlx, P->cfg->screenWidth, P->cfg->screenHeight);
-	P->img3D.addr = (int *)mlx_get_data_addr(P->img3D.img, &P->img3D.bpp, &P->img3D.linesize, &P->img3D.endian);
-	P->img2D.img = mlx_new_image(P->mlx, P->cfg->mapWidth * P->cfg->minimapScale, P->cfg->mapHeight * P->cfg->minimapScale);
-	P->img2D.addr = (int *)mlx_get_data_addr(P->img2D.img, &P->img2D.bpp, &P->img2D.linesize, &P->img2D.endian);
+	P->img3D.img = mlx_new_image(P->mlx, screenWidth, \
+								screenHeight);
+	P->img3D.addr = (int *)mlx_get_data_addr(P->img3D.img, &P->img3D.bpp, \
+										&P->img3D.linesize, &P->img3D.endian);
+	P->img2D.img = mlx_new_image(P->mlx, P->cfg->mapWidth * P->cfg->minimapScale, \
+										P->cfg->mapHeight * P->cfg->minimapScale);
+	P->img2D.addr = (int *)mlx_get_data_addr(P->img2D.img, &P->img2D.bpp, \
+											&P->img2D.linesize, &P->img2D.endian);
 	return (0);
 }
-
 
 int load_image(PARAM *P, IMG *I, char *filename)
 {
@@ -55,16 +58,15 @@ int load_image(PARAM *P, IMG *I, char *filename)
 	printf("loading %s", filename);
 	f = NULL;
 	ext = ft_substr(filename, ft_strlen(filename) - 3, 3);
-
 	if (ft_strncmp(ext, "xpm", 3) == 0)
 		f = mlx_xpm_file_to_image;
 	else if (ft_strncmp(ext, "png", 3) == 0)
 		f = mlx_png_file_to_image;
 	else
 		err_exit("Not supported ext : ===", P);	//TODO
-
 	I->img = f(P->mlx, filename, &I->width, &I->height);
-	I->addr = (int *)mlx_get_data_addr(I->img, &I->bpp, &I->linesize, &I->endian);
+	I->addr = (int *)mlx_get_data_addr(I->img, &I->bpp, \
+									&I->linesize, &I->endian);
 	if (I->img && I->addr)
 		printf("\r%s loaded.\n", filename);
 	return (0);
