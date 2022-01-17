@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 22:43:42 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 13:27:19 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ int	checkCollision(PARAM *P, double radius)
 	VECTOR	d;
 	VECTOR	newdir;
 	int		linelength;
+	int		scale;
 
+	scale = P->cfg->blockScale;
 	r = 0.0;
 	while (r <= 2 * PI)
 	{
@@ -51,7 +53,7 @@ int	checkCollision(PARAM *P, double radius)
 		{
 			d.x += newdir.x;
 			d.y += newdir.y;
-			if (P->worldMap[(int)((int)(P->pos.y + d.y) / P->cfg->blockScale)][(int)((int)(P->pos.x + d.x) / P->cfg->blockScale)])
+			if (P->worldMap[(int)((int)(P->pos.y + d.y) / scale)][(int)((int)(P->pos.x + d.x) / scale)])
 				return (1);
 			linelength++;
 		}
