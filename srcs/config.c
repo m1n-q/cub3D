@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:30:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 18:57:14 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 21:51:42 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,37 @@ void	init_config(CONFIG* C)
 	C->NUM_RAYS = screenWidth;
 	C->collisionRange = C->blockScale / 10;
 	C->minimapScale = C->blockScale / 2;
+}
 
+void	print_config(CONFIG* C)
+{
 	printf("\
-	screenWidth = %d\n \
-	screenHeight = %d\n \
-	C->blockScale = %d\n \
-	C->NUM_RAYS = %d\n \
-	C->collisionRange = %d\n \
-	C->minimapScale = %d\n",
-	screenWidth,
-	screenHeight,
-	C->blockScale,
-	C->NUM_RAYS,
-	C->collisionRange,
-	C->minimapScale
-	);
+┌───────────────────────────────────────────────────────────\n\
+│                       CONFIGURATIONS\n\
+│\n\
+│\t%spre-defined%s\n\
+│\n\
+│	%sscreenWidth%s\t= %d\n\
+│	%sscreenHeight%s\t= %d\n\
+│	%stexWidth%s\t= %d\n\
+│	%stexHeight%s\t= %d\n\
+│\n\
+│\t%sruntime-configure%s\n\
+│\n\
+│	%sblockScale%s\t= %d\n\
+│	%sNUM_RAYS%s\t= %d\n\
+│	%scollisionRange%s\t= %d\n\
+│	%sminimapScale%s\t= %d\n\
+│\n\
+└───────────────────────────────────────────────────────────\n", \
+	CYAN, NC,\
+	DCYAN, NC, screenWidth,\
+	DCYAN, NC, screenHeight,\
+	DCYAN, NC, texWidth,\
+	DCYAN, NC, texHeight,\
+	PURPLE, NC,\
+	DPURPLE, NC, C->blockScale,\
+	DPURPLE, NC, C->NUM_RAYS,\
+	DPURPLE, NC, C->collisionRange,\
+	DPURPLE, NC, C->minimapScale);
 }

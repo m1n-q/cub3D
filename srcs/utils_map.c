@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-int	set_dir(PARAM* P, int c)
+int	set_dir(PARAM *P, int c)
 {
 	if (c == 'N')
 	{
@@ -25,7 +25,7 @@ int	set_dir(PARAM* P, int c)
 	return (1);
 }
 
-int	set_pos(PARAM* P, int x, int y)
+int	set_pos(PARAM *P, int x, int y)
 {
 	int	blockScale;
 

@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 18:56:21 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 21:53:23 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	init_mlx_image(PARAM *P)
 int load_image(PARAM *P, IMG *I, char *filename)
 {
 	char		*ext;
-	loadfunc	f;
+	t_loadfunc	f;
 
 	printf("loading %s", filename);
 	f = NULL;

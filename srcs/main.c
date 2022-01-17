@@ -6,12 +6,20 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 21:10:16 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 21:58:13 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
+/**========================================================================
+ * @                              TODO
+ *
+ *	texture, buffer 등
+ *		1. dynamic 1D	//[y * height + x]
+ *		2. dynamic 2D
+ *		3. fixed 2D
+ *
+ *========================================================================**/
 int main(int argc, char *argv[])
 {
 	PARAM	P;
@@ -27,6 +35,7 @@ int main(int argc, char *argv[])
 	parse_file(&P, argv[1]);
 	check_worldMap(&P, &C);
 	init_config(P.cfg);
+	print_config(P.cfg);
 
 	//print_worldMap(&P);
 	//printf("w:%d, h:%d\n", P.cfg->mapWidth, P.cfg->mapHeight);
