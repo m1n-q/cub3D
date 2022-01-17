@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 19:38:27 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 13:53:12 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	draw_2Dplayer(PARAM *P);
 void	draw_2DCircle(PARAM *P);
 
 //3D
-void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P);
+void	draw_verLine(int x, int drawStart, int drawEnd, int* rgb, PARAM *P);
 int		draw_2Dsquare(PARAM *P, int x, int y, IMG img);
 
 /* screen buffer */
@@ -79,8 +79,7 @@ int		init_mlx_image(PARAM *P);
 int		init_texture(PARAM *P);
 void	destroy_texture(PARAM *P);
 int		image_to_texture(int *texture, IMG teximg);
-VECTOR	get_texture_pos(PARAM *P, DDA D);
-void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw);
+void	fill_by_texture(PARAM *P, DDA D, LINEDRAW draw);
 
 /* event hook */
 int		keymap(int keycode, PARAM *param);

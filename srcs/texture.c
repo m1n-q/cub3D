@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 02:08:32 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 16:12:49 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ int	init_texture(PARAM *P)
 	image_to_texture(P->texture[W], P->wall_W);
 	image_to_texture(P->texture[E], P->wall_E);
 	image_to_texture(P->texture[BORDER], P->wall1);
-
 	mlx_destroy_image(P->mlx, P->wall1.img);
 	mlx_destroy_image(P->mlx, P->wall2.img);
 	mlx_destroy_image(P->mlx, P->wall3.img);
 	mlx_destroy_image(P->mlx, P->wall4.img);
 	mlx_destroy_image(P->mlx, P->wall5.img);
-
 	mlx_destroy_image(P->mlx, P->wall_N.img);
 	mlx_destroy_image(P->mlx, P->wall_S.img);
 	mlx_destroy_image(P->mlx, P->wall_W.img);
@@ -42,82 +40,96 @@ int	init_texture(PARAM *P)
 
 void	destroy_texture(PARAM *P)
 {
-	for (int i = 0; i < texNum; i++)
+	int	i;
+
+	i = -1;
+	while (++i < texNum)
 		free(P->texture[i]);
 	free(P->texture);
 }
 
-int image_to_texture(int *texture, IMG teximg)
+int	image_to_texture(int *texture, IMG teximg)
 {
-	for (int y = 0; y < texHeight; y++)
-		for (int x = 0; x < texWidth; x++)
-			texture[texWidth * y + x] = teximg.addr[y * teximg.linesize / sizeof(int) + x];
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < texHeight)
+	{
+		x = -1;
+		while (++x < texWidth)
+			texture[texWidth * y + x] = \
+							teximg.addr[y * teximg.linesize / sizeof(int) + x];
+	}
 	return (0);
 }
 
 VECTOR	get_texture_pos(PARAM *P, DDA D)
 {
-	double wall_hit;
-	VECTOR texpos;
+	double	wall_hit;
+	VECTOR	texpos;
 
-	if (D.side == 0)	wall_hit = D.hit.y / P->cfg->blockScale;
-	else				wall_hit = D.hit.x / P->cfg->blockScale;
-
+	if (D.side == 0)
+		wall_hit = D.hit.y / P->cfg->blockScale;
+	else
+		wall_hit = D.hit.x / P->cfg->blockScale;
 	// 1칸에서 어느만큼인지 * P->cfg->texWidth
 	texpos.x = ((wall_hit - floor(wall_hit)) * (double)texWidth);
-
 	// 좌우반전
-	if (D.side == HORZ && D.raydir.y > 0)	texpos.x = texWidth - texpos.x - 1;
-	if (D.side == VERT && D.raydir.x < 0)	texpos.x = texWidth - texpos.x - 1;
+	if (D.side == HORZ && D.raydir.y > 0)
+		texpos.x = texWidth - texpos.x - 1;
+	if (D.side == VERT && D.raydir.x < 0)
+		texpos.x = texWidth - texpos.x - 1;
 	texpos.y = 0.0;
-
 	return (texpos);
 }
 
-void	fill_by_texture(PARAM *P, DDA D, VECTOR texpos, LINEDRAW draw)
+int	get_texture_idx(DDA D)
 {
-	int		color;
-	int		texnum;
-	double	tex_stepY;
-
-	//전체 그릴 높이 == draw.length
-	//How much to increase the texture coordinate per screen pixel
-	tex_stepY = (double)texHeight / (double)draw.length;	// drawStart 일때 tespos.y == 0, drawEnd 일때 tespos.y == 0 되도록
-
 	if (D.side == HORZ)
 	{
 		if (D.raydir.y >= 0)
-			texnum = N;
+			return (N);
 		else
-			texnum = S;
+			return (S);
 	}
 	else
 	{
 		if (D.raydir.x >= 0)
-			texnum = W;
+			return (W);
 		else
-			texnum = E;
+			return (E);
 	}
+}
 
+void	fill_by_texture(PARAM *P, DDA D, LINEDRAW draw)
+{
+	int		y;
+	int		color;
+	int		texidx;
+	double	tex_stepY;
+	VECTOR	texpos;
 
-	// P->worldMap[(int)(D.hit.y / P->cfg->blockScale)][(int)(D.hit.x / P->cfg->blockScale)] - 1;
-	for (int y = draw.start_y; y < draw.end_y; y++)
+	texpos = get_texture_pos(P, D);
+	texidx = get_texture_idx(D);
+	// 전체 그릴 높이 == draw.length
+	// How much to increase the texture coordinate per screen pixel
+	// drawStart 일때 tespos.y == 0, drawEnd 일때 tespos.y == 0 되도록
+	tex_stepY = (double)texHeight / (double)draw.length;
+
+	y = draw.start_y - 1;
+	while (++y < draw.end_y)
 	{
 		if (y < 0 || y >= P->cfg->screenHeight)
 		{
 			texpos.y += tex_stepY;
 			continue ;
 		}
-		texpos.y	= fmin(texpos.y, texHeight - 1);
-
-		color		= P->texture[texnum][(int)texpos.y * texHeight + (int)texpos.x];
-
+		texpos.y = fmin(texpos.y, texHeight - 1);
+		color = P->texture[texidx][(int)texpos.y * texHeight + (int)texpos.x];
 		if (D.side == HORZ)
-			color = (color >> 1) & 8355711;	// make color darker for horizontal sides
-
-
+			color = (color >> 1) & 8355711;
 		P->buf3D[y][draw.x]	= color;
-
 		texpos.y += tex_stepY;
 	}
 }

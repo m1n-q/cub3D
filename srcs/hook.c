@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 13:27:19 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/17 13:30:29 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	rotate(int keycode, PARAM *P)
 	return (0);
 }
 
-int	checkCollision(PARAM *P, double radius)
+int	check_collision(PARAM *P, double radius)
 {
 	double	r;
 	VECTOR	d;
@@ -70,11 +70,11 @@ int	move_(PARAM *P, VECTOR movedir)
 	amount = 5;
 	oldpos = P->pos;
 	P->pos.x += movedir.x * amount;
-	if (checkCollision(P, P->cfg->collisionRange))
+	if (check_collision(P, P->cfg->collisionRange))
 		P->pos = oldpos;
 	oldpos = P->pos;
 	P->pos.y += movedir.y * amount;
-	if (checkCollision(P, P->cfg->collisionRange))
+	if (check_collision(P, P->cfg->collisionRange))
 		P->pos = oldpos;
 	return (0);
 }
