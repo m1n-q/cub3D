@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:52:26 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:56:18 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	get_perp_dist(t_param *P, t_DDA *D)
 
 void	get_draw_info(t_param *P, double perp_dist, t_drawinfo *draw)
 {
-	draw->length = (screenWidth) / perp_dist * P->cfg->blockScale;		// P->cfg->blockScale와 비례해야 함..!
+	draw->length = (screenWidth) / perp_dist * P->cfg->blockscale;		// P->cfg->blockscale와 비례해야 함..!
 	draw->start_y = screenHeight / 2 - draw->length / 2;
 	draw->end_y = screenHeight / 2 + draw->length / 2;
 	draw->x++;
@@ -46,14 +46,14 @@ int	raycasting(t_param *P)
 
 	draw.x = -1;
 	angle = (PI / 6.0);
-	dr = (angle * 2.0 / P->cfg->NUM_RAYS);
+	dr = (angle * 2.0 / P->cfg->num_rays);
 	r = -(angle);
 	while (r <= angle)
 	{
 		D = get_DDA_info(P, r);
 		run_DDA(P, &D);
 		draw_ray(P, D);
-		draw_2Dsquare(P, (int)(D.hit.x / P->cfg->blockScale), (int)(D.hit.y / P->cfg->blockScale), P->hblock);
+		draw_2Dsquare(P, (int)(D.hit.x / P->cfg->blockscale), (int)(D.hit.y / P->cfg->blockscale), P->hblock);
 		get_perp_dist(P, &D);
 		get_draw_info(P, D.perp_dist, &draw);
 		fill_by_texture(P, D, draw);

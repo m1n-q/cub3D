@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:51:00 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:58:32 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 //NOTE: t_img		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 void	make_minimap_image(t_param *P)
 {
-	P->grid.img = mlx_new_image(P->mlx, P->cfg->mapWidth * P->cfg->minimapScale, P->cfg->mapHeight * P->cfg->minimapScale);
+	P->grid.img = mlx_new_image(P->mlx, P->cfg->mapwidth * P->cfg->minimapscale, P->cfg->mapheight * P->cfg->minimapscale);
 	P->grid.addr = (int *)mlx_get_data_addr(P->grid.img, &P->grid.bpp, &P->grid.linesize, &P->grid.endian);
-	P->block.img = mlx_new_image(P->mlx, P->cfg->mapWidth * P->cfg->minimapScale, P->cfg->mapHeight * P->cfg->minimapScale);
+	P->block.img = mlx_new_image(P->mlx, P->cfg->mapwidth * P->cfg->minimapscale, P->cfg->mapheight * P->cfg->minimapscale);
 	P->block.addr = (int *)mlx_get_data_addr(P->block.img, &P->block.bpp, &P->block.linesize, &P->block.endian);
-	P->hblock.img = mlx_new_image(P->mlx, P->cfg->mapWidth * P->cfg->minimapScale, P->cfg->mapHeight * P->cfg->minimapScale);
+	P->hblock.img = mlx_new_image(P->mlx, P->cfg->mapwidth * P->cfg->minimapscale, P->cfg->mapheight * P->cfg->minimapscale);
 	P->hblock.addr = (int *)mlx_get_data_addr(P->hblock.img, &P->hblock.bpp, &P->hblock.linesize, &P->hblock.endian);
-	for (int x = 0; x < P->cfg->mapWidth * P->cfg->minimapScale; x++)
+	for (int x = 0; x < P->cfg->mapwidth * P->cfg->minimapscale; x++)
 	{
-		for (int y = 0; y < P->cfg->mapHeight * P->cfg->minimapScale; y++)
+		for (int y = 0; y < P->cfg->mapheight * P->cfg->minimapscale; y++)
 		{
 			P->grid.addr[y * P->block.linesize / sizeof(int) + x]	= 0x000000 ;
 			P->block.addr[y * P->block.linesize / sizeof(int) + x]	= 0x5a7dbd ;
 			P->hblock.addr[y * P->hblock.linesize / sizeof(int) + x] = 0x00fdff;
 
-			if (x == 0 || y == 0 || x == P->cfg->mapWidth * P->cfg->minimapScale - 1 || y == P->cfg->mapHeight * P->cfg->minimapScale -1)
+			if (x == 0 || y == 0 || x == P->cfg->mapwidth * P->cfg->minimapscale - 1 || y == P->cfg->mapheight * P->cfg->minimapscale -1)
 				P->grid.addr[y * P->block.linesize / sizeof(int) + x] = RGB_Grey;
 		}
 	}
@@ -42,8 +42,8 @@ void	init_mlx_image(t_param *P)
 		exit(1);
 	P->img3D.addr = (int *)mlx_get_data_addr(P->img3D.img, &P->img3D.bpp, \
 										&P->img3D.linesize, &P->img3D.endian);
-	P->img2D.img = mlx_new_image(P->mlx, P->cfg->mapWidth * P->cfg->minimapScale, \
-										P->cfg->mapHeight * P->cfg->minimapScale);
+	P->img2D.img = mlx_new_image(P->mlx, P->cfg->mapwidth * P->cfg->minimapscale, \
+										P->cfg->mapheight * P->cfg->minimapscale);
 	if (!P->img2D.img)
 		exit(1);
 	P->img2D.addr = (int *)mlx_get_data_addr(P->img2D.img, &P->img2D.bpp, \
@@ -76,8 +76,8 @@ void	load_image(t_param *P, t_img *I, char *filename)
 
 void	load_images(t_param *P)
 {
-	load_image(P, &P->wall_N, P->tex_path[N]);
-	load_image(P, &P->wall_S, P->tex_path[S]);
-	load_image(P, &P->wall_W, P->tex_path[W]);
-	load_image(P, &P->wall_E, P->tex_path[E]);
+	load_image(P, &P->wall_n, P->tex_path[N]);
+	load_image(P, &P->wall_s, P->tex_path[S]);
+	load_image(P, &P->wall_w, P->tex_path[W]);
+	load_image(P, &P->wall_e, P->tex_path[E]);
 }

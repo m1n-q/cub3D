@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:51:00 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:57:50 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 	P.cfg = &C;
 
 	parse_file(&P, argv[1]);
-	check_worldMap(&P, &C);
+	check_worldmap(&P, &C);
 
 	init(&P);
 

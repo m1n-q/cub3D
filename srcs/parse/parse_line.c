@@ -34,8 +34,8 @@ void	set_max_width(t_param *P, char *line)
 		else
 			break ;
 	}
-	if (width > P->cfg->mapWidth)
-		P->cfg->mapWidth = width;
+	if (width > P->cfg->mapwidth)
+		P->cfg->mapwidth = width;
 }
 
 int	check_type_set(t_param *P)

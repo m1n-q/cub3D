@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:16:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:51:00 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:56:03 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	init_buffer(t_param *P)
 	while (++i < screenHeight)
 		P->buf3D[i] = (int *)calloc_(screenWidth, sizeof(int));
 
-	P->buf2D = (int **)calloc_(P->cfg->mapHeight * P->cfg->minimapScale, sizeof(int *));
+	P->buf2D = (int **)calloc_(P->cfg->mapheight * P->cfg->minimapscale, sizeof(int *));
 	i = -1;
-	while (++i < P->cfg->mapHeight * P->cfg->minimapScale)
-		P->buf2D[i] = (int *)calloc_(P->cfg->mapWidth * P->cfg->minimapScale, sizeof(int));
+	while (++i < P->cfg->mapheight * P->cfg->minimapscale)
+		P->buf2D[i] = (int *)calloc_(P->cfg->mapwidth * P->cfg->minimapscale, sizeof(int));
 	return (0);
 }
 
@@ -37,7 +37,7 @@ void	destroy_buffer(t_param* P)
 	while (++i < screenHeight)
 		free(P->buf3D[i]);
 	i = -1;
-	while (++i < P->cfg->mapHeight * P->cfg->minimapScale)
+	while (++i < P->cfg->mapheight * P->cfg->minimapscale)
 		free(P->buf2D[i]);
 	free(P->buf3D);
 	free(P->buf2D);

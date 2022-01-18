@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:52:53 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:57:50 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ t_DDA	get_DDA_info(t_param *P, double r)
 void	run_DDA(t_param *P, t_DDA *D)
 {
 	int	hit;
-	int	Scale;
+	int	scale;
 
 	hit = 0;
-	Scale = P->cfg->blockScale;
+	scale = P->cfg->blockscale;
 	while (hit == 0)
 	{
 		if (D->dist_vert < D->dist_horz)
@@ -85,7 +85,7 @@ void	run_DDA(t_param *P, t_DDA *D)
 			D->hit.y += D->step.y;
 			D->side = HORZ;
 		}
-		if (P->worldMap[(int)(D->hit.y / Scale)][(int)(D->hit.x / Scale)] == 1)
+		if (P->worldmap[(int)(D->hit.y / scale)][(int)(D->hit.x / scale)] == 1)
 			hit = 1;
 
 		// printf("dist_vh => (%f, %f)\n", D->dist_vert, D->dist_horz);

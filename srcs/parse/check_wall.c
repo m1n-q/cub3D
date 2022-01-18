@@ -8,7 +8,7 @@ void	check_x_axis(t_param *P, int **M, int y)
 	start = 0;
 	while (check_val(M[y][start]) == 3)
 		start++;
-	end = P->cfg->mapWidth - 1;
+	end = P->cfg->mapwidth - 1;
 	while (check_val(M[y][end]) == 3)
 		end--;
 	while (++start <= end)
@@ -33,7 +33,7 @@ static void	check_y_axis(t_param *P, int **M, int x)
 	start = 0;
 	while (check_val(M[start][x]) == 3)
 		start++;
-	end = P->cfg->mapHeight - 1;
+	end = P->cfg->mapheight - 1;
 	while (check_val(M[end][x]) == 3)
 		end--;
 	while (++start <= end)
@@ -56,9 +56,9 @@ void	check_wall(t_param *P)
 	int	y;
 
 	y = -1;
-	while (++y < P->cfg->mapHeight)
-		check_x_axis(P, P->worldMap, y);
+	while (++y < P->cfg->mapheight)
+		check_x_axis(P, P->worldmap, y);
 	x = 0;
-	while (++x < P->cfg->mapWidth)
-		check_y_axis(P, P->worldMap, x);
+	while (++x < P->cfg->mapwidth)
+		check_y_axis(P, P->worldmap, x);
 }

@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:52:41 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:57:50 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	parse_file(t_param *P, char *filename);
 void	parse_line(t_param *P, char *line);
 void	parse_texture(t_param *P, int type, char *line);
 void	parse_rgb(t_param *P, int type, char *line);
-void	check_worldMap(t_param *P, t_config *C);
+void	check_worldmap(t_param *P, t_config *C);
 void	check_hole(t_param *P, int y);
 void	check_wall(t_param *P);
 
@@ -110,7 +110,7 @@ t_lst	*lst_get_tail(t_lst *node);
 /* utils */
 char	**ft_split2(char *str, char *ch);
 void	err_exit(char *msg, t_param *P);
-void	print_worldMap(t_param *P);
+void	print_worldmap(t_param *P);
 int		check_val(int c);
 void	wall_leaks_exit(int y, int x, t_param *P);
 int		set_dir(t_param *P, int c);

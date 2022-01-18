@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:52:26 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:58:32 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int	init_texture(t_param *P)
 {
-	image_to_texture(P->textures[N], P->wall_N);
-	image_to_texture(P->textures[S], P->wall_S);
-	image_to_texture(P->textures[W], P->wall_W);
-	image_to_texture(P->textures[E], P->wall_E);
-	mlx_destroy_image(P->mlx, P->wall_N.img);
-	mlx_destroy_image(P->mlx, P->wall_S.img);
-	mlx_destroy_image(P->mlx, P->wall_W.img);
-	mlx_destroy_image(P->mlx, P->wall_E.img);
+	image_to_texture(P->textures[N], P->wall_n);
+	image_to_texture(P->textures[S], P->wall_s);
+	image_to_texture(P->textures[W], P->wall_w);
+	image_to_texture(P->textures[E], P->wall_e);
+	mlx_destroy_image(P->mlx, P->wall_n.img);
+	mlx_destroy_image(P->mlx, P->wall_s.img);
+	mlx_destroy_image(P->mlx, P->wall_w.img);
+	mlx_destroy_image(P->mlx, P->wall_e.img);
 	return (0);
 }
 
@@ -63,12 +63,12 @@ t_vector	get_texture_pos(t_param *P, t_DDA D)
 
 	// 한칸에서 어느만큼인지 : hit.x =87, scale =40 -> 3번째 칸에서 7번째 위치
 	if (D.side == HORZ)
-		pos_on_wall = (int)D.hit.x % P->cfg->blockScale;
+		pos_on_wall = (int)D.hit.x % P->cfg->blockscale;
 	else
-		pos_on_wall = (int)D.hit.y % P->cfg->blockScale;
+		pos_on_wall = (int)D.hit.y % P->cfg->blockscale;
 
 	// textureWidth 에서 7 / 40 위치 가져와야 함	(method 2: using floor)
-	texpos.x = (pos_on_wall / P->cfg->blockScale) * texWidth;
+	texpos.x = (pos_on_wall / P->cfg->blockscale) * texWidth;
 
 	// 좌우반전
 	if (D.side == HORZ && D.raydir.y > 0)

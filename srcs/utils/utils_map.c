@@ -27,12 +27,12 @@ int	set_dir(t_param *P, int c)
 
 int	set_pos(t_param *P, int x, int y)
 {
-	int	blockScale;
+	int	blockscale;
 
-	blockScale = (screenWidth / P->cfg->mapWidth);
-	P->pos.x = (x + 0.5) * blockScale;
-	P->pos.y = (y + 0.5) * blockScale;
-	P->worldMap[y][x] = 0;
+	blockscale = (screenWidth / P->cfg->mapwidth);
+	P->pos.x = (x + 0.5) * blockscale;
+	P->pos.y = (y + 0.5) * blockscale;
+	P->worldmap[y][x] = 0;
 	return (1);
 }
 
@@ -48,21 +48,21 @@ int	check_val(int c)
 		return (0);
 }
 
-void	print_worldMap(t_param *P)
+void	print_worldmap(t_param *P)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < P->cfg->mapHeight)
+	while (i < P->cfg->mapheight)
 	{
 		j = 0;
-		while (j < P->cfg->mapWidth)
+		while (j < P->cfg->mapwidth)
 		{
-			if (P->worldMap[i][j] == 0 || P->worldMap[i][j] == 1)
-				printf("%d", P->worldMap[i][j]);
+			if (P->worldmap[i][j] == 0 || P->worldmap[i][j] == 1)
+				printf("%d", P->worldmap[i][j]);
 			else
-				printf("%c", P->worldMap[i][j]);
+				printf("%c", P->worldmap[i][j]);
 			j++;
 		}
 		printf("\n");

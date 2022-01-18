@@ -9,16 +9,16 @@ static void	check_y_axis(t_param *P, int y, int x)
 	block = 0;
 	while (--y >= 0)
 	{
-		if (P->worldMap[y][x] != ' ')
+		if (P->worldmap[y][x] != ' ')
 		{
 			block += 1;
 			break ;
 		}
 	}
 	y = old_y;
-	while (++y < P->cfg->mapHeight)
+	while (++y < P->cfg->mapheight)
 	{
-		if (P->worldMap[y][x] != ' ')
+		if (P->worldmap[y][x] != ' ')
 		{
 			block += 1;
 			break ;
@@ -35,15 +35,15 @@ void	check_hole(t_param *P, int y)
 	int		x;
 
 	start = 0;
-	while (P->worldMap[y][start] == ' ')
+	while (P->worldmap[y][start] == ' ')
 		start++;
-	end = P->cfg->mapWidth - 1;
-	while (P->worldMap[y][end] == ' ')
+	end = P->cfg->mapwidth - 1;
+	while (P->worldmap[y][end] == ' ')
 		end--;
 	x = start;
 	while (x < end)
 	{
-		if (P->worldMap[y][x] == ' ')
+		if (P->worldmap[y][x] == ' ')
 			check_y_axis(P, y, x);
 		x++;
 	}

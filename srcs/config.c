@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:30:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:50:46 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:56:33 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	init_config(t_config* C)
 {
-	C->blockScale = screenWidth / C->mapWidth;	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
-	C->NUM_RAYS = screenWidth;
-	C->collisionRange = C->blockScale / 10;
-	C->minimapScale = C->blockScale / 2;
+	C->blockscale = screenWidth / C->mapwidth;	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
+	C->num_rays = screenWidth;
+	C->collision_range = C->blockscale / 10;
+	C->minimapscale = C->blockscale / 2;
 }
 
 void	print_config(t_config* C)
@@ -35,10 +35,10 @@ void	print_config(t_config* C)
 │\n\
 │\t%sruntime-configure%s\n\
 │\n\
-│	%sblockScale%s\t= %d\n\
-│	%sNUM_RAYS%s\t= %d\n\
-│	%scollisionRange%s\t= %d\n\
-│	%sminimapScale%s\t= %d\n\
+│	%sblockscale%s\t= %d\n\
+│	%snum_rays%s\t= %d\n\
+│	%scollision_range%s\t= %d\n\
+│	%sminimapscale%s\t= %d\n\
 │\n\
 └───────────────────────────────────────────────────────────\n", \
 	CYAN, NC,\
@@ -47,8 +47,8 @@ void	print_config(t_config* C)
 	DCYAN, NC, texWidth,\
 	DCYAN, NC, texHeight,\
 	PURPLE, NC,\
-	DPURPLE, NC, C->blockScale,\
-	DPURPLE, NC, C->NUM_RAYS,\
-	DPURPLE, NC, C->collisionRange,\
-	DPURPLE, NC, C->minimapScale);
+	DPURPLE, NC, C->blockscale,\
+	DPURPLE, NC, C->num_rays,\
+	DPURPLE, NC, C->collision_range,\
+	DPURPLE, NC, C->minimapscale);
 }

@@ -1,39 +1,39 @@
 #include "cub3D.h"
 
-void	malloc_worldMap(t_param *P)
+void	malloc_worldmap(t_param *P)
 {
 	int	i;
 
-	P->worldMap = (int **)calloc_(P->cfg->mapHeight, sizeof(int *));
+	P->worldmap = (int **)calloc_(P->cfg->mapheight, sizeof(int *));
 	i = 0;
-	while (i < P->cfg->mapHeight)
-		P->worldMap[i++] = (int *)calloc_(P->cfg->mapWidth, sizeof(int));
+	while (i < P->cfg->mapheight)
+		P->worldmap[i++] = (int *)calloc_(P->cfg->mapwidth, sizeof(int));
 }
 
-void	fill_worldMap(t_param *P)
+void	fill_worldmap(t_param *P)
 {
 	int		y;
 	int		x;
 	t_lst	*tmp;
 
-	malloc_worldMap(P);
+	malloc_worldmap(P);
 	y = -1;
 	tmp = P->map;
-	while (++y < P->cfg->mapHeight)
+	while (++y < P->cfg->mapheight)
 	{
 		x = -1;
-		while (++x < P->cfg->mapWidth)
+		while (++x < P->cfg->mapwidth)
 		{
 			if (tmp->content[x] == '\0')
 			{
-				while (x < P->cfg->mapWidth)
-					P->worldMap[y][x++] = ' ';
+				while (x < P->cfg->mapwidth)
+					P->worldmap[y][x++] = ' ';
 				break ;
 			}
 			if (ft_isdigit(tmp->content[x]))
-				P->worldMap[y][x] = tmp->content[x] - 48;
+				P->worldmap[y][x] = tmp->content[x] - 48;
 			else
-				P->worldMap[y][x] = tmp->content[x];
+				P->worldmap[y][x] = tmp->content[x];
 		}
 		tmp = tmp->next;
 	}
@@ -52,7 +52,7 @@ void	filename_check(char *filename, char *extension, t_param *P)
 		err_exit("Error: invalid extension", P);
 }
 
-void	cnt_mapHeight(t_param *P)
+void	cnt_mapheight(t_param *P)
 {
 	t_lst	*tail;
 	int		cnt;
@@ -69,7 +69,7 @@ void	cnt_mapHeight(t_param *P)
 		else
 			break ;
 	}
-	P->cfg->mapHeight = lst_get_len(P->map) - cnt;
+	P->cfg->mapheight = lst_get_len(P->map) - cnt;
 }
 
 void	parse_file(t_param *P, char *filename)
@@ -81,7 +81,7 @@ void	parse_file(t_param *P, char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 3)
 		err_exit("Error: open() failure", P);
-	P->cfg->mapWidth = 0;
+	P->cfg->mapwidth = 0;
 	while (get_next_line_(fd, &line) > 0)
 	{
 		parse_line(P, line);
@@ -91,8 +91,8 @@ void	parse_file(t_param *P, char *filename)
 	parse_line(P, line);
 	free(line);
 	close(fd);
-	cnt_mapHeight(P);
-	fill_worldMap(P);
+	cnt_mapheight(P);
+	fill_worldmap(P);
 }
 
 // 55 확장자 .cub 보다 길어야한다 같거나 짧다면 리턴 0

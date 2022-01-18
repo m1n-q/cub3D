@@ -5,14 +5,14 @@ void	check_left_right_wall(t_param *P, int y)
 	int	x;
 
 	x = 0;
-	while (check_val(P->worldMap[y][x]) == 3 && x < P->cfg->mapWidth - 1)
+	while (check_val(P->worldmap[y][x]) == 3 && x < P->cfg->mapwidth - 1)
 		x++;
-	if (P->worldMap[y][x] != 1)
+	if (P->worldmap[y][x] != 1)
 		wall_leaks_exit(y, x, P);
-	x = P->cfg->mapWidth - 1;
-	while (check_val(P->worldMap[y][x]) == 3)
+	x = P->cfg->mapwidth - 1;
+	while (check_val(P->worldmap[y][x]) == 3)
 		x--;
-	if (P->worldMap[y][x] != 1)
+	if (P->worldmap[y][x] != 1)
 		wall_leaks_exit(y, x, P);
 }
 
@@ -22,22 +22,22 @@ void	check_top_bottom_wall(t_param *P)
 	int	y;
 
 	x = -1;
-	while (++x < P->cfg->mapWidth)
+	while (++x < P->cfg->mapwidth)
 	{
 		y = 0;
-		while (check_val(P->worldMap[y][x]) == 3 && y < P->cfg->mapHeight - 1)
+		while (check_val(P->worldmap[y][x]) == 3 && y < P->cfg->mapheight - 1)
 			y++;
-		if (P->worldMap[y][x] != 1)
+		if (P->worldmap[y][x] != 1)
 			wall_leaks_exit(y, x, P);
-		y = P->cfg->mapHeight - 1;
-		while (check_val(P->worldMap[y][x]) == 3)
+		y = P->cfg->mapheight - 1;
+		while (check_val(P->worldmap[y][x]) == 3)
 			y--;
-		if (P->worldMap[y][x] != 1)
+		if (P->worldmap[y][x] != 1)
 			wall_leaks_exit(y, x, P);
 	}
 }
 
-void	check_worldMap(t_param *P, t_config *C)
+void	check_worldmap(t_param *P, t_config *C)
 {
 	int	y;
 	int	x;
@@ -45,15 +45,15 @@ void	check_worldMap(t_param *P, t_config *C)
 
 	y = 0;
 	player = 0;
-	while (y < C->mapHeight)
+	while (y < C->mapheight)
 	{
 		x = 0;
-		while (x < C->mapWidth)
+		while (x < C->mapwidth)
 		{
-			if (!check_val(P->worldMap[y][x]))
+			if (!check_val(P->worldmap[y][x]))
 				err_exit("ERROR: invalid val in map", P);
-			if (check_val(P->worldMap[y][x]) == 1)
-				player = (set_dir(P, P->worldMap[y][x]) && set_pos(P, x, y));
+			if (check_val(P->worldmap[y][x]) == 1)
+				player = (set_dir(P, P->worldmap[y][x]) && set_pos(P, x, y));
 			x++;
 		}
 		check_left_right_wall(P, y);
