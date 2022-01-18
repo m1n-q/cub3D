@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 15:08:24 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 15:23:38 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,8 @@ int		set_dir(PARAM *P, int c);
 int		set_pos(PARAM *P, int x, int y);
 char	*formatstr(char *fstr, char *arg, int tofree);
 
+void	*calloc_(size_t count, size_t size);
+char	*strdup_(char *s);
+char	*strjoin_(const char *s1, const char *s2);
+char	*substr_(char const *s, unsigned int start, size_t len);
 #endif
