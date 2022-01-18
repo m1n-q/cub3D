@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:53:16 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 18:10:27 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,50 +21,50 @@ t_vector	get_raydir(t_vector dir, double angle)
 	return (raydir);
 }
 
-t_vector	get_stepdir(t_DDA D)
+t_vector	get_stepdir(t_dda __dda)
 {
 	t_vector	step;
 
 	step.x = 1.0;
 	step.y = 1.0;
-	if (D.raydir.x < 0)
+	if (__dda.raydir.x < 0)
 		step.x *= -1.0;
-	if (D.raydir.y < 0)
+	if (__dda.raydir.y < 0)
 		step.y *= -1.0;
 	return (step);
 }
 
-t_vector	get_dist_vh(t_param* p, t_DDA D)
+t_vector	get_dist_vh(t_param *p, t_dda __dda)
 {
 	double	dist_vert;
 	double	dist_horz;
 
-	if (D.raydir.x < 0)
-		dist_vert = (p->pos.x - (int)p->pos.x) * D.delta_vert;
+	if (__dda.raydir.x < 0)
+		dist_vert = (p->pos.x - (int)p->pos.x) * __dda.delta_vert;
 	else
-		dist_vert = ((int)p->pos.x + 1 - p->pos.x) * D.delta_vert;
-	if (D.raydir.y > 0)
-		dist_horz = ((int)p->pos.y + 1 - p->pos.y) * D.delta_horz;
+		dist_vert = ((int)p->pos.x + 1 - p->pos.x) * __dda.delta_vert;
+	if (__dda.raydir.y > 0)
+		dist_horz = ((int)p->pos.y + 1 - p->pos.y) * __dda.delta_horz;
 	else
-		dist_horz = (p->pos.y - (int)p->pos.y) * D.delta_horz;
+		dist_horz = (p->pos.y - (int)p->pos.y) * __dda.delta_horz;
 	return ((t_vector){dist_vert, dist_horz});
 }
 
-t_DDA	get_DDA_info(t_param *p, double r)
+t_dda	get_dda_info(t_param *p, double r)
 {
-	t_DDA	D;
+	t_dda	__dda;
 
-	D.hit = p->pos;
-	D.raydir = get_raydir(p->dir, r);
-	D.step = get_stepdir(D);
-	D.delta_vert = sqrt(1 + pow((D.raydir.y / (D.raydir.x + 0.0001)), 2.0));
-	D.delta_horz = sqrt(1 + pow((D.raydir.x / (D.raydir.y + 0.0001)), 2.0));
-	D.dist_vert = get_dist_vh(p, D).x;
-	D.dist_horz = get_dist_vh(p, D).y;
-	return (D);
+	__dda.hit = p->pos;
+	__dda.raydir = get_raydir(p->dir, r);
+	__dda.step = get_stepdir(__dda);
+	__dda.delta_vert = sqrt(1 + pow((__dda.raydir.y / (__dda.raydir.x + 0.0001)), 2.0));
+	__dda.delta_horz = sqrt(1 + pow((__dda.raydir.x / (__dda.raydir.y + 0.0001)), 2.0));
+	__dda.dist_vert = get_dist_vh(p, __dda).x;
+	__dda.dist_horz = get_dist_vh(p, __dda).y;
+	return (__dda);
 }
 
-void	run_DDA(t_param *p, t_DDA *D)
+void	run_dda(t_param *p, t_dda *__dda)
 {
 	int	hit;
 	int	scale;
@@ -73,19 +73,19 @@ void	run_DDA(t_param *p, t_DDA *D)
 	scale = p->cfg->blockscale;
 	while (hit == 0)
 	{
-		if (D->dist_vert < D->dist_horz)
+		if (__dda->dist_vert < __dda->dist_horz)
 		{
-			D->dist_vert += D->delta_vert;
-			D->hit.x += D->step.x;
-			D->side = VERT;
+			__dda->dist_vert += __dda->delta_vert;
+			__dda->hit.x += __dda->step.x;
+			__dda->side = VERT;
 		}
 		else
 		{
-			D->dist_horz += D->delta_horz;
-			D->hit.y += D->step.y;
-			D->side = HORZ;
+			__dda->dist_horz += __dda->delta_horz;
+			__dda->hit.y += __dda->step.y;
+			__dda->side = HORZ;
 		}
-		if (p->worldmap[(int)(D->hit.y / scale)][(int)(D->hit.x / scale)] == 1)
+		if (p->worldmap[(int)(__dda->hit.y / scale)][(int)(__dda->hit.x / scale)] == 1)
 			hit = 1;
 
 		// printf("dist_vh => (%f, %f)\n", D->dist_vert, D->dist_horz);

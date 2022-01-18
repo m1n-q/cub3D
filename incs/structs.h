@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:33:58 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:03:59 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 18:04:07 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,5 @@ typedef struct s_dda
 	double		perp_dist;
 	t_vector	perp_dir;
 	int			side;			// was a NS or a EW wall hit?
-}	t_DDA;
+}	t_dda;
 #endif

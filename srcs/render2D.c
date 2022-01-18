@@ -6,13 +6,13 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:55:50 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 18:04:07 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	draw_ray(t_param *p, t_DDA D)
+void	draw_ray(t_param *p, t_dda D)
 {
 	double	dX=0, dY=0;
 	t_vector	minipos;

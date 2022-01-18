@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 18:01:34 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 18:13:59 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	init_config(t_config *cfg);
 void	print_config(t_config *cfg);
 
 /* DDA algorithm */
-t_DDA	get_DDA_info(t_param *p, double r);
-void	run_DDA(t_param *p, t_DDA *D);
+t_dda	get_dda_info(t_param *p, double r);
+void	run_dda(t_param *p, t_dda *__dda);
 
 /* render */
 int		render(t_param *p);
@@ -56,7 +56,7 @@ int		raycasting(t_param *p);
 //2D
 void	draw_dir(t_param *p);//FIXME
 void	draw_perpdir(t_param *p, t_vector perp_dir);//FIXME
-void	draw_ray(t_param *p, t_DDA D);//FIXME
+void	draw_ray(t_param *p, t_dda __dda);//FIXME
 void	draw_2Dmap(t_param *p);//FIXME
 void	draw_2Dplayer(t_param *p);//FIXME
 void	draw_2DCircle(t_param *p);//FIXME
@@ -82,7 +82,7 @@ void	init_mlx_image(t_param *p);//FIXME
 int		init_texture(t_param *p);
 void	destroy_texture(t_param *p);
 int		image_to_texture(int texture[][TEXWIDTH], t_img teximg);
-void	fill_by_texture(t_param *p, t_DDA D, t_drawinfo draw);
+void	fill_by_texture(t_param *p, t_dda D, t_drawinfo draw);
 
 /* event hook */
 int		keymap(int keycode, t_param *param);

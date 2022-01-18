@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:53:16 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 18:13:27 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,57 +56,57 @@ int	image_to_texture(int texture[][TEXWIDTH], t_img teximg)
 	return (0);
 }
 
-t_vector	get_texture_pos(t_param *p, t_DDA D)
+t_vector	get_texture_pos(t_param *p, t_dda __dda)
 {
 	double	pos_on_wall;
 	t_vector	texpos;
 
 	// 한칸에서 어느만큼인지 : hit.x =87, scale =40 -> 3번째 칸에서 7번째 위치
-	if (D.side == HORZ)
-		pos_on_wall = (int)D.hit.x % p->cfg->blockscale;
+	if (__dda.side == HORZ)
+		pos_on_wall = (int)__dda.hit.x % p->cfg->blockscale;
 	else
-		pos_on_wall = (int)D.hit.y % p->cfg->blockscale;
+		pos_on_wall = (int)__dda.hit.y % p->cfg->blockscale;
 
 	// textureWidth 에서 7 / 40 위치 가져와야 함	(method 2: using floor)
 	texpos.x = (pos_on_wall / p->cfg->blockscale) * TEXWIDTH;
 
 	// 좌우반전
-	if (D.side == HORZ && D.raydir.y > 0)
+	if (__dda.side == HORZ && __dda.raydir.y > 0)
 		texpos.x = TEXWIDTH - texpos.x - 1;
-	if (D.side == VERT && D.raydir.x < 0)
+	if (__dda.side == VERT && __dda.raydir.x < 0)
 		texpos.x = TEXWIDTH - texpos.x - 1;
 	texpos.y = 0.0;
 	return (texpos);
 }
 
-int	get_texture_idx(t_DDA D)
+int	get_texture_idx(t_dda __dda)
 {
-	if (D.side == HORZ)
+	if (__dda.side == HORZ)
 	{
-		if (D.raydir.y >= 0)
+		if (__dda.raydir.y >= 0)
 			return (N);
 		else
 			return (S);
 	}
 	else
 	{
-		if (D.raydir.x >= 0)
+		if (__dda.raydir.x >= 0)
 			return (W);
 		else
 			return (E);
 	}
 }
 
-void	fill_by_texture(t_param *p, t_DDA D, t_drawinfo draw)
+void	fill_by_texture(t_param *p, t_dda __dda, t_drawinfo draw)
 {
-	int		y;
-	int		color;
-	int		texidx;
-	double	tex_stepY;
+	int			y;
+	int			color;
+	int			texidx;
+	double		tex_stepY;
 	t_vector	texpos;
 
-	texidx = get_texture_idx(D);
-	texpos = get_texture_pos(p, D);
+	texidx = get_texture_idx(__dda);
+	texpos = get_texture_pos(p, __dda);
 
 	// 전체 그릴 높이 == draw.length
 	tex_stepY = (double)TEXHEIGHT / (double)draw.length;
@@ -120,7 +120,7 @@ void	fill_by_texture(t_param *p, t_DDA D, t_drawinfo draw)
 		}
 		texpos.y = fmin(texpos.y, TEXHEIGHT - 1);
 		color = p->textures[texidx][(int)texpos.y][(int)texpos.x];
-		if (D.side == HORZ)
+		if (__dda.side == HORZ)
 			color = (color >> 1) & 8355711;
 		p->buf3D[y][draw.x]	= color;
 		texpos.y += tex_stepY;
