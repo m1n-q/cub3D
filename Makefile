@@ -12,7 +12,6 @@ SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/init.c \
 		$(SRC_DIR)/render2D.c \
 		$(SRC_DIR)/render3D.c \
-		$(SRC_DIR)/utils.c \
 		$(SRC_DIR)/hook.c \
 		$(SRC_DIR)/DDA.c \
 		$(SRC_DIR)/raycasting.c \
@@ -20,18 +19,19 @@ SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/image.c \
 		$(SRC_DIR)/texture.c \
 		$(SRC_DIR)/config.c \
-		$(SRC_DIR)/parse_file.c \
-		$(SRC_DIR)/parse_line.c \
-		$(SRC_DIR)/parse_rgb.c \
-		$(SRC_DIR)/parse_texture.c \
-		$(SRC_DIR)/utils_lst.c \
-		$(SRC_DIR)/utils_map.c \
-		$(SRC_DIR)/get_next_line.c \
-		$(SRC_DIR)/get_next_line_utils_bonus.c \
-		$(SRC_DIR)/get_next_line_bonus.c \
-		$(SRC_DIR)/check_hole.c \
-		$(SRC_DIR)/check_wall.c \
-		$(SRC_DIR)/check_worldMap.c
+		$(SRC_DIR)/parse/parse_file.c \
+		$(SRC_DIR)/parse/parse_line.c \
+		$(SRC_DIR)/parse/parse_rgb.c \
+		$(SRC_DIR)/parse/parse_texture.c \
+		$(SRC_DIR)/parse/check_hole.c \
+		$(SRC_DIR)/parse/check_wall.c \
+		$(SRC_DIR)/parse/check_worldMap.c \
+		$(SRC_DIR)/utils/utils.c \
+		$(SRC_DIR)/utils/utils_lst.c \
+		$(SRC_DIR)/utils/utils_map.c \
+		$(SRC_DIR)/utils/get_next_line.c \
+		$(SRC_DIR)/utils/get_next_line_utils_bonus.c \
+		$(SRC_DIR)/utils/get_next_line_bonus.c \
 
 
 
