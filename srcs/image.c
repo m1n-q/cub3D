@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:06:14 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:09:32 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	make_minimap_image(t_param *P)
 			P->hblock.addr[y * P->hblock.linesize / sizeof(int) + x] = 0x00fdff;
 
 			if (x == 0 || y == 0 || x == P->cfg->mapwidth * P->cfg->minimapscale - 1 || y == P->cfg->mapheight * P->cfg->minimapscale -1)
-				P->grid.addr[y * P->block.linesize / sizeof(int) + x] = RGB_Grey;
+				P->grid.addr[y * P->block.linesize / sizeof(int) + x] = 0x555555;
 		}
 	}
 }
