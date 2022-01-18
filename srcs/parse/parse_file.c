@@ -1,45 +1,45 @@
 #include "cub3D.h"
 
-void	malloc_worldmap(t_param *P)
+void	malloc_worldmap(t_param *p)
 {
 	int	i;
 
-	P->worldmap = (int **)calloc_(P->cfg->mapheight, sizeof(int *));
+	p->worldmap = (int **)calloc_(p->cfg->mapheight, sizeof(int *));
 	i = 0;
-	while (i < P->cfg->mapheight)
-		P->worldmap[i++] = (int *)calloc_(P->cfg->mapwidth, sizeof(int));
+	while (i < p->cfg->mapheight)
+		p->worldmap[i++] = (int *)calloc_(p->cfg->mapwidth, sizeof(int));
 }
 
-void	fill_worldmap(t_param *P)
+void	fill_worldmap(t_param *p)
 {
 	int		y;
 	int		x;
 	t_lst	*tmp;
 
-	malloc_worldmap(P);
+	malloc_worldmap(p);
 	y = -1;
-	tmp = P->map;
-	while (++y < P->cfg->mapheight)
+	tmp = p->map;
+	while (++y < p->cfg->mapheight)
 	{
 		x = -1;
-		while (++x < P->cfg->mapwidth)
+		while (++x < p->cfg->mapwidth)
 		{
 			if (tmp->content[x] == '\0')
 			{
-				while (x < P->cfg->mapwidth)
-					P->worldmap[y][x++] = ' ';
+				while (x < p->cfg->mapwidth)
+					p->worldmap[y][x++] = ' ';
 				break ;
 			}
 			if (ft_isdigit(tmp->content[x]))
-				P->worldmap[y][x] = tmp->content[x] - 48;
+				p->worldmap[y][x] = tmp->content[x] - 48;
 			else
-				P->worldmap[y][x] = tmp->content[x];
+				p->worldmap[y][x] = tmp->content[x];
 		}
 		tmp = tmp->next;
 	}
 }
 
-void	filename_check(char *filename, char *extension, t_param *P)
+void	filename_check(char *filename, char *extension, t_param *p)
 {
 	int	f_len;
 	int	e_len;
@@ -47,18 +47,18 @@ void	filename_check(char *filename, char *extension, t_param *P)
 	f_len = ft_strlen(filename);
 	e_len = ft_strlen(extension);
 	if (f_len <= e_len)
-		err_exit("Error: invalid filename", P);
+		err_exit("Error: invalid filename", p);
 	if (ft_strncmp(filename + f_len - e_len, extension, e_len) != 0)
-		err_exit("Error: invalid extension", P);
+		err_exit("Error: invalid extension", p);
 }
 
-void	cnt_mapheight(t_param *P)
+void	cnt_mapheight(t_param *p)
 {
 	t_lst	*tail;
 	int		cnt;
 
 	cnt = 0;
-	tail = lst_get_tail(P->map);
+	tail = lst_get_tail(p->map);
 	while (tail)
 	{
 		if (ft_strlen(tail->content) == 0)
@@ -69,30 +69,30 @@ void	cnt_mapheight(t_param *P)
 		else
 			break ;
 	}
-	P->cfg->mapheight = lst_get_len(P->map) - cnt;
+	p->cfg->mapheight = lst_get_len(p->map) - cnt;
 }
 
-void	parse_file(t_param *P, char *filename)
+void	parse_file(t_param *p, char *filename)
 {
 	int		fd;
 	char	*line;
 
-	filename_check(filename, ".cub", P);
+	filename_check(filename, ".cub", p);
 	fd = open(filename, O_RDONLY);
 	if (fd < 3)
-		err_exit("Error: open() failure", P);
-	P->cfg->mapwidth = 0;
+		err_exit("Error: open() failure", p);
+	p->cfg->mapwidth = 0;
 	while (get_next_line_(fd, &line) > 0)
 	{
-		parse_line(P, line);
+		parse_line(p, line);
 		free(line);
 		line = NULL;
 	}
-	parse_line(P, line);
+	parse_line(p, line);
 	free(line);
 	close(fd);
-	cnt_mapheight(P);
-	fill_worldmap(P);
+	cnt_mapheight(p);
+	fill_worldmap(p);
 }
 
 // 55 확장자 .cub 보다 길어야한다 같거나 짧다면 리턴 0

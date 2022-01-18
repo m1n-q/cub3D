@@ -6,51 +6,51 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:09:32 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:56:24 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 //NOTE: t_img		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
-void	make_minimap_image(t_param *P)
+void	make_minimap_image(t_param *p)
 {
-	P->grid.img = mlx_new_image(P->mlx, P->cfg->mapwidth * P->cfg->minimapscale, P->cfg->mapheight * P->cfg->minimapscale);
-	P->grid.addr = (int *)mlx_get_data_addr(P->grid.img, &P->grid.bpp, &P->grid.linesize, &P->grid.endian);
-	P->block.img = mlx_new_image(P->mlx, P->cfg->mapwidth * P->cfg->minimapscale, P->cfg->mapheight * P->cfg->minimapscale);
-	P->block.addr = (int *)mlx_get_data_addr(P->block.img, &P->block.bpp, &P->block.linesize, &P->block.endian);
-	P->hblock.img = mlx_new_image(P->mlx, P->cfg->mapwidth * P->cfg->minimapscale, P->cfg->mapheight * P->cfg->minimapscale);
-	P->hblock.addr = (int *)mlx_get_data_addr(P->hblock.img, &P->hblock.bpp, &P->hblock.linesize, &P->hblock.endian);
-	for (int x = 0; x < P->cfg->mapwidth * P->cfg->minimapscale; x++)
+	p->grid.img = mlx_new_image(p->mlx, p->cfg->mapwidth * p->cfg->minimapscale, p->cfg->mapheight * p->cfg->minimapscale);
+	p->grid.addr = (int *)mlx_get_data_addr(p->grid.img, &p->grid.bpp, &p->grid.linesize, &p->grid.endian);
+	p->block.img = mlx_new_image(p->mlx, p->cfg->mapwidth * p->cfg->minimapscale, p->cfg->mapheight * p->cfg->minimapscale);
+	p->block.addr = (int *)mlx_get_data_addr(p->block.img, &p->block.bpp, &p->block.linesize, &p->block.endian);
+	p->hblock.img = mlx_new_image(p->mlx, p->cfg->mapwidth * p->cfg->minimapscale, p->cfg->mapheight * p->cfg->minimapscale);
+	p->hblock.addr = (int *)mlx_get_data_addr(p->hblock.img, &p->hblock.bpp, &p->hblock.linesize, &p->hblock.endian);
+	for (int x = 0; x < p->cfg->mapwidth * p->cfg->minimapscale; x++)
 	{
-		for (int y = 0; y < P->cfg->mapheight * P->cfg->minimapscale; y++)
+		for (int y = 0; y < p->cfg->mapheight * p->cfg->minimapscale; y++)
 		{
-			P->grid.addr[y * P->block.linesize / sizeof(int) + x]	= 0x000000 ;
-			P->block.addr[y * P->block.linesize / sizeof(int) + x]	= 0x5a7dbd ;
-			P->hblock.addr[y * P->hblock.linesize / sizeof(int) + x] = 0x00fdff;
+			p->grid.addr[y * p->block.linesize / sizeof(int) + x]	= 0x000000 ;
+			p->block.addr[y * p->block.linesize / sizeof(int) + x]	= 0x5a7dbd ;
+			p->hblock.addr[y * p->hblock.linesize / sizeof(int) + x] = 0x00fdff;
 
-			if (x == 0 || y == 0 || x == P->cfg->mapwidth * P->cfg->minimapscale - 1 || y == P->cfg->mapheight * P->cfg->minimapscale -1)
-				P->grid.addr[y * P->block.linesize / sizeof(int) + x] = 0x555555;
+			if (x == 0 || y == 0 || x == p->cfg->mapwidth * p->cfg->minimapscale - 1 || y == p->cfg->mapheight * p->cfg->minimapscale -1)
+				p->grid.addr[y * p->block.linesize / sizeof(int) + x] = 0x555555;
 		}
 	}
 }
 
-void	init_mlx_image(t_param *P)
+void	init_mlx_image(t_param *p)
 {
-	P->img3D.img = mlx_new_image(P->mlx, SCREENWIDTH, SCREENHEIGHT);
-	if (!P->img3D.img)
+	p->img3D.img = mlx_new_image(p->mlx, SCREENWIDTH, SCREENHEIGHT);
+	if (!p->img3D.img)
 		exit(1);
-	P->img3D.addr = (int *)mlx_get_data_addr(P->img3D.img, &P->img3D.bpp, \
-										&P->img3D.linesize, &P->img3D.endian);
-	P->img2D.img = mlx_new_image(P->mlx, P->cfg->mapwidth * P->cfg->minimapscale, \
-										P->cfg->mapheight * P->cfg->minimapscale);
-	if (!P->img2D.img)
+	p->img3D.addr = (int *)mlx_get_data_addr(p->img3D.img, &p->img3D.bpp, \
+										&p->img3D.linesize, &p->img3D.endian);
+	p->img2D.img = mlx_new_image(p->mlx, p->cfg->mapwidth * p->cfg->minimapscale, \
+										p->cfg->mapheight * p->cfg->minimapscale);
+	if (!p->img2D.img)
 		exit(1);
-	P->img2D.addr = (int *)mlx_get_data_addr(P->img2D.img, &P->img2D.bpp, \
-											&P->img2D.linesize, &P->img2D.endian);
+	p->img2D.addr = (int *)mlx_get_data_addr(p->img2D.img, &p->img2D.bpp, \
+											&p->img2D.linesize, &p->img2D.endian);
 }
 
-void	load_image(t_param *P, t_img *I, char *filename)
+void	load_image(t_param *p, t_img *I, char *filename)
 {
 	char		*ext;
 	t_loadfunc	f;
@@ -63,21 +63,21 @@ void	load_image(t_param *P, t_img *I, char *filename)
 	else if (ft_strncmp(ext, "png", 3) == 0)
 		f = mlx_png_file_to_image;
 	else
-		err_exit(formatstr("not supported extension: {}", ext, 2), P);
-	I->img = f(P->mlx, filename, &I->width, &I->height);
+		err_exit(formatstr("not supported extension: {}", ext, 2), p);
+	I->img = f(p->mlx, filename, &I->width, &I->height);
 	if (!I->img)
-		err_exit(formatstr("{}: load failed", filename, 0), P);
+		err_exit(formatstr("{}: load failed", filename, 0), p);
 	I->addr = (int *)mlx_get_data_addr(I->img, &I->bpp, \
 									&I->linesize, &I->endian);
 	if (I->width != I->height || I->width != TEXWIDTH)
-		err_exit(formatstr("{}: 256x256 image required.", filename, 0), P);
+		err_exit(formatstr("{}: 256x256 image required.", filename, 0), p);
 	printf("%s loaded\n", filename);
 }
 
-void	load_images(t_param *P)
+void	load_images(t_param *p)
 {
-	load_image(P, &P->wall_n, P->tex_path[N]);
-	load_image(P, &P->wall_s, P->tex_path[S]);
-	load_image(P, &P->wall_w, P->tex_path[W]);
-	load_image(P, &P->wall_e, P->tex_path[E]);
+	load_image(p, &p->wall_n, p->tex_path[N]);
+	load_image(p, &p->wall_s, p->tex_path[S]);
+	load_image(p, &p->wall_w, p->tex_path[W]);
+	load_image(p, &p->wall_e, p->tex_path[E]);
 }

@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:03:39 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:52:39 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,64 +41,64 @@
 typedef void*	(*t_loadfunc)(void*, char*, int*, int*);
 
 
-void	init(t_param *P);
+void	init(t_param *p);
 /* config */
 void	init_config(t_config* C);
 void	print_config(t_config* C);
 
 /* DDA algorithm */
-t_DDA	get_DDA_info(t_param *P, double r);
-void	run_DDA(t_param *P, t_DDA *D);
+t_DDA	get_DDA_info(t_param *p, double r);
+void	run_DDA(t_param *p, t_DDA *D);
 
 /* render */
-int		render(t_param *P);
-int		raycasting(t_param *P);
+int		render(t_param *p);
+int		raycasting(t_param *p);
 //2D
-void	draw_dir(t_param *P);//FIXME
-void	draw_perpdir(t_param *P, t_vector perp_dir);//FIXME
-void	draw_ray(t_param *P, t_DDA D);//FIXME
-void	draw_2Dmap(t_param *P);//FIXME
-void	draw_2Dplayer(t_param *P);//FIXME
-void	draw_2DCircle(t_param *P);//FIXME
-int		draw_2Dsquare(t_param *P, int x, int y, t_img img);//FIXME
+void	draw_dir(t_param *p);//FIXME
+void	draw_perpdir(t_param *p, t_vector perp_dir);//FIXME
+void	draw_ray(t_param *p, t_DDA D);//FIXME
+void	draw_2Dmap(t_param *p);//FIXME
+void	draw_2Dplayer(t_param *p);//FIXME
+void	draw_2DCircle(t_param *p);//FIXME
+int		draw_2Dsquare(t_param *p, int x, int y, t_img img);//FIXME
 
 //3D
-void	draw_verLine(int x, int drawStart, int drawEnd, int color, t_param *P);
+void	draw_verLine(int x, int drawStart, int drawEnd, int color, t_param *p);
 
 /* screen buffer */
-int		init_buffer(t_param *P);//FIXME
-void	destroy_buffer(t_param* P);//FIXME
+int		init_buffer(t_param *p);//FIXME
+void	destroy_buffer(t_param* p);//FIXME
 void	buffer_to_img(int **buffer, t_img img, int w, int h);
 void	clear_buffer(int **buffer, int w, int h);
 void	clear_img(t_img img, int w, int h);
 
 /* image */
-void	load_image(t_param *P, t_img *I, char *filename);
-void	load_images(t_param *P);
-void	make_minimap_image(t_param *P);//FIXME
-void	init_mlx_image(t_param *P);//FIXME
+void	load_image(t_param *p, t_img *I, char *filename);
+void	load_images(t_param *p);
+void	make_minimap_image(t_param *p);//FIXME
+void	init_mlx_image(t_param *p);//FIXME
 
 /* texture */
-int		init_texture(t_param *P);
-void	destroy_texture(t_param *P);
+int		init_texture(t_param *p);
+void	destroy_texture(t_param *p);
 int		image_to_texture(int texture[][TEXWIDTH], t_img teximg);
-void	fill_by_texture(t_param *P, t_DDA D, t_drawinfo draw);
+void	fill_by_texture(t_param *p, t_DDA D, t_drawinfo draw);
 
 /* event hook */
 int		keymap(int keycode, t_param *param);
-int		rotate(int keycode, t_param *P);
-int		move(int keycode, t_param *P);
-int		quit(int keycode, t_param *P);
-int		bye(t_param *P);
+int		rotate(int keycode, t_param *p);
+int		move(int keycode, t_param *p);
+int		quit(int keycode, t_param *p);
+int		bye(t_param *p);
 
 /* map_parsing */
-void	parse_file(t_param *P, char *filename);
-void	parse_line(t_param *P, char *line);
-void	parse_texture(t_param *P, int type, char *line);
-void	parse_rgb(t_param *P, int type, char *line);
-void	check_worldmap(t_param *P, t_config *C);
-void	check_hole(t_param *P, int y);
-void	check_wall(t_param *P);
+void	parse_file(t_param *p, char *filename);
+void	parse_line(t_param *p, char *line);
+void	parse_texture(t_param *p, int type, char *line);
+void	parse_rgb(t_param *p, int type, char *line);
+void	check_worldmap(t_param *p, t_config *C);
+void	check_hole(t_param *p, int y);
+void	check_wall(t_param *p);
 
 int		get_next_line(int fd, char **line);
 t_lst	*lst_add_back(t_lst *node, char *content);
@@ -109,12 +109,12 @@ t_lst	*lst_get_tail(t_lst *node);
 
 /* utils */
 char	**ft_split2(char *str, char *ch);
-void	err_exit(char *msg, t_param *P);
-void	print_worldmap(t_param *P);
+void	err_exit(char *msg, t_param *p);
+void	print_worldmap(t_param *p);
 int		check_val(int c);
-void	wall_leaks_exit(int y, int x, t_param *P);
-int		set_dir(t_param *P, int c);
-int		set_pos(t_param *P, int x, int y);
+void	wall_leaks_exit(int y, int x, t_param *p);
+int		set_dir(t_param *p, int c);
+int		set_pos(t_param *p, int x, int y);
 char	*formatstr(char *fstr, char *arg, int tofree);
 
 void	*calloc_(size_t count, size_t size);

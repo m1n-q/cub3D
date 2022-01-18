@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-static void	check_y_axis(t_param *P, int y, int x)
+static void	check_y_axis(t_param *p, int y, int x)
 {
 	int	old_y;
 	int	block;
@@ -9,42 +9,42 @@ static void	check_y_axis(t_param *P, int y, int x)
 	block = 0;
 	while (--y >= 0)
 	{
-		if (P->worldmap[y][x] != ' ')
+		if (p->worldmap[y][x] != ' ')
 		{
 			block += 1;
 			break ;
 		}
 	}
 	y = old_y;
-	while (++y < P->cfg->mapheight)
+	while (++y < p->cfg->mapheight)
 	{
-		if (P->worldmap[y][x] != ' ')
+		if (p->worldmap[y][x] != ' ')
 		{
 			block += 1;
 			break ;
 		}
 	}
 	if (block == 2)
-		err_exit("ERROR: found a hole in map", P);
+		err_exit("ERROR: found a hole in map", p);
 }
 
-void	check_hole(t_param *P, int y)
+void	check_hole(t_param *p, int y)
 {
 	int		start;
 	int		end;
 	int		x;
 
 	start = 0;
-	while (P->worldmap[y][start] == ' ')
+	while (p->worldmap[y][start] == ' ')
 		start++;
-	end = P->cfg->mapwidth - 1;
-	while (P->worldmap[y][end] == ' ')
+	end = p->cfg->mapwidth - 1;
+	while (p->worldmap[y][end] == ' ')
 		end--;
 	x = start;
 	while (x < end)
 	{
-		if (P->worldmap[y][x] == ' ')
-			check_y_axis(P, y, x);
+		if (p->worldmap[y][x] == ' ')
+			check_y_axis(p, y, x);
 		x++;
 	}
 }

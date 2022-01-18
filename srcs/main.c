@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:11:34 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:54:24 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@
  *========================================================================**/
 int main(int argc, char *argv[])
 {
-	t_param	P;
-	t_config	C;
+	t_param		p;
+	t_config	cfg;
 
 	if (argc != 2)
 		err_exit("ERROR: CHECK ARGUMENTS", NULL);
 	// -----------MAP parsing----------------
-	ft_memset(&P, 0, sizeof(P));
-	P.cfg = &C;
+	ft_memset(&p, 0, sizeof(p));
+	p.cfg = &cfg;
 
-	parse_file(&P, argv[1]);
-	check_worldmap(&P, &C);
+	parse_file(&p, argv[1]);
+	check_worldmap(&p, &cfg);
 
-	init(&P);
+	init(&p);
 
-	mlx_hook(P.win, KeyPress, 0, keymap, &P);
-	mlx_hook(P.win, DestroyNotify, 0, bye, &P);
-	mlx_loop_hook(P.mlx, render, &P);
-	mlx_loop(P.mlx);
+	mlx_hook(p.win, KeyPress, 0, keymap, &p);
+	mlx_hook(p.win, DestroyNotify, 0, bye, &p);
+	mlx_loop_hook(p.mlx, render, &p);
+	mlx_loop(p.mlx);
 }

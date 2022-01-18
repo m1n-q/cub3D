@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:57:50 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:54:41 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**ft_split2(char *str, char *ch)
 	return (ret);
 }
 
-void	err_exit(char *msg, t_param *P)
+void	err_exit(char *msg, t_param *p)
 {
 	int	i;
 
@@ -54,18 +54,18 @@ void	err_exit(char *msg, t_param *P)
 	write(2, "\n", 1);
 	free(msg);
 	i = 0;
-	if (P)
+	if (p)
 	{
 		while (i < 4)
-			free(P->tex_path[i++]);
-		if (P->map)
-			lst_clear(&P->map);
-		if (P->worldmap)
+			free(p->tex_path[i++]);
+		if (p->map)
+			lst_clear(&p->map);
+		if (p->worldmap)
 		{
 			i = 0;
-			while (i < P->cfg->mapheight)
-				free(P->worldmap[i++]);
-			free(P->worldmap);
+			while (i < p->cfg->mapheight)
+				free(p->worldmap[i++]);
+			free(p->worldmap);
 		}
 	}
 	exit(1);

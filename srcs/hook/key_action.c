@@ -6,33 +6,33 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:32:33 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:57:50 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:54:41 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	rotate(int keycode, t_param *P)
+int	rotate(int keycode, t_param *p)
 {
 	double	rot_angle;
 	double	old_dirx;
 
 	rot_angle = 0.2;
-	old_dirx = P->dir.x;
+	old_dirx = p->dir.x;
 	if (keycode == KEY_RIGHT)
 	{
-		P->dir.x = cos(rot_angle) * P->dir.x - sin(rot_angle) * P->dir.y;
-		P->dir.y = sin(rot_angle) * old_dirx + cos(rot_angle) * P->dir.y;
+		p->dir.x = cos(rot_angle) * p->dir.x - sin(rot_angle) * p->dir.y;
+		p->dir.y = sin(rot_angle) * old_dirx + cos(rot_angle) * p->dir.y;
 	}
 	else if (keycode == KEY_LEFT)
 	{
-		P->dir.x = cos(-rot_angle) * P->dir.x - sin(-rot_angle) * P->dir.y;
-		P->dir.y = sin(-rot_angle) * old_dirx + cos(-rot_angle) * P->dir.y;
+		p->dir.x = cos(-rot_angle) * p->dir.x - sin(-rot_angle) * p->dir.y;
+		p->dir.y = sin(-rot_angle) * old_dirx + cos(-rot_angle) * p->dir.y;
 	}
 	return (0);
 }
 
-static int	check_collision(t_param *P, double radius)
+static int	check_collision(t_param *p, double radius)
 {
 	double	r;
 	t_vector	d;
@@ -40,20 +40,20 @@ static int	check_collision(t_param *P, double radius)
 	int		linelength;
 	int		scale;
 
-	scale = P->cfg->blockscale;
+	scale = p->cfg->blockscale;
 	r = 0.0;
 	while (r <= 2 * PI)
 	{
 		d.x = 0.0;
 		d.y = 0.0;
-		newdir.x = cos(r) * P->dir.x - sin(r) * P->dir.y;
-		newdir.y = sin(r) * P->dir.x + cos(r) * P->dir.y;
+		newdir.x = cos(r) * p->dir.x - sin(r) * p->dir.y;
+		newdir.y = sin(r) * p->dir.x + cos(r) * p->dir.y;
 		linelength = 0;
 		while (linelength < radius)
 		{
 			d.x += newdir.x;
 			d.y += newdir.y;
-			if (P->worldmap[(int)((int)(P->pos.y + d.y) / scale)][(int)((int)(P->pos.x + d.x) / scale)])
+			if (p->worldmap[(int)((int)(p->pos.y + d.y) / scale)][(int)((int)(p->pos.x + d.x) / scale)])
 				return (1);
 			linelength++;
 		}
@@ -62,25 +62,25 @@ static int	check_collision(t_param *P, double radius)
 	return (0);
 }
 
-static int	move_(t_param *P, t_vector movedir)
+static int	move_(t_param *p, t_vector movedir)
 {
 	int		amount;
 	t_vector	oldpos;
 
 	amount = 5;
-	oldpos = P->pos;
-	P->pos.x += movedir.x * amount;
-	if (check_collision(P, P->cfg->collision_range))
-		P->pos = oldpos;
-	oldpos = P->pos;
-	P->pos.y += movedir.y * amount;
-	if (check_collision(P, P->cfg->collision_range))
-		P->pos = oldpos;
+	oldpos = p->pos;
+	p->pos.x += movedir.x * amount;
+	if (check_collision(p, p->cfg->collision_range))
+		p->pos = oldpos;
+	oldpos = p->pos;
+	p->pos.y += movedir.y * amount;
+	if (check_collision(p, p->cfg->collision_range))
+		p->pos = oldpos;
 	return (0);
 }
 
 //NOTE: dir.x == 0 || dir.y == 0 일 때와 움직이는 양이 다른가...?
-int	move(int keycode, t_param *P)
+int	move(int keycode, t_param *p)
 {
 	t_vector	movedir;
 
@@ -88,31 +88,31 @@ int	move(int keycode, t_param *P)
 	movedir.y = 0.0;
 	if (keycode == KEY_W)
 	{
-		movedir.x = P->dir.x;
-		movedir.y = P->dir.y;
+		movedir.x = p->dir.x;
+		movedir.y = p->dir.y;
 	}
 	else if (keycode == KEY_S)
 	{
-		movedir.x = -(P->dir.x);
-		movedir.y = -(P->dir.y);
+		movedir.x = -(p->dir.x);
+		movedir.y = -(p->dir.y);
 	}
 	else if (keycode == KEY_A)
 	{
-		movedir.x = (cos(-PI / 2) * P->dir.x - sin(-PI / 2) * P->dir.y);
-		movedir.y = (sin(-PI / 2) * P->dir.x + cos(-PI / 2) * P->dir.y);
+		movedir.x = (cos(-PI / 2) * p->dir.x - sin(-PI / 2) * p->dir.y);
+		movedir.y = (sin(-PI / 2) * p->dir.x + cos(-PI / 2) * p->dir.y);
 	}
 	else if (keycode == KEY_D)
 	{
-		movedir.x = (cos(PI / 2) * P->dir.x - sin(PI / 2) * P->dir.y);
-		movedir.y = (sin(PI / 2) * P->dir.x + cos(PI / 2) * P->dir.y);
+		movedir.x = (cos(PI / 2) * p->dir.x - sin(PI / 2) * p->dir.y);
+		movedir.y = (sin(PI / 2) * p->dir.x + cos(PI / 2) * p->dir.y);
 	}
-	return (move_(P, movedir));
+	return (move_(p, movedir));
 }
 
-int	quit(int keycode, t_param *P)
+int	quit(int keycode, t_param *p)
 {
 	if (keycode != KEY_ESC)
 		return (1);
-	bye(P);
+	bye(p);
 	return (0);
 }

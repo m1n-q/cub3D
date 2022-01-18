@@ -1,38 +1,38 @@
 #include "cub3D.h"
 
-int	set_dir(t_param *P, int c)
+int	set_dir(t_param *p, int c)
 {
 	if (c == 'N')
 	{
-		P->dir.x = 0.0;
-		P->dir.y = -1.0;
+		p->dir.x = 0.0;
+		p->dir.y = -1.0;
 	}
 	else if (c == 'S')
 	{
-		P->dir.x = 0.0;
-		P->dir.y = 1.0;
+		p->dir.x = 0.0;
+		p->dir.y = 1.0;
 	}
 	else if (c == 'W')
 	{
-		P->dir.x = -1.0;
-		P->dir.y = 0.0;
+		p->dir.x = -1.0;
+		p->dir.y = 0.0;
 	}
 	else if (c == 'E')
 	{
-		P->dir.x = 1.0;
-		P->dir.y = 0.0;
+		p->dir.x = 1.0;
+		p->dir.y = 0.0;
 	}
 	return (1);
 }
 
-int	set_pos(t_param *P, int x, int y)
+int	set_pos(t_param *p, int x, int y)
 {
 	int	blockscale;
 
-	blockscale = (SCREENWIDTH / P->cfg->mapwidth);
-	P->pos.x = (x + 0.5) * blockscale;
-	P->pos.y = (y + 0.5) * blockscale;
-	P->worldmap[y][x] = 0;
+	blockscale = (SCREENWIDTH / p->cfg->mapwidth);
+	p->pos.x = (x + 0.5) * blockscale;
+	p->pos.y = (y + 0.5) * blockscale;
+	p->worldmap[y][x] = 0;
 	return (1);
 }
 
@@ -48,21 +48,21 @@ int	check_val(int c)
 		return (0);
 }
 
-void	print_worldmap(t_param *P)
+void	print_worldmap(t_param *p)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < P->cfg->mapheight)
+	while (i < p->cfg->mapheight)
 	{
 		j = 0;
-		while (j < P->cfg->mapwidth)
+		while (j < p->cfg->mapwidth)
 		{
-			if (P->worldmap[i][j] == 0 || P->worldmap[i][j] == 1)
-				printf("%d", P->worldmap[i][j]);
+			if (p->worldmap[i][j] == 0 || p->worldmap[i][j] == 1)
+				printf("%d", p->worldmap[i][j]);
 			else
-				printf("%c", P->worldmap[i][j]);
+				printf("%c", p->worldmap[i][j]);
 			j++;
 		}
 		printf("\n");
@@ -70,9 +70,9 @@ void	print_worldmap(t_param *P)
 	}
 }
 
-void	wall_leaks_exit(int y, int x, t_param *P)
+void	wall_leaks_exit(int y, int x, t_param *p)
 {
 	printf(P_RED "=> y:[%d], x:[%d] <=\n" P_RESET, y, x);
-	err_exit(" ERROR: wall leak", P);
+	err_exit(" ERROR: wall leak", p);
 }
 

@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-void	set_color(t_param *P, int type, char **rgb)
+void	set_color(t_param *p, int type, char **rgb)
 {
 	int	i;
 	int	color;
@@ -12,17 +12,17 @@ void	set_color(t_param *P, int type, char **rgb)
 	{
 		tmp = ft_atoi(rgb[i]);
 		if (tmp < 0 || tmp > 255)
-			err_exit("Error: invalid value of RGB", P);
+			err_exit("Error: invalid value of RGB", p);
 		color = color | (tmp << (16 - (i * 8)));
 		i++;
 	}
 	if (type == FLOOR)
-		P->floor_color = color;
+		p->floor_color = color;
 	else if (type == CEILI)
-		P->ceili_color = color;
+		p->ceili_color = color;
 }
 
-void	parse_rgb(t_param *P, int type, char *line)
+void	parse_rgb(t_param *p, int type, char *line)
 {
 	int		i;
 	char	*rgb_str;
@@ -33,20 +33,20 @@ void	parse_rgb(t_param *P, int type, char *line)
 		i++;
 	rgb_str = ft_strtrim(&line[i + 1], " \t");
 	if (!rgb_str)
-		err_exit("Error: ft_strtrim() failure", P);
+		err_exit("Error: ft_strtrim() failure", p);
 	i = 0;
 	while (rgb_str[i])
 		if (!ft_strchr(" \t,0123456789", rgb_str[i++]))
-			err_exit("Error: invalid character in RGB", P);
+			err_exit("Error: invalid character in RGB", p);
 	rgb_val = ft_split2(rgb_str, " ,\t");
 	if (!rgb_val)
-		err_exit("Error: ft_split2 failure", P);
+		err_exit("Error: ft_split2 failure", p);
 	i = 0;
 	while (rgb_val[i])
 		i++;
 	if (i != 3)
-		err_exit("Error: there are more than 3 RGB val ", P);
-	set_color(P, type, rgb_val);
+		err_exit("Error: there are more than 3 RGB val ", p);
+	set_color(p, type, rgb_val);
 	return ;
 }
 

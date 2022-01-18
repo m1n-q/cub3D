@@ -6,26 +6,26 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:06:45 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:53:16 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	init_texture(t_param *P)
+int	init_texture(t_param *p)
 {
-	image_to_texture(P->textures[N], P->wall_n);
-	image_to_texture(P->textures[S], P->wall_s);
-	image_to_texture(P->textures[W], P->wall_w);
-	image_to_texture(P->textures[E], P->wall_e);
-	mlx_destroy_image(P->mlx, P->wall_n.img);
-	mlx_destroy_image(P->mlx, P->wall_s.img);
-	mlx_destroy_image(P->mlx, P->wall_w.img);
-	mlx_destroy_image(P->mlx, P->wall_e.img);
+	image_to_texture(p->textures[N], p->wall_n);
+	image_to_texture(p->textures[S], p->wall_s);
+	image_to_texture(p->textures[W], p->wall_w);
+	image_to_texture(p->textures[E], p->wall_e);
+	mlx_destroy_image(p->mlx, p->wall_n.img);
+	mlx_destroy_image(p->mlx, p->wall_s.img);
+	mlx_destroy_image(p->mlx, p->wall_w.img);
+	mlx_destroy_image(p->mlx, p->wall_e.img);
 	return (0);
 }
 
-void	destroy_texture(t_param *P)
+void	destroy_texture(t_param *p)
 {
 	int	i;
 	int	j;
@@ -35,10 +35,10 @@ void	destroy_texture(t_param *P)
 	{
 		j = -1;
 		while (++j < TEXHEIGHT)
-			free(P->textures[i][j]);
-		free(P->textures[i]);
+			free(p->textures[i][j]);
+		free(p->textures[i]);
 	}
-	free(P->textures);
+	free(p->textures);
 }
 
 int	image_to_texture(int texture[][TEXWIDTH], t_img teximg)
@@ -56,19 +56,19 @@ int	image_to_texture(int texture[][TEXWIDTH], t_img teximg)
 	return (0);
 }
 
-t_vector	get_texture_pos(t_param *P, t_DDA D)
+t_vector	get_texture_pos(t_param *p, t_DDA D)
 {
 	double	pos_on_wall;
 	t_vector	texpos;
 
 	// 한칸에서 어느만큼인지 : hit.x =87, scale =40 -> 3번째 칸에서 7번째 위치
 	if (D.side == HORZ)
-		pos_on_wall = (int)D.hit.x % P->cfg->blockscale;
+		pos_on_wall = (int)D.hit.x % p->cfg->blockscale;
 	else
-		pos_on_wall = (int)D.hit.y % P->cfg->blockscale;
+		pos_on_wall = (int)D.hit.y % p->cfg->blockscale;
 
 	// textureWidth 에서 7 / 40 위치 가져와야 함	(method 2: using floor)
-	texpos.x = (pos_on_wall / P->cfg->blockscale) * TEXWIDTH;
+	texpos.x = (pos_on_wall / p->cfg->blockscale) * TEXWIDTH;
 
 	// 좌우반전
 	if (D.side == HORZ && D.raydir.y > 0)
@@ -97,7 +97,7 @@ int	get_texture_idx(t_DDA D)
 	}
 }
 
-void	fill_by_texture(t_param *P, t_DDA D, t_drawinfo draw)
+void	fill_by_texture(t_param *p, t_DDA D, t_drawinfo draw)
 {
 	int		y;
 	int		color;
@@ -106,7 +106,7 @@ void	fill_by_texture(t_param *P, t_DDA D, t_drawinfo draw)
 	t_vector	texpos;
 
 	texidx = get_texture_idx(D);
-	texpos = get_texture_pos(P, D);
+	texpos = get_texture_pos(p, D);
 
 	// 전체 그릴 높이 == draw.length
 	tex_stepY = (double)TEXHEIGHT / (double)draw.length;
@@ -119,10 +119,10 @@ void	fill_by_texture(t_param *P, t_DDA D, t_drawinfo draw)
 			continue ;
 		}
 		texpos.y = fmin(texpos.y, TEXHEIGHT - 1);
-		color = P->textures[texidx][(int)texpos.y][(int)texpos.x];
+		color = p->textures[texidx][(int)texpos.y][(int)texpos.x];
 		if (D.side == HORZ)
 			color = (color >> 1) & 8355711;
-		P->buf3D[y][draw.x]	= color;
+		p->buf3D[y][draw.x]	= color;
 		texpos.y += tex_stepY;
 	}
 }

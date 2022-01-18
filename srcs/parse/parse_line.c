@@ -22,7 +22,7 @@ int	get_type(char *line)
 	return (UN_DEF);
 }
 
-void	set_max_width(t_param *P, char *line)
+void	set_max_width(t_param *p, char *line)
 {
 	int	width;
 
@@ -34,42 +34,42 @@ void	set_max_width(t_param *P, char *line)
 		else
 			break ;
 	}
-	if (width > P->cfg->mapwidth)
-		P->cfg->mapwidth = width;
+	if (width > p->cfg->mapwidth)
+		p->cfg->mapwidth = width;
 }
 
-int	check_type_set(t_param *P)
+int	check_type_set(t_param *p)
 {
-	return (P->type_set[NO] && P->type_set[SO]
-		&& P->type_set[WE] && P->type_set[EA]
-		&& P->type_set[FLOOR] && P->type_set[CEILI]);
+	return (p->type_set[NO] && p->type_set[SO]
+		&& p->type_set[WE] && p->type_set[EA]
+		&& p->type_set[FLOOR] && p->type_set[CEILI]);
 }
 
-void	parse_line(t_param *P, char *line)
+void	parse_line(t_param *p, char *line)
 {
 	int	type;
 
 	if (!line)
 		return ;
 	type = get_type(line);
-	if (ft_strlen(line) == 0 && !P->map)
+	if (ft_strlen(line) == 0 && !p->map)
 		return ;
-	if (type != UN_DEF && P->type_set[type])
-		err_exit("Error: double keys", P);
-	if (check_type_set(P))
+	if (type != UN_DEF && p->type_set[type])
+		err_exit("Error: double keys", p);
+	if (check_type_set(p))
 	{
-		set_max_width(P, line);
-		P->map = lst_add_back(P->map, line);
-		if (!P->map)
-			err_exit("Error:  failure", P);
+		set_max_width(p, line);
+		p->map = lst_add_back(p->map, line);
+		if (!p->map)
+			err_exit("Error:  failure", p);
 		return ;
 	}
-	P->type_set[type] = 1;
+	p->type_set[type] = 1;
 	if (type >= NO && type <= EA)
-		return (parse_texture(P, type, line));
+		return (parse_texture(p, type, line));
 	else if (type == FLOOR || type == CEILI)
-		return (parse_rgb(P, type, line));
-	err_exit("Error: invalid key", P);
+		return (parse_rgb(p, type, line));
+	err_exit("Error: invalid key", p);
 }
 
 // 32 가장 긴 라인의 width값이 설정되도록

@@ -1,43 +1,43 @@
 #include "cub3D.h"
 
-void	check_left_right_wall(t_param *P, int y)
+void	check_left_right_wall(t_param *p, int y)
 {
 	int	x;
 
 	x = 0;
-	while (check_val(P->worldmap[y][x]) == 3 && x < P->cfg->mapwidth - 1)
+	while (check_val(p->worldmap[y][x]) == 3 && x < p->cfg->mapwidth - 1)
 		x++;
-	if (P->worldmap[y][x] != 1)
-		wall_leaks_exit(y, x, P);
-	x = P->cfg->mapwidth - 1;
-	while (check_val(P->worldmap[y][x]) == 3)
+	if (p->worldmap[y][x] != 1)
+		wall_leaks_exit(y, x, p);
+	x = p->cfg->mapwidth - 1;
+	while (check_val(p->worldmap[y][x]) == 3)
 		x--;
-	if (P->worldmap[y][x] != 1)
-		wall_leaks_exit(y, x, P);
+	if (p->worldmap[y][x] != 1)
+		wall_leaks_exit(y, x, p);
 }
 
-void	check_top_bottom_wall(t_param *P)
+void	check_top_bottom_wall(t_param *p)
 {
 	int	x;
 	int	y;
 
 	x = -1;
-	while (++x < P->cfg->mapwidth)
+	while (++x < p->cfg->mapwidth)
 	{
 		y = 0;
-		while (check_val(P->worldmap[y][x]) == 3 && y < P->cfg->mapheight - 1)
+		while (check_val(p->worldmap[y][x]) == 3 && y < p->cfg->mapheight - 1)
 			y++;
-		if (P->worldmap[y][x] != 1)
-			wall_leaks_exit(y, x, P);
-		y = P->cfg->mapheight - 1;
-		while (check_val(P->worldmap[y][x]) == 3)
+		if (p->worldmap[y][x] != 1)
+			wall_leaks_exit(y, x, p);
+		y = p->cfg->mapheight - 1;
+		while (check_val(p->worldmap[y][x]) == 3)
 			y--;
-		if (P->worldmap[y][x] != 1)
-			wall_leaks_exit(y, x, P);
+		if (p->worldmap[y][x] != 1)
+			wall_leaks_exit(y, x, p);
 	}
 }
 
-void	check_worldmap(t_param *P, t_config *C)
+void	check_worldmap(t_param *p, t_config *C)
 {
 	int	y;
 	int	x;
@@ -50,20 +50,20 @@ void	check_worldmap(t_param *P, t_config *C)
 		x = 0;
 		while (x < C->mapwidth)
 		{
-			if (!check_val(P->worldmap[y][x]))
-				err_exit("ERROR: invalid val in map", P);
-			if (check_val(P->worldmap[y][x]) == 1)
-				player = (set_dir(P, P->worldmap[y][x]) && set_pos(P, x, y));
+			if (!check_val(p->worldmap[y][x]))
+				err_exit("ERROR: invalid val in map", p);
+			if (check_val(p->worldmap[y][x]) == 1)
+				player = (set_dir(p, p->worldmap[y][x]) && set_pos(p, x, y));
 			x++;
 		}
-		check_left_right_wall(P, y);
-		check_hole(P, y);
+		check_left_right_wall(p, y);
+		check_hole(p, y);
 		y++;
 	}
-	check_top_bottom_wall(P);
-	check_wall(P);
+	check_top_bottom_wall(p);
+	check_wall(p);
 	if (player != 1)
-		err_exit("ERROR: wrong player numer", P);
+		err_exit("ERROR: wrong player numer", p);
 }
 
 // 10 가장 왼쪽 벽을 체크합니다 in a line
