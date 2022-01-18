@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.c                                            :+:      :+:    :+:   */
+/*   img.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:56:24 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 22:24:52 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 //NOTE: t_img		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
-void	make_minimap_image(t_param *p)
+void	make_minimap_img(t_param *p)
 {
 	p->grid.img = mlx_new_image(p->mlx, p->cfg->mapwidth * p->cfg->minimapscale, p->cfg->mapheight * p->cfg->minimapscale);
 	p->grid.addr = (int *)mlx_get_data_addr(p->grid.img, &p->grid.bpp, &p->grid.linesize, &p->grid.endian);
@@ -35,22 +35,7 @@ void	make_minimap_image(t_param *p)
 	}
 }
 
-void	init_mlx_image(t_param *p)
-{
-	p->img3D.img = mlx_new_image(p->mlx, SCREENWIDTH, SCREENHEIGHT);
-	if (!p->img3D.img)
-		exit(1);
-	p->img3D.addr = (int *)mlx_get_data_addr(p->img3D.img, &p->img3D.bpp, \
-										&p->img3D.linesize, &p->img3D.endian);
-	p->img2D.img = mlx_new_image(p->mlx, p->cfg->mapwidth * p->cfg->minimapscale, \
-										p->cfg->mapheight * p->cfg->minimapscale);
-	if (!p->img2D.img)
-		exit(1);
-	p->img2D.addr = (int *)mlx_get_data_addr(p->img2D.img, &p->img2D.bpp, \
-											&p->img2D.linesize, &p->img2D.endian);
-}
-
-void	load_image(t_param *p, t_img *I, char *filename)
+static void	load_file(t_param *p, t_img *I, char *filename)
 {
 	char		*ext;
 	t_loadfunc	f;
@@ -74,10 +59,24 @@ void	load_image(t_param *p, t_img *I, char *filename)
 	printf("%s loaded\n", filename);
 }
 
-void	load_images(t_param *p)
+void	load_imgs(t_param *p)
 {
-	load_image(p, &p->wall_n, p->tex_path[N]);
-	load_image(p, &p->wall_s, p->tex_path[S]);
-	load_image(p, &p->wall_w, p->tex_path[W]);
-	load_image(p, &p->wall_e, p->tex_path[E]);
+	load_file(p, &p->wall_n, p->tex_path[N]);
+	load_file(p, &p->wall_s, p->tex_path[S]);
+	load_file(p, &p->wall_w, p->tex_path[W]);
+	load_file(p, &p->wall_e, p->tex_path[E]);
+}
+
+void	clear_img(t_img img, int w, int h)
+{
+	int	x;
+	int	y;
+
+	y = -1;
+	while (++y < h)
+	{
+		x = -1;
+		while (++x < w)
+			img.addr[(y * img.linesize / sizeof(int) + x)] = 0;
+	}
 }

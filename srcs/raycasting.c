@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 18:12:07 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 22:00:19 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	get_perp_dist(t_param *p, t_dda *__dda)
 	perp_dir.x = cos(PI / 2) * p->dir.x - sin(PI / 2) * p->dir.y;
 	perp_dir.y = sin(PI / 2) * p->dir.x + cos(PI / 2) * p->dir.y;
 	perp_delta = ((perp_dir.y) / (perp_dir.x));
-	k = p->pos.y - p->pos.x * perp_delta;										// constant for perpendicular linear
+	k = p->pos.y - p->pos.x * perp_delta;
 	__dda->perp_dist = fabs(perp_delta * __dda->hit.x - __dda->hit.y + k) / \
-						sqrt(pow(perp_delta, 2.0) + 1);
+							sqrt(pow(perp_delta, 2.0) + 1);
 }
 
 void	get_draw_info(t_param *p, double perp_dist, t_drawinfo *draw)
 {
-	draw->length = (SCREENWIDTH) / perp_dist * p->cfg->blockscale;		// p->cfg->blockscale와 비례해야 함..!
+	draw->length = (SCREENWIDTH) / perp_dist * p->cfg->blockscale;
 	draw->start_y = SCREENHEIGHT / 2 - draw->length / 2;
 	draw->end_y = SCREENHEIGHT / 2 + draw->length / 2;
 	draw->x++;
@@ -53,7 +53,8 @@ int	raycasting(t_param *p)
 		__dda = get_dda_info(p, r);
 		run_dda(p, &__dda);
 		draw_ray(p, __dda);
-		draw_2Dsquare(p, (int)(__dda.hit.x / p->cfg->blockscale), (int)(__dda.hit.y / p->cfg->blockscale), p->hblock);
+		draw_2Dsquare(p, (int)(__dda.hit.x / p->cfg->blockscale), \
+						(int)(__dda.hit.y / p->cfg->blockscale), p->hblock);
 		get_perp_dist(p, &__dda);
 		get_draw_info(p, __dda.perp_dist, &draw);
 		fill_by_texture(p, __dda, draw);

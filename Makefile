@@ -15,8 +15,9 @@ SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/DDA.c \
 		$(SRC_DIR)/raycasting.c \
 		$(SRC_DIR)/screenbuffer.c \
-		$(SRC_DIR)/image.c \
+		$(SRC_DIR)/img.c \
 		$(SRC_DIR)/texture.c \
+		$(SRC_DIR)/convert.c \
 		$(SRC_DIR)/config.c \
 		$(SRC_DIR)/hook/hook.c \
 		$(SRC_DIR)/hook/key_action.c \

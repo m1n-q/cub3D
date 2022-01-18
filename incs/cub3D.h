@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 18:13:59 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 22:24:21 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@
 
 typedef void*	(*t_loadfunc)(void*, char*, int*, int*);
 
-
 void	init(t_param *p);
 /* config */
 void	init_config(t_config *cfg);
@@ -54,35 +53,31 @@ void	run_dda(t_param *p, t_dda *__dda);
 int		render(t_param *p);
 int		raycasting(t_param *p);
 //2D
-void	draw_dir(t_param *p);//FIXME
-void	draw_perpdir(t_param *p, t_vector perp_dir);//FIXME
-void	draw_ray(t_param *p, t_dda __dda);//FIXME
-void	draw_2Dmap(t_param *p);//FIXME
-void	draw_2Dplayer(t_param *p);//FIXME
-void	draw_2DCircle(t_param *p);//FIXME
-int		draw_2Dsquare(t_param *p, int x, int y, t_img img);//FIXME
+void	draw_dir(t_param *p);
+void	draw_ray(t_param *p, t_dda __dda);
+void	draw_2Dmap(t_param *p);
+void	draw_2Dplayer(t_param *p);
+int		draw_2Dsquare(t_param *p, int x, int y, t_img img);
 
 //3D
 void	draw_verLine(int x, int drawStart, int drawEnd, int color, t_param *p);
 
 /* screen buffer */
-int		init_buffer(t_param *p);//FIXME
-void	destroy_buffer(t_param *p);//FIXME
-void	buffer_to_img(int **buffer, t_img img, int w, int h);
-void	clear_buffer(int **buffer, int w, int h);
-void	clear_img(t_img img, int w, int h);
+void	destroy_buffer(t_param *p);//NOTE:unused?
+void	clear_buffer(int **buffer, int w, int h);//NOTE:unused?
 
-/* image */
-void	load_image(t_param *p, t_img *I, char *filename);
-void	load_images(t_param *p);
-void	make_minimap_image(t_param *p);//FIXME
-void	init_mlx_image(t_param *p);//FIXME
+/* img */
+void	load_imgs(t_param *p);
+void	make_minimap_img(t_param *p);
+void	clear_img(t_img img, int w, int h);//NOTE:unused?
 
 /* texture */
-int		init_texture(t_param *p);
-void	destroy_texture(t_param *p);
-int		image_to_texture(int texture[][TEXWIDTH], t_img teximg);
+void	destroy_texture(t_param *p);//NOTE:unused?
 void	fill_by_texture(t_param *p, t_dda D, t_drawinfo draw);
+
+/* convert */
+int		imgs_to_textures(t_param *p);
+void	buffer_to_img(int **buffer, t_img img, int w, int h);
 
 /* event hook */
 int		keymap(int keycode, t_param *param);

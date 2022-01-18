@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:54:24 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 21:59:51 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,18 @@
  *	해상도 및 맵 크기 테스트
  *	평가지 체크
  *========================================================================**/
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_param		p;
 	t_config	cfg;
 
 	if (argc != 2)
 		err_exit("ERROR: CHECK ARGUMENTS", NULL);
-	// -----------MAP parsing----------------
 	ft_memset(&p, 0, sizeof(p));
 	p.cfg = &cfg;
-
 	parse_file(&p, argv[1]);
 	check_worldmap(&p, &cfg);
-
 	init(&p);
-
 	mlx_hook(p.win, KeyPress, 0, keymap, &p);
 	mlx_hook(p.win, DestroyNotify, 0, bye, &p);
 	mlx_loop_hook(p.mlx, render, &p);
