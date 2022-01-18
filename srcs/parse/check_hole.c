@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-static void	check_y_axis(PARAM *P, int y, int x)
+static void	check_y_axis(t_param *P, int y, int x)
 {
 	int	old_y;
 	int	block;
@@ -28,7 +28,7 @@ static void	check_y_axis(PARAM *P, int y, int x)
 		err_exit("ERROR: found a hole in map", P);
 }
 
-void	check_hole(PARAM *P, int y)
+void	check_hole(t_param *P, int y)
 {
 	int		start;
 	int		end;

@@ -6,17 +6,17 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 20:26:21 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:52:26 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	get_perp_dist(PARAM *P, DDA *D)
+void	get_perp_dist(t_param *P, t_DDA *D)
 {
 	double	perp_delta;
 	double	k;
-	VECTOR	perp_dir;
+	t_vector	perp_dir;
 
 	perp_dir.x = cos(PI / 2) * P->dir.x - sin(PI / 2) * P->dir.y;
 	perp_dir.y = sin(PI / 2) * P->dir.x + cos(PI / 2) * P->dir.y;
@@ -26,7 +26,7 @@ void	get_perp_dist(PARAM *P, DDA *D)
 						sqrt(pow(perp_delta, 2.0) + 1);
 }
 
-void	get_draw_info(PARAM *P, double perp_dist, LINEDRAW *draw)
+void	get_draw_info(t_param *P, double perp_dist, t_drawinfo *draw)
 {
 	draw->length = (screenWidth) / perp_dist * P->cfg->blockScale;		// P->cfg->blockScale와 비례해야 함..!
 	draw->start_y = screenHeight / 2 - draw->length / 2;
@@ -36,10 +36,10 @@ void	get_draw_info(PARAM *P, double perp_dist, LINEDRAW *draw)
 			draw->x = screenWidth - 1;
 }
 
-int	raycasting(PARAM *P)
+int	raycasting(t_param *P)
 {
-	DDA			D;
-	LINEDRAW	draw;
+	t_DDA			D;
+	t_drawinfo	draw;
 	double		angle;
 	double		dr;
 	double		r;

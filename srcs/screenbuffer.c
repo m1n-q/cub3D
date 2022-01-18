@@ -6,14 +6,14 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:16:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 15:50:31 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:51:00 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
 //NOTE: buffer	=> 직관적으로 생각할 수 있는 2차원 배열 형태
-int	init_buffer(PARAM *P)
+int	init_buffer(t_param *P)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ int	init_buffer(PARAM *P)
 	return (0);
 }
 
-void	destroy_buffer(PARAM* P)
+void	destroy_buffer(t_param* P)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ void	destroy_buffer(PARAM* P)
 	free(P->buf2D);
 }
 
-void	buffer_to_img(int **buffer, IMG img, int w, int h)
+void	buffer_to_img(int **buffer, t_img img, int w, int h)
 {
 	int	x;
 	int	y;
@@ -71,7 +71,7 @@ void	clear_buffer(int **buffer, int w, int h)
 	}
 }
 
-void	clear_img(IMG img, int w, int h)
+void	clear_img(t_img img, int w, int h)
 {
 	int	x;
 	int	y;

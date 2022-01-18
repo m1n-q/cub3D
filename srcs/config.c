@@ -6,13 +6,13 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:30:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 21:51:42 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:50:46 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_config(CONFIG* C)
+void	init_config(t_config* C)
 {
 	C->blockScale = screenWidth / C->mapWidth;	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
 	C->NUM_RAYS = screenWidth;
@@ -20,11 +20,11 @@ void	init_config(CONFIG* C)
 	C->minimapScale = C->blockScale / 2;
 }
 
-void	print_config(CONFIG* C)
+void	print_config(t_config* C)
 {
 	printf("\
 ┌───────────────────────────────────────────────────────────\n\
-│                       CONFIGURATIONS\n\
+│                       t_configURATIONS\n\
 │\n\
 │\t%spre-defined%s\n\
 │\n\

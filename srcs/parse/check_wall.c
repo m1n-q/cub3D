@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-void	check_x_axis(PARAM *P, int **M, int y)
+void	check_x_axis(t_param *P, int **M, int y)
 {
 	int	start;
 	int	end;
@@ -25,7 +25,7 @@ void	check_x_axis(PARAM *P, int **M, int y)
 	}
 }
 
-static void	check_y_axis(PARAM *P, int **M, int x)
+static void	check_y_axis(t_param *P, int **M, int x)
 {
 	int	start;
 	int	end;
@@ -50,7 +50,7 @@ static void	check_y_axis(PARAM *P, int **M, int x)
 	}
 }
 
-void	check_wall(PARAM *P)
+void	check_wall(t_param *P)
 {
 	int	x;
 	int	y;

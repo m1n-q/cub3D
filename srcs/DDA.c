@@ -6,24 +6,24 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 21:01:39 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:52:53 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-VECTOR	get_raydir(VECTOR dir, double angle)
+t_vector	get_raydir(t_vector dir, double angle)
 {
-	VECTOR	raydir;
+	t_vector	raydir;
 
 	raydir.x = cos(angle) * dir.x - sin(angle) * dir.y;
 	raydir.y = sin(angle) * dir.x + cos(angle) * dir.y;
 	return (raydir);
 }
 
-VECTOR	get_stepdir(DDA D)
+t_vector	get_stepdir(t_DDA D)
 {
-	VECTOR	step;
+	t_vector	step;
 
 	step.x = 1.0;
 	step.y = 1.0;
@@ -34,7 +34,7 @@ VECTOR	get_stepdir(DDA D)
 	return (step);
 }
 
-VECTOR	get_dist_vh(PARAM* P, DDA D)
+t_vector	get_dist_vh(t_param* P, t_DDA D)
 {
 	double	dist_vert;
 	double	dist_horz;
@@ -47,12 +47,12 @@ VECTOR	get_dist_vh(PARAM* P, DDA D)
 		dist_horz = ((int)P->pos.y + 1 - P->pos.y) * D.delta_horz;
 	else
 		dist_horz = (P->pos.y - (int)P->pos.y) * D.delta_horz;
-	return ((VECTOR){dist_vert, dist_horz});
+	return ((t_vector){dist_vert, dist_horz});
 }
 
-DDA	get_DDA_info(PARAM *P, double r)
+t_DDA	get_DDA_info(t_param *P, double r)
 {
-	DDA	D;
+	t_DDA	D;
 
 	D.hit = P->pos;
 	D.raydir = get_raydir(P->dir, r);
@@ -64,7 +64,7 @@ DDA	get_DDA_info(PARAM *P, double r)
 	return (D);
 }
 
-void	run_DDA(PARAM *P, DDA *D)
+void	run_DDA(t_param *P, t_DDA *D)
 {
 	int	hit;
 	int	Scale;

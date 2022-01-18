@@ -6,13 +6,13 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 14:15:53 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:52:26 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	init_texture(PARAM *P)
+int	init_texture(t_param *P)
 {
 	image_to_texture(P->textures[N], P->wall_N);
 	image_to_texture(P->textures[S], P->wall_S);
@@ -25,7 +25,7 @@ int	init_texture(PARAM *P)
 	return (0);
 }
 
-void	destroy_texture(PARAM *P)
+void	destroy_texture(t_param *P)
 {
 	int	i;
 	int	j;
@@ -41,7 +41,7 @@ void	destroy_texture(PARAM *P)
 	free(P->textures);
 }
 
-int	image_to_texture(int texture[][texWidth], IMG teximg)
+int	image_to_texture(int texture[][texWidth], t_img teximg)
 {
 	int	x;
 	int	y;
@@ -56,10 +56,10 @@ int	image_to_texture(int texture[][texWidth], IMG teximg)
 	return (0);
 }
 
-VECTOR	get_texture_pos(PARAM *P, DDA D)
+t_vector	get_texture_pos(t_param *P, t_DDA D)
 {
 	double	pos_on_wall;
-	VECTOR	texpos;
+	t_vector	texpos;
 
 	// 한칸에서 어느만큼인지 : hit.x =87, scale =40 -> 3번째 칸에서 7번째 위치
 	if (D.side == HORZ)
@@ -79,7 +79,7 @@ VECTOR	get_texture_pos(PARAM *P, DDA D)
 	return (texpos);
 }
 
-int	get_texture_idx(DDA D)
+int	get_texture_idx(t_DDA D)
 {
 	if (D.side == HORZ)
 	{
@@ -97,13 +97,13 @@ int	get_texture_idx(DDA D)
 	}
 }
 
-void	fill_by_texture(PARAM *P, DDA D, LINEDRAW draw)
+void	fill_by_texture(t_param *P, t_DDA D, t_drawinfo draw)
 {
 	int		y;
 	int		color;
 	int		texidx;
 	double	tex_stepY;
-	VECTOR	texpos;
+	t_vector	texpos;
 
 	texidx = get_texture_idx(D);
 	texpos = get_texture_pos(P, D);

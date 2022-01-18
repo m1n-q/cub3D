@@ -6,14 +6,14 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:33:58 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 14:21:30 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:52:26 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct imgs
+typedef struct s_img
 {
 	void	*img;
 	int		*addr;
@@ -22,21 +22,21 @@ typedef struct imgs
 	int		endian;
 	int		width;
 	int		height;
-} IMG;
+} t_img;
 
-typedef struct linedraw
+typedef struct s_drawinfo
 {
 	int	length;
 	int	x;
 	int	start_y;
 	int	end_y;
-} LINEDRAW;
+} t_drawinfo;
 
-typedef struct vector
+typedef struct s_vector
 {
 	double	x;
 	double	y;
-} VECTOR;
+} t_vector;
 
 typedef struct	s_lst
 {
@@ -45,7 +45,7 @@ typedef struct	s_lst
 	struct s_lst	*prev;
 }				t_lst;
 
-typedef struct config
+typedef struct s_config
 {
 	int	mapWidth;
 	int	mapHeight;
@@ -54,10 +54,10 @@ typedef struct config
 	int	collisionRange;		// (blockScale / 10)
 	int	minimapScale;		// (blockScale / 10)
 
-}	CONFIG;
+}	t_config;
 
 
-typedef struct paramset
+typedef struct s_param
 {
 	void	*mlx;
 	void	*win;
@@ -65,7 +65,7 @@ typedef struct paramset
 	int		**buf2D;
 	int		textures[texNum][texHeight][texWidth];
 
-	CONFIG	*cfg;
+	t_config	*cfg;
 	t_lst	*map;
 	char	*tex_path[4];
 	int		type_set[7];
@@ -73,28 +73,28 @@ typedef struct paramset
 	int		ceili_color;
 	int		**worldMap;
 
-	VECTOR	pos;
-	VECTOR	dir;
+	t_vector	pos;
+	t_vector	dir;
 
-	IMG		img3D;		//NOTE: IMG		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
-	IMG		img2D;
+	t_img		img3D;		//NOTE: t_img		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
+	t_img		img2D;
 
-	IMG		wall_N;
-	IMG		wall_S;
-	IMG		wall_E;
-	IMG		wall_W;
+	t_img		wall_N;
+	t_img		wall_S;
+	t_img		wall_E;
+	t_img		wall_W;
 
-	IMG		grid;
-	IMG		block;
-	IMG		hblock;
+	t_img		grid;
+	t_img		block;
+	t_img		hblock;
 
-} PARAM;
+} t_param;
 
-typedef struct dda
+typedef struct s_dda
 {
-	VECTOR	raydir;
-	VECTOR	hit;			// which box of the map we're in
-	VECTOR	step;			// what direction to step in x or y-direction (either +1 or -1)
+	t_vector	raydir;
+	t_vector	hit;			// which box of the map we're in
+	t_vector	step;			// what direction to step in x or y-direction (either +1 or -1)
 
 	double	dist_vert;		// length of ray from current position to next vert-side
 	double	dist_horz;		// length of ray from current position to next horz-side
@@ -102,10 +102,10 @@ typedef struct dda
 	double	delta_horz;		// length of ray from one vert-side to next horz-side
 
 	double	perp_dist;
-	VECTOR	perp_dir;
+	t_vector	perp_dir;
 
 	int		side;			// was a NS or a EW wall hit?
-} DDA;
+} t_DDA;
 
 
 #endif

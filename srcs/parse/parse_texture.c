@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-void	parse_texture(PARAM *P, int type, char *line)
+void	parse_texture(t_param *P, int type, char *line)
 {
 	int		i;
 	char	*path;

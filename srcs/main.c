@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:41:48 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:51:00 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
  *========================================================================**/
 int main(int argc, char *argv[])
 {
-	PARAM	P;
-	CONFIG	C;
+	t_param	P;
+	t_config	C;
 
 	if (argc != 2)
-		err_exit("ERROR: CHECK PARAMETER", NULL);
+		err_exit("ERROR: CHECK t_paramETER", NULL);
 	// -----------MAP parsing----------------
 	ft_memset(&P, 0, sizeof(P));
 	P.cfg = &C;

@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-void	set_color(PARAM *P, int type, char **rgb)
+void	set_color(t_param *P, int type, char **rgb)
 {
 	int	i;
 	int	color;
@@ -22,7 +22,7 @@ void	set_color(PARAM *P, int type, char **rgb)
 		P->ceili_color = color;
 }
 
-void	parse_rgb(PARAM *P, int type, char *line)
+void	parse_rgb(t_param *P, int type, char *line)
 {
 	int		i;
 	char	*rgb_str;
@@ -51,9 +51,9 @@ void	parse_rgb(PARAM *P, int type, char *line)
 }
 
 /*  <line 16>
-	tmp값은 0~255로 8비트(1byte)로 표현한다 
+	tmp값은 0~255로 8비트(1byte)로 표현한다
 	int 는 4byte의 공간이 있다
-	i값에 따라 
+	i값에 따라
 	첫번째 Red값은 16비트(2byte) 왼쪽으로 이동시킨 값으로 변환한다
 	(int변수의 왼쪽에서 부터 2번째 byte에 위치한다)
 	두번째 Green값은 8비트(1byte) 왼족으로 이동시킨 값으로 변환한다
@@ -64,9 +64,9 @@ void	parse_rgb(PARAM *P, int type, char *line)
 */
 
 // 25 여기함수에 들어왔다는 것은 line은 (white space제외)F 또는 C로 시작한다
-// 34 여기서부터 line[i]은 F 또는 C 중 하나다 
+// 34 여기서부터 line[i]은 F 또는 C 중 하나다
 // 39 line은 (공백)(컴마)(숫자)의 문자로만 구성되어야 한다 아니면 리턴 0
-// 41 (공백)(컴마)(탭) 을 기준으로 split을 한다 
+// 41 (공백)(컴마)(탭) 을 기준으로 split을 한다
 //     여기서 (공백)(컴마)(탭)문자들은 빠지고 오직 숫자로면 구성된 2차원 문자열이 생성된다
 // 45 ~ 48 split된 갯수가 3개(RGB) 인지 체크
 // 49 각 RGB값을 세팅한다

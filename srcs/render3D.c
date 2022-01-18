@@ -6,13 +6,13 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 19:56:54 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:51:00 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int render(PARAM *P)	//Top level
+int render(t_param *P)	//Top level
 {
 	mlx_clear_window(P->mlx, P->win);
 	draw_2Dmap(P);
@@ -31,7 +31,7 @@ int render(PARAM *P)	//Top level
 	return (0);
 }
 
-void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P)
+void	draw_verLine(int x, int drawStart, int drawEnd, int color, t_param *P)
 {
 	for (int y = drawStart; y <= drawEnd; y++)
 	{

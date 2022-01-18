@@ -6,17 +6,17 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 22:44:28 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:52:26 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	draw_ray(PARAM *P, DDA D)
+void	draw_ray(t_param *P, t_DDA D)
 {
 	double	dX=0, dY=0;
-	VECTOR	minipos;
-	VECTOR	minihit;
+	t_vector	minipos;
+	t_vector	minihit;
 
 	minipos.x = P->pos.x / P->cfg->blockScale * P->cfg->minimapScale;
 	minipos.y = P->pos.y / P->cfg->blockScale * P->cfg->minimapScale;
@@ -64,7 +64,7 @@ void	draw_ray(PARAM *P, DDA D)
 	}
 }
 
-int	draw_2Dsquare(PARAM *P, int x, int y, IMG img)
+int	draw_2Dsquare(t_param *P, int x, int y, t_img img)
 {
 	for (int row = 0; row < P->cfg->minimapScale; row++)
 		for (int col = 0; col < P->cfg->minimapScale; col++)
@@ -72,7 +72,7 @@ int	draw_2Dsquare(PARAM *P, int x, int y, IMG img)
 	return (1);
 }
 
-void	draw_2Dmap(PARAM *P)
+void	draw_2Dmap(t_param *P)
 {
 	for (int y=0; y < P->cfg->mapHeight; y++)
 		for (int x=0; x < P->cfg->mapWidth; x++)
@@ -80,11 +80,11 @@ void	draw_2Dmap(PARAM *P)
 				draw_2Dsquare(P, x, y, P->block);
 }
 
-void	draw_dir(PARAM *P)
+void	draw_dir(t_param *P)
 {
 	double dX, dY; dX=0, dY=0;
 
-	VECTOR	minipos;
+	t_vector	minipos;
 	minipos.x = P->pos.x / P->cfg->blockScale * P->cfg->minimapScale;
 	minipos.y = P->pos.y / P->cfg->blockScale * P->cfg->minimapScale;
 
@@ -96,7 +96,7 @@ void	draw_dir(PARAM *P)
 	}
 }
 
-void	draw_perpdir(PARAM *P, VECTOR perp_dir)
+void	draw_perpdir(t_param *P, t_vector perp_dir)
 {
 	for (double x = P->pos.x - perp_dir.x * 30, y = P->pos.y - perp_dir.y * 30; \
 				x < P-> pos.x + perp_dir.x * 30; \
@@ -104,9 +104,9 @@ void	draw_perpdir(PARAM *P, VECTOR perp_dir)
 			P->buf2D[(int)y][(int)x] = RGB_Yellow;
 }
 
-void	draw_2Dplayer(PARAM *P)
+void	draw_2Dplayer(t_param *P)
 {
-	VECTOR	minipos;
+	t_vector	minipos;
 	minipos.x = P->pos.x / P->cfg->blockScale * P->cfg->minimapScale;
 	minipos.y = P->pos.y / P->cfg->blockScale * P->cfg->minimapScale;
 
@@ -119,7 +119,7 @@ void	draw_2Dplayer(PARAM *P)
 
 }
 
-void	draw_2DCircle(PARAM *P)
+void	draw_2DCircle(t_param *P)
 {
 
 	if (P->worldMap[(int)((int)P->pos.y / P->cfg->blockScale)][(int)((int)P->pos.x / P->cfg->blockScale)] == 0)
@@ -127,7 +127,7 @@ void	draw_2DCircle(PARAM *P)
 		for (double r = 0.0; r <= PI * 2 ; r += 0.03)
 		{
 			double dX = 0.0, dY = 0.0;
-			VECTOR newdir;
+			t_vector newdir;
 
 			newdir.x = cos(r) * P->dir.x - sin(r) * P->dir.y;
 			newdir.y = sin(r) * P->dir.x + cos(r) * P->dir.y;

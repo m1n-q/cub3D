@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-void	malloc_worldMap(PARAM *P)
+void	malloc_worldMap(t_param *P)
 {
 	int	i;
 
@@ -10,7 +10,7 @@ void	malloc_worldMap(PARAM *P)
 		P->worldMap[i++] = (int *)calloc_(P->cfg->mapWidth, sizeof(int));
 }
 
-void	fill_worldMap(PARAM *P)
+void	fill_worldMap(t_param *P)
 {
 	int		y;
 	int		x;
@@ -39,7 +39,7 @@ void	fill_worldMap(PARAM *P)
 	}
 }
 
-void	filename_check(char *filename, char *extension, PARAM *P)
+void	filename_check(char *filename, char *extension, t_param *P)
 {
 	int	f_len;
 	int	e_len;
@@ -52,7 +52,7 @@ void	filename_check(char *filename, char *extension, PARAM *P)
 		err_exit("Error: invalid extension", P);
 }
 
-void	cnt_mapHeight(PARAM *P)
+void	cnt_mapHeight(t_param *P)
 {
 	t_lst	*tail;
 	int		cnt;
@@ -72,7 +72,7 @@ void	cnt_mapHeight(PARAM *P)
 	P->cfg->mapHeight = lst_get_len(P->map) - cnt;
 }
 
-void	parse_file(PARAM *P, char *filename)
+void	parse_file(t_param *P, char *filename)
 {
 	int		fd;
 	char	*line;

@@ -6,13 +6,13 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:40:00 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:51:00 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	keymap(int keycode, PARAM *P)
+int	keymap(int keycode, t_param *P)
 {
 	if (keycode == KEY_RIGHT || keycode == KEY_LEFT)
 		return (rotate(keycode, P));
@@ -25,7 +25,7 @@ int	keymap(int keycode, PARAM *P)
 		return (0);
 }
 
-int	bye(PARAM *P)
+int	bye(t_param *P)
 {
 	printf("Bye!\n");
 	mlx_destroy_window(P->mlx, P->win);

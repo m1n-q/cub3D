@@ -22,7 +22,7 @@ int	get_type(char *line)
 	return (UN_DEF);
 }
 
-void	set_max_width(PARAM *P, char *line)
+void	set_max_width(t_param *P, char *line)
 {
 	int	width;
 
@@ -38,14 +38,14 @@ void	set_max_width(PARAM *P, char *line)
 		P->cfg->mapWidth = width;
 }
 
-int	check_type_set(PARAM *P)
+int	check_type_set(t_param *P)
 {
 	return (P->type_set[NO] && P->type_set[SO]
 		&& P->type_set[WE] && P->type_set[EA]
 		&& P->type_set[FLOOR] && P->type_set[CEILI]);
 }
 
-void	parse_line(PARAM *P, char *line)
+void	parse_line(t_param *P, char *line)
 {
 	int	type;
 

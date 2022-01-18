@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 15:53:57 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:51:00 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	**ft_split2(char *str, char *ch)
 	return (ret);
 }
 
-void	err_exit(char *msg, PARAM *P)
+void	err_exit(char *msg, t_param *P)
 {
 	int	i;
 

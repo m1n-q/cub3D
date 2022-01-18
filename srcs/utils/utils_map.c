@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-int	set_dir(PARAM *P, int c)
+int	set_dir(t_param *P, int c)
 {
 	if (c == 'N')
 	{
@@ -25,7 +25,7 @@ int	set_dir(PARAM *P, int c)
 	return (1);
 }
 
-int	set_pos(PARAM *P, int x, int y)
+int	set_pos(t_param *P, int x, int y)
 {
 	int	blockScale;
 
@@ -48,7 +48,7 @@ int	check_val(int c)
 		return (0);
 }
 
-void	print_worldMap(PARAM *P)
+void	print_worldMap(t_param *P)
 {
 	int	i;
 	int	j;
@@ -70,7 +70,7 @@ void	print_worldMap(PARAM *P)
 	}
 }
 
-void	wall_leaks_exit(int y, int x, PARAM *P)
+void	wall_leaks_exit(int y, int x, t_param *P)
 {
 	printf(P_RED "=> y:[%d], x:[%d] <=\n" P_RESET, y, x);
 	err_exit(" ERROR: wall leak", P);

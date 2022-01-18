@@ -1,6 +1,6 @@
 #include "cub3D.h"
 
-void	check_left_right_wall(PARAM *P, int y)
+void	check_left_right_wall(t_param *P, int y)
 {
 	int	x;
 
@@ -16,7 +16,7 @@ void	check_left_right_wall(PARAM *P, int y)
 		wall_leaks_exit(y, x, P);
 }
 
-void	check_top_bottom_wall(PARAM *P)
+void	check_top_bottom_wall(t_param *P)
 {
 	int	x;
 	int	y;
@@ -37,7 +37,7 @@ void	check_top_bottom_wall(PARAM *P)
 	}
 }
 
-void	check_worldMap(PARAM *P, CONFIG *C)
+void	check_worldMap(t_param *P, t_config *C)
 {
 	int	y;
 	int	x;
