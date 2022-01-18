@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 22:24:21 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 00:04:51 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,13 @@
 # include "color.h"
 # include "config.h"
 # include "structs.h"
-# include "get_next_line_bonus.h"
+# include "get_next_line.h"
 # include "map.h"
 
 # define N		0
 # define S		1
 # define W		2
 # define E		3
-# define BORDER	4
 
 # define VERT	0
 # define HORZ	1

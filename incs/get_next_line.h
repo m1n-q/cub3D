@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 19:21:35 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/15 02:03:57 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 00:02:27 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_BONUS_H
-# define GET_NEXT_LINE_BONUS_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -35,6 +35,6 @@ void			copy_and_append(char *prev, char *line, \
 void			save_rmd(t_fd_set *set, char *buf, int idx_n, ssize_t size);
 int				check_rmd(t_fd_set *set, char **line, char **prev);
 int				read_line(t_fd_set *arr, int fd, char **line, char *buf);
-int				get_next_line_(int fd, char **line);
+int				get_next_line(int fd, char **line);
 
 #endif

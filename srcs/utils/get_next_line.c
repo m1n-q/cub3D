@@ -1,87 +1,133 @@
-#include "cub3D.h"
-#define BUFF_SIZE 42
-#define MAX_FD 256
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/11 19:20:36 by mishin            #+#    #+#             */
+/*   Updated: 2022/01/19 00:02:34 by mishin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	error_free(char *ptr)
+#include "get_next_line.h"
+
+void	copy_and_append(char *prev, char *line, char *buf, ssize_t size)
 {
-	free(ptr);
-	return (-1);
-}
+	ssize_t	i;
+	ssize_t	j;
 
-int	cutting(char **buf_store, char **line, char *ptr_next)
-{
-	char	*tmp;
-
-	*ptr_next = '\0';
-	*line = ft_strdup(*buf_store);
-	if (!(*line))
-		return (error_free(*buf_store));
-	tmp = *buf_store;
-	if (*(ptr_next + 1) != '\0')
-		*buf_store = ft_strdup(ptr_next + 1);
-	if (!(*buf_store))
-		return (error_free(tmp));
-	free(tmp);
-	return (1);
-}
-
-int	last_cutting(char **buf_store, char **line)
-{
-	if (*buf_store == NULL)
-		return (0);
-	else if (**buf_store == '\0')
+	i = 0;
+	if (prev)
 	{
-		free(*buf_store);
-		*buf_store = NULL;
-		*line = NULL;
-		return (0);
+		i = -1;
+		while (prev[++i])
+		{
+			line[i] = prev[i];
+		}
 	}
-	*line = ft_strdup(*buf_store);
-	if (!(*line))
-		return (error_free(*buf_store));
-	free(*buf_store);
-	*buf_store = NULL;
-	return (1);
+	free(prev);
+	j = -1;
+	while (++j < size)
+	{
+		if (buf[j] == '\n')
+			return ;
+		line[i + j] = buf[j];
+	}
+	return ;
 }
 
-int	if_rtn_read_zero(char **buf_store, char **line)
+void	save_rmd(t_fd_set *set, char *buf, int idx_n, ssize_t size)
 {
-	char	*tmp;
+	ssize_t	i;
+	ssize_t	j;
 
-	if (*buf_store == NULL)
-		return (0);
-	tmp = ft_strchr(*buf_store, '\n');
-	if (tmp)
-		return (cutting(buf_store, line, tmp));
-	return (last_cutting(buf_store, line));
+	if (idx_n + 1 == BUFFER_SIZE)
+	{
+		buffer_clear(set);
+		return ;
+	}
+	i = idx_n;
+	j = -1;
+	while (++i < size)
+	{
+		set->rmd_buf[++j] = buf[i];
+	}
+	while (++j < BUFFER_SIZE)
+	{
+		set->rmd_buf[j] = 0;
+	}
+	set->rmd_len = ft_strlen(set->rmd_buf);
+}
+
+int	check_rmd(t_fd_set *set, char **line, char **prev)
+{
+	ssize_t	idx_n;
+
+	idx_n = find_nl(set->rmd_buf);
+	if (idx_n != BUFFER_SIZE)
+	{
+		*line = (char *)ft_calloc(idx_n + 1, 1);
+		ft_memmove(*line, set->rmd_buf, idx_n);
+		save_rmd(set, set->rmd_buf, idx_n, BUFFER_SIZE);
+		return (1);
+	}
+	*line = (char *)ft_calloc(set->rmd_len + 1, 1);
+	ft_memmove(*line, set->rmd_buf, set->rmd_len);
+	*prev = *line;
+	return (0);
+}
+
+int	read_line(t_fd_set *arr, int fd, char **line, char *buf)
+{
+	ssize_t	size;
+	ssize_t	idx_n;
+	char	*prev;
+
+	if (check_rmd(&arr[fd], line, &prev))
+		return (1);
+	while (1)
+	{
+		size = read(fd, buf, BUFFER_SIZE);
+		if (size < 0)
+			return (-1);
+		if (!size)
+			return (buffer_clear(&arr[fd]));
+		idx_n = find_nl(buf);
+		if (idx_n < BUFFER_SIZE)
+		{
+			*line = (char *)ft_calloc(ft_strlen(prev) + (idx_n) + 1, 1);
+			copy_and_append(prev, *line, buf, size);
+			save_rmd(&arr[fd], buf, idx_n, size);
+			return (1);
+		}
+		*line = (char *)ft_calloc(ft_strlen(prev) + size + 1, 1);
+		copy_and_append(prev, *line, buf, size);
+		prev = *line;
+	}
 }
 
 int	get_next_line(int fd, char **line)
 {
-	char		buf[BUFF_SIZE + 1];
-	static char	*buf_store[MAX_FD];
-	ssize_t		rtn_read;
-	char		*tmp;
+	static t_fd_set	arr[1025];
+	char			*buf;
+	int				ret;
+	ssize_t			tmp;
 
-	if (fd > MAX_FD || fd < 0 || !line || BUFF_SIZE <= 0)
+	tmp = read(fd, NULL, 0);
+	if (tmp < 0 || !line)
 		return (-1);
-	rtn_read = read(fd, buf, BUFF_SIZE);
-	if (!buf_store[fd])
-		buf_store[fd] = ft_strdup("");
-	while (rtn_read > 0)
+	buf = (char *)ft_calloc(BUFFER_SIZE, 1);
+	if (!buf)
+		return (-1);
+	if (!(arr[fd].was_called))
 	{
-		buf[rtn_read] = '\0';
-		tmp = buf_store[fd];
-		buf_store[fd] = ft_strjoin(buf_store[fd], buf);
-		free(tmp);
-		tmp = ft_strchr(buf_store[fd], '\n');
-		if (tmp)
-			return (cutting(&buf_store[fd], line, tmp));
-		rtn_read = read(fd, buf, BUFF_SIZE);
+		arr[fd].fd = fd;
+		arr[fd].was_called = 1;
 	}
-	if (rtn_read == 0)
-		return (if_rtn_read_zero(&buf_store[fd], line));
-	free(buf_store[fd]);
-	buf_store[fd] = NULL;
-	return (-1);
+	ret = read_line(arr, fd, line, buf);
+	if (ret == -1)
+		*line = NULL;
+	free(buf);
+	return (ret);
 }

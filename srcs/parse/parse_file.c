@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 18:16:34 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 18:16:34 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 00:03:30 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	parse_file(t_param *p, char *filename)
 	if (fd < 3)
 		err_exit("Error: open() failure", p);
 	p->cfg->mapwidth = 0;
-	while (get_next_line_(fd, &line) > 0)
+	while (get_next_line(fd, &line) > 0)
 	{
 		parse_line(p, line);
 		free(line);
