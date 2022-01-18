@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 18:15:13 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 00:14:00 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,10 @@ t_dda	get_dda_info(t_param *p, double r)
 	__dda.hit = p->pos;
 	__dda.raydir = get_raydir(p->dir, r);
 	__dda.step = get_stepdir(__dda);
-	__dda.delta_vert = sqrt(1 + pow((__dda.raydir.y / (__dda.raydir.x + 0.0001)), 2.0));
-	__dda.delta_horz = sqrt(1 + pow((__dda.raydir.x / (__dda.raydir.y + 0.0001)), 2.0));
+	__dda.delta_vert = \
+			sqrt(1 + pow((__dda.raydir.y / (__dda.raydir.x + 0.0001)), 2.0));
+	__dda.delta_horz = \
+			sqrt(1 + pow((__dda.raydir.x / (__dda.raydir.y + 0.0001)), 2.0));
 	__dda.dist_vert = get_dist_vh(p, __dda).x;
 	__dda.dist_horz = get_dist_vh(p, __dda).y;
 	return (__dda);
@@ -85,7 +87,8 @@ void	run_dda(t_param *p, t_dda *__dda)
 			__dda->hit.y += __dda->step.y;
 			__dda->side = HORZ;
 		}
-		if (p->worldmap[(int)(__dda->hit.y / scale)][(int)(__dda->hit.x / scale)] == 1)
+		if (p->worldmap[(int)(__dda->hit.y / scale)]\
+						[(int)(__dda->hit.x / scale)] == 1)
 			hit = 1;
 	}
 }

@@ -10,7 +10,6 @@ SRC_DIR = srcs
 OBJS =  ${SRCS:.c=.o}
 SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/init.c \
-		$(SRC_DIR)/render2D.c \
 		$(SRC_DIR)/render3D.c \
 		$(SRC_DIR)/DDA.c \
 		$(SRC_DIR)/raycasting.c \
@@ -34,6 +33,7 @@ SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/utils/mallocexit.c \
 		$(SRC_DIR)/utils/get_next_line.c \
 		$(SRC_DIR)/utils/get_next_line_utils.c \
+		$(SRC_DIR)/tmp/render2D.c \
 
 
 # colors

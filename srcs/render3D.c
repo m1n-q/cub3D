@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 22:02:50 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 00:17:12 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	render(t_param *p)
 	return (0);
 }
 
-void	draw_verLine(int x, int drawstart, int drawend, int color, t_param *p)
+void	draw_verline(int x, int drawstart, int drawend, int color, t_param *p)
 {
 	int	y;
 
