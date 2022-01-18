@@ -22,7 +22,7 @@ t_lst	*lst_get_tail(t_lst *node)
 	return (node);
 }
 
-// t_lst 리스트 객체를 생성해서 객체 멤버 content를 입력해주고 
+// t_lst 리스트 객체를 생성해서 객체 멤버 content를 입력해주고
 // 리스트의 맨 뒤(tail)에 연결해준다
 // head가 NULL이면 head에 추가된다
 // 무조건 head를 리턴하니 리턴값을 헤드로 잘 받아서 쓰자
@@ -33,12 +33,8 @@ t_lst	*lst_add_back(t_lst *head, char *content)
 
 	if (!content)
 		return (NULL);
-	new = (t_lst *)malloc(sizeof(t_lst));
-	if (!new)
-		return (NULL);
-	new->content = ft_strdup(content);
-	if (!new->content)
-		return (NULL);
+	new = (t_lst *)calloc_(1, sizeof(t_lst));
+	new->content = strdup_(content);
 	new->next = NULL;
 	new->prev = NULL;
 	if (head)

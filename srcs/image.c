@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 15:09:16 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 15:53:57 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	load_image(PARAM *P, IMG *I, char *filename)
 
 	printf("loading %s...\n", filename);
 	f = NULL;
-	ext = ft_substr(filename, ft_strlen(filename) - 3, 3);
+	ext = substr_(filename, ft_strlen(filename) - 3, 3);
 	if (ft_strncmp(ext, "xpm", 3) == 0)
 		f = mlx_xpm_file_to_image;
 	else if (ft_strncmp(ext, "png", 3) == 0)

@@ -61,7 +61,7 @@ void	parse_line(PARAM *P, char *line)
 		set_max_width(P, line);
 		P->map = lst_add_back(P->map, line);
 		if (!P->map)
-			err_exit("Error: malloc failure", P);
+			err_exit("Error:  failure", P);
 		return ;
 	}
 	P->type_set[type] = 1;
@@ -82,5 +82,5 @@ void	parse_line(PARAM *P, char *line)
 // 57 type 체크 (중복방지)
 // 59 type key가 NO SO WE EA 인 경우
 // 61 type key가 F C 인 경우
-// 62 모든 type값들이 아직 setting되지 않았는데 중간에 undefine(map정보)이 나온 경우 
+// 62 모든 type값들이 아직 setting되지 않았는데 중간에 undefine(map정보)이 나온 경우
 //    (빈줄,온리공백줄은 위에서 걸러진다)

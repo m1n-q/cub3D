@@ -6,20 +6,20 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 13:56:29 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 15:53:57 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-char	*ft_strjoin2(char *s1, char *s2, char *s3)
+char	*strjoin2_(char *s1, char *s2, char *s3)
 {
 	char	*ret;
 	char	*tmp;
 
-	ret = ft_strjoin(s1, s2);
+	ret = strjoin_(s1, s2);
 	tmp = ret;
-	ret = ft_strjoin(ret, s3);
+	ret = strjoin_(ret, s3);
 	free(tmp);
 	return (ret);
 }
@@ -32,7 +32,7 @@ char	**ft_split2(char *str, char *ch)
 
 	if (!str || !ch)
 		return (NULL);
-	ptr = ft_strdup(str);
+	ptr = strdup_(str);
 	start = ptr;
 	while (*ptr)
 	{
@@ -49,7 +49,7 @@ void	err_exit(char *msg, PARAM *P)
 {
 	int	i;
 
-	msg = ft_strjoin2(P_RED, msg, P_RESET);
+	msg = strjoin2_(P_RED, msg, P_RESET);
 	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);
 	free(msg);
@@ -83,9 +83,9 @@ char	*formatstr(char *fstr, char *arg, int tofree)
 	{
 		if (fstr[i] == '{' && fstr[i + 1] == '}')
 		{
-			s1 = ft_substr(fstr, 0, i);
-			s2 = ft_substr(fstr + i + 2, 0, ft_strlen(fstr + i + 2));
-			ret = ft_strjoin2(s1, arg, s2);
+			s1 = substr_(fstr, 0, i);
+			s2 = substr_(fstr + i + 2, 0, ft_strlen(fstr + i + 2));
+			ret = strjoin2_(s1, arg, s2);
 		}
 	}
 	if (tofree == 1)

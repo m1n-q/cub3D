@@ -4,16 +4,10 @@ void	malloc_worldMap(PARAM *P)
 {
 	int	i;
 
-	P->worldMap = (int **)malloc(sizeof(int *) * P->cfg->mapHeight);
-	if (!P->worldMap)
-		err_exit("Error: malloc failure", P);
+	P->worldMap = (int **)calloc_(P->cfg->mapHeight, sizeof(int *));
 	i = 0;
 	while (i < P->cfg->mapHeight)
-	{
-		P->worldMap[i] = (int *)ft_calloc(P->cfg->mapWidth, sizeof(int));
-		if (!P->worldMap[i++])
-			err_exit("Error: malloc failure", P);
-	}
+		P->worldMap[i] = (int *)calloc_(P->cfg->mapWidth, sizeof(int));
 }
 
 void	fill_worldMap(PARAM *P)
