@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:46 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:51:00 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:03:24 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init(t_param *P)
 	P->mlx = mlx_init();
 	if (!P->mlx)
 		exit(1);
-	P->win = mlx_new_window(P->mlx, screenWidth, screenHeight, "Raycaster");
+	P->win = mlx_new_window(P->mlx, SCREENWIDTH, SCREENHEIGHT, "Raycaster");
 	if (!P->win)
 		exit(1);
 	init_config(P->cfg);

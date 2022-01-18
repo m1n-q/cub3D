@@ -29,7 +29,7 @@ int	set_pos(t_param *P, int x, int y)
 {
 	int	blockscale;
 
-	blockscale = (screenWidth / P->cfg->mapwidth);
+	blockscale = (SCREENWIDTH / P->cfg->mapwidth);
 	P->pos.x = (x + 0.5) * blockscale;
 	P->pos.y = (y + 0.5) * blockscale;
 	P->worldmap[y][x] = 0;

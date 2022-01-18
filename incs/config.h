@@ -6,17 +6,17 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:37:02 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:50:46 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:03:59 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef t_config_H
-# define t_config_H
+#ifndef CONFIG_H
+# define CONFIG_H
 
-# define screenWidth	1080
-# define screenHeight	720
-# define texWidth		256
-# define texHeight		256
-# define texNum			4
+# define SCREENWIDTH	1080
+# define SCREENHEIGHT	720
+# define TEXWIDTH		256
+# define TEXHEIGHT		256
+# define TEXNUM			4
 
 #endif

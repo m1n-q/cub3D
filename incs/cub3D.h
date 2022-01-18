@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:57:50 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:03:39 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	init_mlx_image(t_param *P);//FIXME
 /* texture */
 int		init_texture(t_param *P);
 void	destroy_texture(t_param *P);
-int		image_to_texture(int texture[][texWidth], t_img teximg);
+int		image_to_texture(int texture[][TEXWIDTH], t_img teximg);
 void	fill_by_texture(t_param *P, t_DDA D, t_drawinfo draw);
 
 /* event hook */

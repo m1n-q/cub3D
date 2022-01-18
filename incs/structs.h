@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:33:58 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:00:10 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:03:59 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct s_config
 {
 	int	mapwidth;
 	int	mapheight;
-	int	blockscale;			//	(screenWidth / mapwidth)	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
-	int	num_rays;			//	screenWidth
+	int	blockscale;			//	(SCREENWIDTH / mapwidth)	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
+	int	num_rays;			//	SCREENWIDTH
 	int	collision_range;		// (blockscale / 10)
 	int	minimapscale;		// (blockscale / 10)
 }	t_config;
@@ -61,7 +61,7 @@ typedef struct s_param
 	void		*win;
 	int			**buf3D;	//NOTE: buffer	=> 직관적으로 생각할 수 있는 2차원 배열 형태
 	int			**buf2D;
-	int			textures[texNum][texHeight][texWidth];
+	int			textures[TEXNUM][TEXHEIGHT][TEXWIDTH];
 
 	t_config	*cfg;
 	t_lst		*map;

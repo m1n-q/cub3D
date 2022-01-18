@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:56:03 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:05:01 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int render(t_param *P)	//Top level
 	draw_2Dplayer(P);
 	raycasting(P);
 	draw_dir(P);
-	// draw_verLine(5 * P->cfg->minimapscale - 2, 0, screenHeight - 1, P->floor_color, P);
+	// draw_verLine(5 * P->cfg->minimapscale - 2, 0, SCREENHEIGHT - 1, P->floor_color, P);
 	buffer_to_img(P->buf2D, P->img2D, P->cfg->mapwidth * P->cfg->minimapscale, \
 									P->cfg->mapheight * P->cfg->minimapscale);
-	buffer_to_img(P->buf3D, P->img3D, screenWidth, \
-									screenHeight);
+	buffer_to_img(P->buf3D, P->img3D, SCREENWIDTH, \
+									SCREENHEIGHT);
 	// clear_buffer(P->buf2D);
-	clear_buffer(P->buf3D, screenWidth, screenHeight);	//NOTE: is needed?
+	clear_buffer(P->buf3D, SCREENWIDTH, SCREENHEIGHT);	//NOTE: is needed?
 	mlx_put_image_to_window(P->mlx, P->win, P->img3D.img, 0, 0);
 	mlx_put_image_to_window(P->mlx, P->win, P->img2D.img, 0, 0);
 	return (0);
@@ -35,7 +35,7 @@ void	draw_verLine(int x, int drawStart, int drawEnd, int color, t_param *P)
 {
 	for (int y = drawStart; y <= drawEnd; y++)
 	{
-		if (y < 0 || y >= screenHeight)
+		if (y < 0 || y >= SCREENHEIGHT)
 			continue ;
 		P->buf3D[y][x] = color;
 	}

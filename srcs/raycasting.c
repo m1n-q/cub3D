@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:56:18 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:05:28 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	get_perp_dist(t_param *P, t_DDA *D)
 
 void	get_draw_info(t_param *P, double perp_dist, t_drawinfo *draw)
 {
-	draw->length = (screenWidth) / perp_dist * P->cfg->blockscale;		// P->cfg->blockscale와 비례해야 함..!
-	draw->start_y = screenHeight / 2 - draw->length / 2;
-	draw->end_y = screenHeight / 2 + draw->length / 2;
+	draw->length = (SCREENWIDTH) / perp_dist * P->cfg->blockscale;		// P->cfg->blockscale와 비례해야 함..!
+	draw->start_y = SCREENHEIGHT / 2 - draw->length / 2;
+	draw->end_y = SCREENHEIGHT / 2 + draw->length / 2;
 	draw->x++;
-	if (draw->x >= screenWidth)
-			draw->x = screenWidth - 1;
+	if (draw->x >= SCREENWIDTH)
+			draw->x = SCREENWIDTH - 1;
 }
 
 int	raycasting(t_param *P)
@@ -58,7 +58,7 @@ int	raycasting(t_param *P)
 		get_draw_info(P, D.perp_dist, &draw);
 		fill_by_texture(P, D, draw);
 		draw_verLine(draw.x, 0, draw.start_y, P->ceili_color, P);
-		draw_verLine(draw.x, draw.end_y, screenHeight - 1, P->floor_color, P);
+		draw_verLine(draw.x, draw.end_y, SCREENHEIGHT - 1, P->floor_color, P);
 		r += dr;
 	}
 	return (0);

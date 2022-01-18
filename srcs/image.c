@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:58:32 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:06:14 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	make_minimap_image(t_param *P)
 
 void	init_mlx_image(t_param *P)
 {
-	P->img3D.img = mlx_new_image(P->mlx, screenWidth, screenHeight);
+	P->img3D.img = mlx_new_image(P->mlx, SCREENWIDTH, SCREENHEIGHT);
 	if (!P->img3D.img)
 		exit(1);
 	P->img3D.addr = (int *)mlx_get_data_addr(P->img3D.img, &P->img3D.bpp, \
@@ -69,7 +69,7 @@ void	load_image(t_param *P, t_img *I, char *filename)
 		err_exit(formatstr("{}: load failed", filename, 0), P);
 	I->addr = (int *)mlx_get_data_addr(I->img, &I->bpp, \
 									&I->linesize, &I->endian);
-	if (I->width != I->height || I->width != texWidth)
+	if (I->width != I->height || I->width != TEXWIDTH)
 		err_exit(formatstr("{}: 256x256 image required.", filename, 0), P);
 	printf("%s loaded\n", filename);
 }

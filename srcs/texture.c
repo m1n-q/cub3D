@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:58:32 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:06:45 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,26 @@ void	destroy_texture(t_param *P)
 	int	j;
 
 	i = -1;
-	while (++i < texNum)
+	while (++i < TEXNUM)
 	{
 		j = -1;
-		while (++j < texHeight)
+		while (++j < TEXHEIGHT)
 			free(P->textures[i][j]);
 		free(P->textures[i]);
 	}
 	free(P->textures);
 }
 
-int	image_to_texture(int texture[][texWidth], t_img teximg)
+int	image_to_texture(int texture[][TEXWIDTH], t_img teximg)
 {
 	int	x;
 	int	y;
 
 	y = -1;
-	while (++y < texHeight)
+	while (++y < TEXHEIGHT)
 	{
 		x = -1;
-		while (++x < texWidth)
+		while (++x < TEXWIDTH)
 			texture[y][x] = teximg.addr[y * teximg.linesize / sizeof(int) + x];
 	}
 	return (0);
@@ -68,13 +68,13 @@ t_vector	get_texture_pos(t_param *P, t_DDA D)
 		pos_on_wall = (int)D.hit.y % P->cfg->blockscale;
 
 	// textureWidth 에서 7 / 40 위치 가져와야 함	(method 2: using floor)
-	texpos.x = (pos_on_wall / P->cfg->blockscale) * texWidth;
+	texpos.x = (pos_on_wall / P->cfg->blockscale) * TEXWIDTH;
 
 	// 좌우반전
 	if (D.side == HORZ && D.raydir.y > 0)
-		texpos.x = texWidth - texpos.x - 1;
+		texpos.x = TEXWIDTH - texpos.x - 1;
 	if (D.side == VERT && D.raydir.x < 0)
-		texpos.x = texWidth - texpos.x - 1;
+		texpos.x = TEXWIDTH - texpos.x - 1;
 	texpos.y = 0.0;
 	return (texpos);
 }
@@ -109,16 +109,16 @@ void	fill_by_texture(t_param *P, t_DDA D, t_drawinfo draw)
 	texpos = get_texture_pos(P, D);
 
 	// 전체 그릴 높이 == draw.length
-	tex_stepY = (double)texHeight / (double)draw.length;
+	tex_stepY = (double)TEXHEIGHT / (double)draw.length;
 	y = draw.start_y - 1;
 	while (++y < draw.end_y)
 	{
-		if (y < 0 || y >= screenHeight)
+		if (y < 0 || y >= SCREENHEIGHT)
 		{
 			texpos.y += tex_stepY;
 			continue ;
 		}
-		texpos.y = fmin(texpos.y, texHeight - 1);
+		texpos.y = fmin(texpos.y, TEXHEIGHT - 1);
 		color = P->textures[texidx][(int)texpos.y][(int)texpos.x];
 		if (D.side == HORZ)
 			color = (color >> 1) & 8355711;
