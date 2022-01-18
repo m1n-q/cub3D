@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   keymap.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/10 00:13:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 21:02:54 by mishin           ###   ########.fr       */
+/*   Created: 2022/01/18 16:32:33 by mishin            #+#    #+#             */
+/*   Updated: 2022/01/18 16:39:31 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	rotate(int keycode, PARAM *P)
 	return (0);
 }
 
-int	check_collision(PARAM *P, double radius)
+static int	check_collision(PARAM *P, double radius)
 {
 	double	r;
 	VECTOR	d;
@@ -62,7 +62,7 @@ int	check_collision(PARAM *P, double radius)
 	return (0);
 }
 
-int	move_(PARAM *P, VECTOR movedir)
+static int	move_(PARAM *P, VECTOR movedir)
 {
 	int		amount;
 	VECTOR	oldpos;
@@ -113,20 +113,6 @@ int	quit(int keycode, PARAM *P)
 {
 	if (keycode != KEY_ESC)
 		return (1);
-	mlx_destroy_window(P->mlx, P->win);
-	exit(0);
+	bye(P);
 	return (0);
-}
-
-int	keymap(int keycode, PARAM *P)
-{
-	if (keycode == KEY_RIGHT || keycode == KEY_LEFT)
-		return (rotate(keycode, P));
-	else if (keycode == KEY_W || keycode == KEY_A || \
-			keycode == KEY_S || keycode == KEY_D)
-		return (move(keycode, P));
-	else if (keycode == KEY_ESC)
-		return (quit(keycode, P));
-	else
-		return (0);
 }

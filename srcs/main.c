@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:21:02 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:41:48 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 /**========================================================================
  * @                              TODO
  *
- *	destroy notify 추가
- *	mlx 관련 예외처리
  *	해상도 및 맵 크기 테스트
  *	구조체 이름
  *	평가지 체크
@@ -37,7 +35,7 @@ int main(int argc, char *argv[])
 	init(&P);
 
 	mlx_hook(P.win, KeyPress, 0, keymap, &P);
-	// mlx_hook(P.win, DestroyNotify, 0, quit, &P);
+	mlx_hook(P.win, DestroyNotify, 0, bye, &P);
 	mlx_loop_hook(P.mlx, render, &P);
 	mlx_loop(P.mlx);
 }

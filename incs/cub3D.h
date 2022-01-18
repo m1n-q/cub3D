@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 15:23:38 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:38:07 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,10 @@ void	fill_by_texture(PARAM *P, DDA D, LINEDRAW draw);
 
 /* event hook */
 int		keymap(int keycode, PARAM *param);
+int		rotate(int keycode, PARAM *P);
+int		move(int keycode, PARAM *P);
+int		quit(int keycode, PARAM *P);
+int		bye(PARAM *P);
 
 /* map_parsing */
 void	parse_file(PARAM *P, char *filename);
