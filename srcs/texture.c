@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 20:13:50 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 14:15:53 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,10 @@
 
 int	init_texture(PARAM *P)
 {
-	// int	i;
-	// int	j;
-
-	// P->textures = ft_calloc(texNum ,sizeof(int **));
-	// i = -1;
-	// while (++i < texNum)
-	// {
-	// 	P->textures[i]= ft_calloc(texHeight, sizeof(int *));
-	// 	j = -1;
-	// 	while (++j < texHeight)
-	// 		P->textures[i][j] = ft_calloc(texWidth, sizeof(int));
-	// }
 	image_to_texture(P->textures[N], P->wall_N);
 	image_to_texture(P->textures[S], P->wall_S);
 	image_to_texture(P->textures[W], P->wall_W);
 	image_to_texture(P->textures[E], P->wall_E);
-	image_to_texture(P->textures[BORDER], P->wall1);
-	mlx_destroy_image(P->mlx, P->wall1.img);
-	mlx_destroy_image(P->mlx, P->wall2.img);
-	mlx_destroy_image(P->mlx, P->wall3.img);
-	mlx_destroy_image(P->mlx, P->wall4.img);
-	mlx_destroy_image(P->mlx, P->wall5.img);
 	mlx_destroy_image(P->mlx, P->wall_N.img);
 	mlx_destroy_image(P->mlx, P->wall_S.img);
 	mlx_destroy_image(P->mlx, P->wall_W.img);
@@ -47,7 +29,6 @@ void	destroy_texture(PARAM *P)
 {
 	int	i;
 	int	j;
-
 
 	i = -1;
 	while (++i < texNum)

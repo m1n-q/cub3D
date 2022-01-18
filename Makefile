@@ -9,6 +9,7 @@ INC_DIR = incs
 SRC_DIR = srcs
 OBJS =  ${SRCS:.c=.o}
 SRCS =  $(SRC_DIR)/main.c \
+		$(SRC_DIR)/init.c \
 		$(SRC_DIR)/render2D.c \
 		$(SRC_DIR)/render3D.c \
 		$(SRC_DIR)/utils.c \
@@ -31,7 +32,7 @@ SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/check_hole.c \
 		$(SRC_DIR)/check_wall.c \
 		$(SRC_DIR)/check_worldMap.c
-		
+
 
 
 # colors

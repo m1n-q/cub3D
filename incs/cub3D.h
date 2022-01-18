@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 21:53:47 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 15:08:24 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@
 
 typedef void*	(*t_loadfunc)(void*, char*, int*, int*);
 
+
+void	init(PARAM *P);
 /* config */
 void	init_config(CONFIG* C);
 void	print_config(CONFIG* C);
@@ -52,29 +54,29 @@ void	run_DDA(PARAM *P, DDA *D);
 int		render(PARAM *P);
 int		raycasting(PARAM *P);
 //2D
-void	draw_dir(PARAM *P);
-void	draw_perpdir(PARAM *P, VECTOR perp_dir);
-void	draw_ray(PARAM *P, DDA D);
-void	draw_2Dmap(PARAM *P);
-void	draw_2Dplayer(PARAM *P);
-void	draw_2DCircle(PARAM *P);
+void	draw_dir(PARAM *P);//FIXME
+void	draw_perpdir(PARAM *P, VECTOR perp_dir);//FIXME
+void	draw_ray(PARAM *P, DDA D);//FIXME
+void	draw_2Dmap(PARAM *P);//FIXME
+void	draw_2Dplayer(PARAM *P);//FIXME
+void	draw_2DCircle(PARAM *P);//FIXME
+int		draw_2Dsquare(PARAM *P, int x, int y, IMG img);//FIXME
 
 //3D
 void	draw_verLine(int x, int drawStart, int drawEnd, int color, PARAM *P);
-int		draw_2Dsquare(PARAM *P, int x, int y, IMG img);
 
 /* screen buffer */
-int		init_buffer(PARAM *P);
-void	destroy_buffer(PARAM* P);
+int		init_buffer(PARAM *P);//FIXME
+void	destroy_buffer(PARAM* P);//FIXME
 void	buffer_to_img(int **buffer, IMG img, int w, int h);
 void	clear_buffer(int **buffer, int w, int h);
 void	clear_img(IMG img, int w, int h);
 
 /* image */
-int		load_image(PARAM *P, IMG *I, char *filename);
-int		load_images(PARAM *P);
-int		make_minimap_image(PARAM *P);
-int		init_mlx_image(PARAM *P);
+void	load_image(PARAM *P, IMG *I, char *filename);
+void	load_images(PARAM *P);
+void	make_minimap_image(PARAM *P);//FIXME
+void	init_mlx_image(PARAM *P);//FIXME
 
 /* texture */
 int		init_texture(PARAM *P);
@@ -109,5 +111,6 @@ int		check_val(int c);
 void	wall_leaks_exit(int y, int x, PARAM *P);
 int		set_dir(PARAM *P, int c);
 int		set_pos(PARAM *P, int x, int y);
+char	*formatstr(char *fstr, char *arg, int tofree);
 
 #endif

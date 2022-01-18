@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:33:58 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/17 18:57:41 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 14:21:30 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@ typedef struct	s_lst
 typedef struct config
 {
 	int	mapWidth;
-	int mapHeight;
-	int blockScale;			//	(screenWidth / mapWidth)	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
-	int NUM_RAYS;			//	screenWidth
-	int collisionRange;		// (blockScale / 10)
+	int	mapHeight;
+	int	blockScale;			//	(screenWidth / mapWidth)	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
+	int	NUM_RAYS;			//	screenWidth
+	int	collisionRange;		// (blockScale / 10)
 	int	minimapScale;		// (blockScale / 10)
 
 }	CONFIG;
@@ -65,18 +65,13 @@ typedef struct paramset
 	int		**buf2D;
 	int		textures[texNum][texHeight][texWidth];
 
-// -------추가--------------------
 	CONFIG	*cfg;
 	t_lst	*map;
-	int		width;
-	int		height;
-
 	char	*tex_path[4];
 	int		type_set[7];
 	int		floor_color;
 	int		ceili_color;
 	int		**worldMap;
-// ------------------------------
 
 	VECTOR	pos;
 	VECTOR	dir;
@@ -84,17 +79,10 @@ typedef struct paramset
 	IMG		img3D;		//NOTE: IMG		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 	IMG		img2D;
 
-	IMG		wall1;
-	IMG		wall2;
-	IMG		wall3;
-	IMG		wall4;
-	IMG		wall5;
-
 	IMG		wall_N;
 	IMG		wall_S;
 	IMG		wall_E;
 	IMG		wall_W;
-
 
 	IMG		grid;
 	IMG		block;

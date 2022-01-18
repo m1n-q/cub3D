@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/14 22:37:23 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 13:56:29 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,33 @@ void	err_exit(char *msg, PARAM *P)
 		}
 	}
 	exit(1);
+}
+
+char	*formatstr(char *fstr, char *arg, int tofree)
+{
+	int		i;
+	char	*s1;
+	char	*s2;
+	char	*ret;
+
+	i = -1;
+	while (fstr[++i])
+	{
+		if (fstr[i] == '{' && fstr[i + 1] == '}')
+		{
+			s1 = ft_substr(fstr, 0, i);
+			s2 = ft_substr(fstr + i + 2, 0, ft_strlen(fstr + i + 2));
+			ret = ft_strjoin2(s1, arg, s2);
+		}
+	}
+	if (tofree == 1)
+		free(fstr);
+	if (tofree == 2)
+		free(arg);
+	if (tofree == 3)
+	{
+		free(fstr);
+		free(arg);
+	}
+	return (ret);
 }
