@@ -6,21 +6,21 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:30:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:49:37 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 18:00:12 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_config(t_config* C)
+void	init_config(t_config* cfg)
 {
-	C->blockscale = SCREENWIDTH / C->mapwidth;	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
-	C->num_rays = SCREENWIDTH;
-	C->collision_range = C->blockscale / 10;
-	C->minimapscale = C->blockscale / 2;
+	cfg->blockscale = SCREENWIDTH / cfg->mapwidth;	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
+	cfg->num_rays = SCREENWIDTH;
+	cfg->collision_range = cfg->blockscale / 10;
+	cfg->minimapscale = cfg->blockscale / 2;
 }
 
-void	print_config(t_config* C)
+void	print_config(t_config* cfg)
 {
 	printf("\
 ┌───────────────────────────────────────────────────────────\n\
@@ -47,8 +47,8 @@ void	print_config(t_config* C)
 	DCYAN, NC, TEXWIDTH,\
 	DCYAN, NC, TEXHEIGHT,\
 	PURPLE, NC,\
-	DPURPLE, NC, C->blockscale,\
-	DPURPLE, NC, C->num_rays,\
-	DPURPLE, NC, C->collision_range,\
-	DPURPLE, NC, C->minimapscale);
+	DPURPLE, NC, cfg->blockscale,\
+	DPURPLE, NC, cfg->num_rays,\
+	DPURPLE, NC, cfg->collision_range,\
+	DPURPLE, NC, cfg->minimapscale);
 }

@@ -37,7 +37,7 @@ void	check_top_bottom_wall(t_param *p)
 	}
 }
 
-void	check_worldmap(t_param *p, t_config *C)
+void	check_worldmap(t_param *p, t_config *cfg)
 {
 	int	y;
 	int	x;
@@ -45,10 +45,10 @@ void	check_worldmap(t_param *p, t_config *C)
 
 	y = 0;
 	player = 0;
-	while (y < C->mapheight)
+	while (y < cfg->mapheight)
 	{
 		x = 0;
-		while (x < C->mapwidth)
+		while (x < cfg->mapwidth)
 		{
 			if (!check_val(p->worldmap[y][x]))
 				err_exit("ERROR: invalid val in map", p);

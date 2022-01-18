@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:52:39 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 18:01:34 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef void*	(*t_loadfunc)(void*, char*, int*, int*);
 
 void	init(t_param *p);
 /* config */
-void	init_config(t_config* C);
-void	print_config(t_config* C);
+void	init_config(t_config *cfg);
+void	print_config(t_config *cfg);
 
 /* DDA algorithm */
 t_DDA	get_DDA_info(t_param *p, double r);
@@ -67,7 +67,7 @@ void	draw_verLine(int x, int drawStart, int drawEnd, int color, t_param *p);
 
 /* screen buffer */
 int		init_buffer(t_param *p);//FIXME
-void	destroy_buffer(t_param* p);//FIXME
+void	destroy_buffer(t_param *p);//FIXME
 void	buffer_to_img(int **buffer, t_img img, int w, int h);
 void	clear_buffer(int **buffer, int w, int h);
 void	clear_img(t_img img, int w, int h);
@@ -96,7 +96,7 @@ void	parse_file(t_param *p, char *filename);
 void	parse_line(t_param *p, char *line);
 void	parse_texture(t_param *p, int type, char *line);
 void	parse_rgb(t_param *p, int type, char *line);
-void	check_worldmap(t_param *p, t_config *C);
+void	check_worldmap(t_param *p, t_config *cfg);
 void	check_hole(t_param *p, int y);
 void	check_wall(t_param *p);
 
