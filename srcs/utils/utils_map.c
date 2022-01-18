@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/18 18:16:03 by mishin            #+#    #+#             */
+/*   Updated: 2022/01/18 18:16:09 by mishin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 int	set_dir(t_param *p, int c)
@@ -75,4 +87,3 @@ void	wall_leaks_exit(int y, int x, t_param *p)
 	printf(P_RED "=> y:[%d], x:[%d] <=\n" P_RESET, y, x);
 	err_exit(" ERROR: wall leak", p);
 }
-

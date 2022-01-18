@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 18:10:27 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 18:15:13 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,5 @@ void	run_dda(t_param *p, t_dda *__dda)
 		}
 		if (p->worldmap[(int)(__dda->hit.y / scale)][(int)(__dda->hit.x / scale)] == 1)
 			hit = 1;
-
-		// printf("dist_vh => (%f, %f)\n", D->dist_vert, D->dist_horz);
-		// printf("hit => (%f, %f)\n", D->hit.x, D->hit.y); scale 이 어디서 적용되고 있지?
 	}
 }
