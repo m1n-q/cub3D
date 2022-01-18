@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:30:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:07:19 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:49:37 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_config(t_config* C)
 {
 	printf("\
 ┌───────────────────────────────────────────────────────────\n\
-│                       t_configURATIONS\n\
+│                       CONFIGURATIONS\n\
 │\n\
 │\t%spre-defined%s\n\
 │\n\
