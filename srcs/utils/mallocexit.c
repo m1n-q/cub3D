@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 15:17:22 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:10:10 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:19:45 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*substr_(char const *s, unsigned int start, size_t len)
 	ret = ft_substr(s, start, len);
 	if (!ret)
 		err_exit("allocation failed", NULL);
+	return (ret);
 }
 
 //TODO: trim, split

@@ -29,6 +29,7 @@ SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/utils/utils.c \
 		$(SRC_DIR)/utils/utils_lst.c \
 		$(SRC_DIR)/utils/utils_map.c \
+		$(SRC_DIR)/utils/mallocexit.c \
 		$(SRC_DIR)/utils/get_next_line.c \
 		$(SRC_DIR)/utils/get_next_line_utils_bonus.c \
 		$(SRC_DIR)/utils/get_next_line_bonus.c \

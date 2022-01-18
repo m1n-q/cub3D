@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:46 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 15:14:28 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:21:10 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init(PARAM *P)
 	if (!P->win)
 		exit(1);
 	init_config(P->cfg);
+	print_config(P->cfg);
 	init_mlx_image(P);
 	load_images(P);
 	make_minimap_image(P);

@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:01:13 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 16:08:38 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:21:02 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,15 @@ int main(int argc, char *argv[])
 	PARAM	P;
 	CONFIG	C;
 
+	if (argc != 2)
+		err_exit("ERROR: CHECK PARAMETER", NULL);
 	// -----------MAP parsing----------------
 	ft_memset(&P, 0, sizeof(P));
 	P.cfg = &C;
 
-	if (argc != 2)
-		err_exit("ERROR: CHECK PARAMETER", NULL);
 	parse_file(&P, argv[1]);
 	check_worldMap(&P, &C);
 
-	print_config(P.cfg);
 	init(&P);
 
 	mlx_hook(P.win, KeyPress, 0, keymap, &P);

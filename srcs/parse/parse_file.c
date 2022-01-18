@@ -7,7 +7,7 @@ void	malloc_worldMap(PARAM *P)
 	P->worldMap = (int **)calloc_(P->cfg->mapHeight, sizeof(int *));
 	i = 0;
 	while (i < P->cfg->mapHeight)
-		P->worldMap[i] = (int *)calloc_(P->cfg->mapWidth, sizeof(int));
+		P->worldMap[i++] = (int *)calloc_(P->cfg->mapWidth, sizeof(int));
 }
 
 void	fill_worldMap(PARAM *P)

@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 15:53:57 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:25:27 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,13 @@ void	load_image(PARAM *P, IMG *I, char *filename)
 	else
 		err_exit(formatstr("not supported extension: {}", ext, 2), P);
 	I->img = f(P->mlx, filename, &I->width, &I->height);
+	if (!I->img)
+		err_exit(formatstr("{}: load failed", filename, 0), P);
 	I->addr = (int *)mlx_get_data_addr(I->img, &I->bpp, \
 									&I->linesize, &I->endian);
-	if (I->img && I->addr)
-	{
-		if (I->width != I->height || I->width != texWidth)
-			err_exit(formatstr("{}: 256x256 image required.", filename, 0), P);
-		printf("%s loaded\n", filename);
-	}
+	if (I->width != I->height || I->width != texWidth)
+		err_exit(formatstr("{}: 256x256 image required.", filename, 0), P);
+	printf("%s loaded\n", filename);
 }
 
 void	load_images(PARAM *P)
