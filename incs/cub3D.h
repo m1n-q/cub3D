@@ -99,6 +99,7 @@ t_lst	*lst_get_tail(t_lst *node);
 /* utils */
 char	**ft_split2(char *str, char *ch);
 void	err_exit(char *msg, t_param *p);
+void	err_exit_(char *msg, t_param *p);
 void	print_worldmap(t_param *p);
 int		check_val(int c);
 int		set_dir(t_param *p, int c);

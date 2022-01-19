@@ -45,18 +45,13 @@ char	**ft_split2(char *str, char *ch)
 	return (ret);
 }
 
-void	err_exit(char *msg, t_param *p)
+void	dealloc(t_param *p)
 {
 	int	i;
 
-	msg = strjoin2_(P_RED, msg, P_RESET);
-	write(2, "Error\n", 6);
-	write(2, msg, ft_strlen(msg));
-	write(2, "\n", 1);
-	free(msg);
-	i = 0;
 	if (p)
 	{
+		i = 0;
 		while (i < 4)
 			free(p->tex_path[i++]);
 		if (p->map)
@@ -69,46 +64,32 @@ void	err_exit(char *msg, t_param *p)
 			free(p->worldmap);
 		}
 	}
+}
+
+void	err_exit(char *msg, t_param *p)
+{
+	msg = strjoin2_(P_RED, msg, P_RESET);
+	write(2, "Error\n", 6);
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
+	free(msg);
+	dealloc(p);
+	system("leaks cub3D &> res; cat res | grep leaked > res1; cat res1; rm res res1");
 	exit(1);
 }
 
-char	*formatstr(char *fstr, char *arg, int tofree)
+void	err_exit_(char *msg, t_param *p)
 {
-	int		i;
-	char	*s1;
-	char	*s2;
-	char	*ret;
+	char	*tmp;
 
-	i = -1;
-	while (fstr[++i])
-	{
-		if (fstr[i] == '{' && fstr[i + 1] == '}')
-		{
-			s1 = substr_(fstr, 0, i);
-			s2 = substr_(fstr + i + 2, 0, ft_strlen(fstr + i + 2));
-			ret = strjoin2_(s1, arg, s2);
-		}
-	}
-	if (tofree == 1)
-		free(fstr);
-	if (tofree == 2)
-		free(arg);
-	if (tofree == 3)
-	{
-		free(fstr);
-		free(arg);
-	}
-	return (ret);
-}
-
-int	is_empty_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	if (line[i] == '\0')
-		return (1);
-	return (0);
+	tmp = msg;
+	msg = strjoin2_(P_RED, msg, P_RESET);
+	write(2, "Error\n", 6);
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
+	free(msg);
+	free(tmp);
+	dealloc(p);
+	system("leaks cub3D &> res; cat res | grep leaked > res1; cat res1; rm res res1");
+	exit(1);
 }

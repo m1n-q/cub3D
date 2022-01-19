@@ -15,25 +15,26 @@
 //NOTE: t_img		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
 static void	load_file(t_param *p, t_img *I, char *filename)
 {
-	char		*ext;
+	int			ext;
 	t_loadfunc	f;
 
 	printf("loading %s...\n", filename);
 	f = NULL;
-	ext = substr_(filename, ft_strlen(filename) - 3, 3);
-	if (ft_strncmp(ext, "xpm", 3) == 0)
+	ext = ft_strlen(filename) - 3;
+	if (ft_strncmp(&filename[ext], "xpm", 3) == 0)
 		f = mlx_xpm_file_to_image;
-	else if (ft_strncmp(ext, "png", 3) == 0)
+	else if (ft_strncmp(&filename[ext], "png", 3) == 0)
 		f = mlx_png_file_to_image;
 	else
-		err_exit(formatstr("not supported extension: {}", ext, 2), p);
+		err_exit_(formatstr("not supported extension: {}", \
+			&filename[ext], 0), p);
 	I->img = f(p->mlx, filename, &I->width, &I->height);
 	if (!I->img)
-		err_exit(formatstr("{}: load failed", filename, 0), p);
+		err_exit_(formatstr("{}: load failed", filename, 0), p);
 	I->data = (int *)mlx_get_data_addr(I->img, &I->bpp, \
 									&I->linesize, &I->endian);
 	if (I->width != I->height || I->width != TEXWIDTH)
-		err_exit(formatstr("{}: 256x256 image required.", filename, 0), p);
+		err_exit_(formatstr("{}: 256x256 image required.", filename, 0), p);
 	printf("%s loaded\n", filename);
 }
 

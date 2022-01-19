@@ -83,3 +83,15 @@ void	print_worldmap(t_param *p)
 		i++;
 	}
 }
+
+int	is_empty_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] == '\0')
+		return (1);
+	return (0);
+}
