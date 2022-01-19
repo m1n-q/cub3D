@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 17:32:02 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 19:10:41 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	fill_by_texture(t_param *p, t_dda D, t_drawinfo draw);
 /* convert */
 int		imgs_to_textures(t_param *p);
 void	buffer_to_img(int **buffer, t_img img, int w, int h);
-void	set_pixel_color(t_img i, int x, int y, int color);
 
 /* event hook */
 int		keymap(int keycode, t_param *param);

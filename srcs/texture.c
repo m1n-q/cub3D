@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:17:43 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 17:17:11 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 19:07:42 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ void	fill_by_texture(t_param *p, t_dda __dda, t_drawinfo draw)
 		color = p->textures[texidx][(int)texpos.y][(int)texpos.x];
 		if (__dda.side == HORZ)
 			color = (color >> 1) & 8355711;
-		p->buf3D[y][draw.x] = color;					// # method 1
-		// set_pixel_color(p->img3D, draw.x, y, color);	// @ method 2
+		p->buf3D[y][draw.x] = color;
 		texpos.y += tex_stepy;
 	}
 }
