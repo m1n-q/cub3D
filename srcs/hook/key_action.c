@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:32:33 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 16:34:30 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:57:20 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,15 @@ static int	check_collision(t_param *p, double radius)
 	r = 0.0;
 	while (r <= 2 * PI)
 	{
-		d.x = 0.0;
-		d.y = 0.0;
+		d = (t_vector){0.0, 0.0};
 		newdir.x = cos(r) * p->dir.x - sin(r) * p->dir.y;
 		newdir.y = sin(r) * p->dir.x + cos(r) * p->dir.y;
 		linelength = 0;
 		while (linelength < radius)
 		{
-			d.x += newdir.x;
-			d.y += newdir.y;
-			if (p->worldmap[(int)((int)(p->pos.y + d.y) / scale)] \
-							[(int)((int)(p->pos.x + d.x) / scale)])
+			d = (t_vector){(d.x + newdir.x), (d.y + newdir.y)};
+			if (p->worldmap[(int)((p->pos.y + d.y) / scale)] \
+							[(int)((p->pos.x + d.x) / scale)])
 				return (1);
 			linelength++;
 		}
