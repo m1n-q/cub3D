@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:30:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 22:07:44 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 14:04:12 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	print_config(t_config *cfg)
 │\n\
 │\t%sruntime-configure%s\n\
 │\n\
+│	%smapWidth%s\t= %d\n\
+│	%smapHeight%s\t= %d\n\
 │	%sblockscale%s\t= %d\n\
 │	%snum_rays%s\t= %d\n\
 │	%scollision_range%s\t= %d\n\
@@ -48,6 +50,8 @@ void	print_config(t_config *cfg)
 	DCYAN, NC, TEXWIDTH, \
 	DCYAN, NC, TEXHEIGHT, \
 	PURPLE, NC, \
+	DPURPLE, NC, cfg->mapwidth, \
+	DPURPLE, NC, cfg->mapheight, \
 	DPURPLE, NC, cfg->blockscale, \
 	DPURPLE, NC, cfg->num_rays, \
 	DPURPLE, NC, cfg->collision_range, \
