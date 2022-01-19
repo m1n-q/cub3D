@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:33:58 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 17:43:29 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 19:14:01 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_param
 {
 	void		*mlx;
 	void		*win;
-	int			**buf3D;
+	int			**buf3d;
 	int			textures[TEXNUM][TEXHEIGHT][TEXWIDTH];
 
 	t_config	*cfg;
@@ -73,7 +73,7 @@ typedef struct s_param
 	t_vector	pos;
 	t_vector	dir;
 
-	t_img		img3D;
+	t_img		img3d;
 	t_img		wall_n;
 	t_img		wall_s;
 	t_img		wall_e;

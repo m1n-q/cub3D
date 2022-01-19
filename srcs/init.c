@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:46 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 17:35:55 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 19:14:01 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	init_mlx_img(t_param *p)
 {
-	p->img3D.img = mlx_new_image(p->mlx, SCREENWIDTH, SCREENHEIGHT);
-	if (!p->img3D.img)
+	p->img3d.img = mlx_new_image(p->mlx, SCREENWIDTH, SCREENHEIGHT);
+	if (!p->img3d.img)
 		exit(1);
-	p->img3D.data = (int *)mlx_get_data_addr(p->img3D.img, &p->img3D.bpp, \
-										&p->img3D.linesize, &p->img3D.endian);
+	p->img3d.data = (int *)mlx_get_data_addr(p->img3d.img, &p->img3d.bpp, \
+										&p->img3d.linesize, &p->img3d.endian);
 }
 
 //NOTE: buffer	=> 직관적으로 생각할 수 있는 2차원 배열 형태
@@ -26,10 +26,10 @@ static int	init_buffer(t_param *p)
 {
 	int	i;
 
-	p->buf3D = (int **)calloc_(SCREENHEIGHT, sizeof(int *));
+	p->buf3d = (int **)calloc_(SCREENHEIGHT, sizeof(int *));
 	i = -1;
 	while (++i < SCREENHEIGHT)
-		p->buf3D[i] = (int *)calloc_(SCREENWIDTH, sizeof(int));
+		p->buf3d[i] = (int *)calloc_(SCREENWIDTH, sizeof(int));
 	return (0);
 }
 

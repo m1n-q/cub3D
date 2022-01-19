@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:16:50 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 16:27:15 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 19:13:47 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	destroy_buffer(t_param *p)
 
 	i = -1;
 	while (++i < SCREENHEIGHT)
-		free(p->buf3D[i]);
-	free(p->buf3D);
+		free(p->buf3d[i]);
+	free(p->buf3d);
 }
 
 void	clear_buffer(int **buffer, int w, int h)
