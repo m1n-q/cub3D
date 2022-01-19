@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:46 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 00:16:51 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:30:00 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,11 @@
 
 static void	init_mlx_img(t_param *p)
 {
-	int	ms;
-
-	ms = p->cfg->minimapscale;
 	p->img3D.img = mlx_new_image(p->mlx, SCREENWIDTH, SCREENHEIGHT);
 	if (!p->img3D.img)
 		exit(1);
 	p->img3D.addr = (int *)mlx_get_data_addr(p->img3D.img, &p->img3D.bpp, \
 										&p->img3D.linesize, &p->img3D.endian);
-	p->img2D.img = mlx_new_image(p->mlx, p->cfg->mapwidth * ms, \
-										p->cfg->mapheight * ms);
-	if (!p->img2D.img)
-		exit(1);
-	p->img2D.addr = (int *)mlx_get_data_addr(p->img2D.img, &p->img2D.bpp, \
-										&p->img2D.linesize, &p->img2D.endian);
 }
 
 //NOTE: buffer	=> 직관적으로 생각할 수 있는 2차원 배열 형태
@@ -39,12 +30,6 @@ static int	init_buffer(t_param *p)
 	i = -1;
 	while (++i < SCREENHEIGHT)
 		p->buf3D[i] = (int *)calloc_(SCREENWIDTH, sizeof(int));
-	p->buf2D = (int **)calloc_(p->cfg->mapheight * p->cfg->minimapscale, \
-															sizeof(int *));
-	i = -1;
-	while (++i < p->cfg->mapheight * p->cfg->minimapscale)
-		p->buf2D[i] = (int *)calloc_(p->cfg->mapwidth * p->cfg->minimapscale, \
-																sizeof(int));
 	return (0);
 }
 
@@ -60,7 +45,6 @@ void	init(t_param *p)
 	print_config(p->cfg);
 	init_buffer(p);
 	init_mlx_img(p);
-	make_minimap_img(p);
 	load_imgs(p);
 	imgs_to_textures(p);
 }

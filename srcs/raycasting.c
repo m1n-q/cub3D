@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 16:09:55 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:27:06 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,6 @@ int	raycasting(t_param *p)
 	{
 		__dda = get_dda_info(p, r);
 		run_dda(p, &__dda);
-		draw_ray(p, __dda);
-		draw_2Dsquare(p, (int)(__dda.hit.x / p->cfg->blockscale), \
-						(int)(__dda.hit.y / p->cfg->blockscale), p->hblock);
 		get_perp_dist(p, &__dda);
 		get_draw_info(p, __dda.perp_dist, &draw);
 		fill_by_texture(p, __dda, draw);

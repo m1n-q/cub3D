@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:30:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 16:15:40 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:31:49 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	init_config(t_config *cfg)
 	if (cfg->blockscale < 1)
 		cfg->blockscale = 1;
 	cfg->collision_range = (cfg->blockscale / 10) + 1;
-	cfg->minimapscale = (cfg->blockscale / 25) + 1;
 }
 
 void	print_config(t_config *cfg)
@@ -42,7 +41,6 @@ void	print_config(t_config *cfg)
 │	%smapHeight%s\t= %d\n\
 │	%sblockscale%s\t= %d\n\
 │	%scollision_range%s\t= %d\n\
-│	%sminimapscale%s\t= %d\n\
 │\n\
 └───────────────────────────────────────────────────────────\n", \
 	CYAN, NC, \
@@ -55,6 +53,5 @@ void	print_config(t_config *cfg)
 	DPURPLE, NC, cfg->mapwidth, \
 	DPURPLE, NC, cfg->mapheight, \
 	DPURPLE, NC, cfg->blockscale, \
-	DPURPLE, NC, cfg->collision_range, \
-	DPURPLE, NC, cfg->minimapscale);
+	DPURPLE, NC, cfg->collision_range);
 }

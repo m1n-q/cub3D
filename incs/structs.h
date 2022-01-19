@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:33:58 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 00:16:51 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:32:10 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,8 @@ typedef struct s_config
 {
 	int	mapwidth;
 	int	mapheight;
-	int	blockscale;			//	(SCREENWIDTH / mapwidth)	// screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
-	int	num_rays;			//	SCREENWIDTH
-	int	collision_range;		// (blockscale / 10)
-	int	minimapscale;		// (blockscale / 10)
+	int	blockscale;
+	int	collision_range;
 }	t_config;
 
 typedef struct s_param
@@ -60,7 +58,6 @@ typedef struct s_param
 	void		*mlx;
 	void		*win;
 	int			**buf3D;	//NOTE: buffer	=> 직관적으로 생각할 수 있는 2차원 배열 형태
-	int			**buf2D;
 	int			textures[TEXNUM][TEXHEIGHT][TEXWIDTH];
 
 	t_config	*cfg;
@@ -75,7 +72,6 @@ typedef struct s_param
 	t_vector	dir;
 
 	t_img		img3D;		//NOTE: t_img		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
-	t_img		img2D;
 
 	t_img		wall_n;
 	t_img		wall_s;

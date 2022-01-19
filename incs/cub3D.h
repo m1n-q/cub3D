@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 00:17:12 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:27:50 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,6 @@ void	run_dda(t_param *p, t_dda *__dda);
 /* render */
 int		render(t_param *p);
 int		raycasting(t_param *p);
-//2D
-void	draw_dir(t_param *p);
-void	draw_ray(t_param *p, t_dda __dda);
-void	draw_2Dmap(t_param *p);
-void	draw_2Dplayer(t_param *p);
-int		draw_2Dsquare(t_param *p, int x, int y, t_img img);
-
-//3D
 void	draw_verline(int x, int drawStart, int drawEnd, int color, t_param *p);
 
 /* screen buffer */
@@ -67,7 +59,6 @@ void	clear_buffer(int **buffer, int w, int h);//NOTE:unused?
 
 /* img */
 void	load_imgs(t_param *p);
-void	make_minimap_img(t_param *p);
 void	clear_img(t_img img, int w, int h);//NOTE:unused?
 
 /* texture */

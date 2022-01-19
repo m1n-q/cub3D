@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render3D.c                                         :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 00:17:12 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:26:56 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,11 @@
 int	render(t_param *p)
 {
 	mlx_clear_window(p->mlx, p->win);
-	draw_2Dmap(p);
-	draw_2Dplayer(p);
 	raycasting(p);
-	draw_dir(p);
-	buffer_to_img(p->buf2D, p->img2D, p->cfg->mapwidth * p->cfg->minimapscale, \
-									p->cfg->mapheight * p->cfg->minimapscale);
 	buffer_to_img(p->buf3D, p->img3D, SCREENWIDTH, \
 									SCREENHEIGHT);
-	clear_buffer(p->buf2D, p->cfg->mapwidth * p->cfg->minimapscale, \
-						p->cfg->mapheight * p->cfg->minimapscale);
 	clear_buffer(p->buf3D, SCREENWIDTH, SCREENHEIGHT);
 	mlx_put_image_to_window(p->mlx, p->win, p->img3D.img, 0, 0);
-	mlx_put_image_to_window(p->mlx, p->win, p->img2D.img, 0, 0);
 	return (0);
 }
 
