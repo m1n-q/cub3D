@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 22:30:36 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 14:04:12 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:03:29 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 // screen Width를 기준으로 블럭의 가로를 정하고 있음. 블럭의 가로에 비례해서 높이를 그려줌.
 void	init_config(t_config *cfg)
 {
-	cfg->blockscale = SCREENWIDTH / cfg->mapwidth;
+	cfg->blockscale = (SCREENWIDTH / 3);
+	if (cfg->blockscale < 1)
+		cfg->blockscale = 1;
 	cfg->num_rays = SCREENWIDTH;
-	cfg->collision_range = cfg->blockscale / 10;
-	cfg->minimapscale = cfg->blockscale / 2;
+	cfg->collision_range = (cfg->blockscale / 10) + 1;
+	cfg->minimapscale = (cfg->blockscale / 25) + 1;
 }
 
 void	print_config(t_config *cfg)
