@@ -64,7 +64,7 @@ void	parse_line(t_param *p, char *line)
 	if (!line)
 		return ;
 	type = get_type(line);
-	if (ft_strlen(line) == 0 && !p->map)
+	if (is_empty_line(line) && !p->map)
 		return ;
 	if (type != UN_DEF && p->type_set[type])
 		err_exit("Error: double keys", p);

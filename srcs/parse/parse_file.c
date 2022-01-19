@@ -73,7 +73,7 @@ void	cnt_mapheight(t_param *p)
 	tail = lst_get_tail(p->map);
 	while (tail)
 	{
-		if (ft_strlen(tail->content) == 0)
+		if (is_empty_line(tail->content))
 		{
 			cnt++;
 			tail = tail->prev;

@@ -65,7 +65,10 @@ void	check_worldmap(t_param *p, t_config *cfg)
 			if (!check_val(p->worldmap[y][x]))
 				err_exit("ERROR: invalid val in map", p);
 			if (check_val(p->worldmap[y][x]) == 1)
-				player = (set_dir(p, p->worldmap[y][x]) && set_pos(p, x, y));
+			{
+				(set_dir(p, p->worldmap[y][x]) && set_pos(p, x, y));
+				player++;
+			}
 			x++;
 		}
 		check_left_right_wall(p, y);

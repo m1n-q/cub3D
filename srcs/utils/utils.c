@@ -99,3 +99,15 @@ char	*formatstr(char *fstr, char *arg, int tofree)
 	}
 	return (ret);
 }
+
+int	is_empty_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (line[i] == '\0')
+		return (1);
+	return (0);
+}

@@ -110,6 +110,7 @@ void	wall_leaks_exit(int y, int x, t_param *p);
 int		set_dir(t_param *p, int c);
 int		set_pos(t_param *p, int x, int y);
 char	*formatstr(char *fstr, char *arg, int tofree);
+int		is_empty_line(char *line);
 
 void	*calloc_(size_t count, size_t size);
 char	*strdup_(char *s);
