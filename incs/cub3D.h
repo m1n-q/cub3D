@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 16:27:50 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:47:56 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@
 # define W		2
 # define E		3
 
+# define TOP	0
+# define BOTTOM	1
+# define FULL	2
+
+
 # define VERT	0
 # define HORZ	1
 
@@ -51,7 +56,7 @@ void	run_dda(t_param *p, t_dda *__dda);
 /* render */
 int		render(t_param *p);
 int		raycasting(t_param *p);
-void	draw_verline(int x, int drawStart, int drawEnd, int color, t_param *p);
+void	draw_verline(t_param *p, t_drawinfo draw, int color, int mode);
 
 /* screen buffer */
 void	destroy_buffer(t_param *p);//NOTE:unused?

@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 16:26:56 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:48:45 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,31 @@ int	render(t_param *p)
 	return (0);
 }
 
-void	draw_verline(int x, int drawstart, int drawend, int color, t_param *p)
+void	draw_verline(t_param *p, t_drawinfo draw, int color, int mode)
 {
 	int	y;
+	int	drawstart;
+	int	drawend;
 
+	if (mode == TOP)
+	{
+		drawstart = 0;
+		drawend = draw.start_y;
+	}
+	else if (mode == BOTTOM)
+	{
+		drawstart = draw.end_y;
+		drawend = SCREENHEIGHT - 1;
+	}
+	else
+	{
+		drawstart = draw.start_y;
+		drawend = draw.end_y;
+	}
 	y = drawstart - 1;
 	while (++y <= drawend)
 	{
-		if (y < 0 || y >= SCREENHEIGHT)
-			continue ;
-		p->buf3D[y][x] = color;
+		if ((0 <= y) && (y < SCREENHEIGHT))
+			p->buf3D[y][draw.x] = color;
 	}
 }

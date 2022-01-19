@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 18:16:34 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 14:21:15 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:33:54 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,32 +84,32 @@ void	cnt_mapheight(t_param *p)
 	p->cfg->mapheight = lst_get_len(p->map) - cnt;
 }
 
-void    parse_file(t_param *p, char *filename)
+void	parse_file(t_param *p, char *filename)
 {
-    int     fd;
-    char    *line;
-    int     ret;
+	char	*line;
+	int		ret;
+	int		fd;
 
-    filename_check(filename, ".cub", p);
-    fd = open(filename, O_RDONLY);
-    if (fd < 3)
-        err_exit("open() failure", p);
-    p->cfg->mapwidth = 0;
-    ret = get_next_line(fd, &line);
-    while (ret > 0)
-    {
-        parse_line(p, line);
-        free(line);
-        line = NULL;
-        ret = get_next_line(fd, &line);
-    }
-    if (ret == -1)
-        err_exit("get_next_line failure", p);
-    parse_line(p, line);
-    free(line);
-    close(fd);
-    cnt_mapheight(p);
-    fill_worldmap(p);
+	filename_check(filename, ".cub", p);
+	fd = open(filename, O_RDONLY);
+	if (fd < 3)
+		err_exit("open() failure", p);
+	p->cfg->mapwidth = 0;
+	ret = get_next_line(fd, &line);
+	while (ret > 0)
+	{
+		parse_line(p, line);
+		free(line);
+		line = NULL;
+		ret = get_next_line(fd, &line);
+	}
+	if (ret == -1)
+		err_exit("get_next_line failure", p);
+	parse_line(p, line);
+	free(line);
+	close(fd);
+	cnt_mapheight(p);
+	fill_worldmap(p);
 }
 // 55 확장자 .cub 보다 길어야한다 같거나 짧다면 리턴 0
 // 57 str의 마지막 4글자, end 4글자를 비교 (같으면 1, 다른면 0 리턴)

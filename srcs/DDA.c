@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 23:58:41 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 00:14:00 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:37:09 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	run_dda(t_param *p, t_dda *__dda)
 			__dda->hit.y += __dda->step.y;
 			__dda->side = HORZ;
 		}
-		if (p->worldmap[(int)(__dda->hit.y / scale)]\
+		if (p->worldmap[(int)(__dda->hit.y / scale)] \
 						[(int)(__dda->hit.x / scale)] == 1)
 			hit = 1;
 	}

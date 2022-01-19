@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 16:27:06 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:48:25 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	raycasting(t_param *p)
 		get_perp_dist(p, &__dda);
 		get_draw_info(p, __dda.perp_dist, &draw);
 		fill_by_texture(p, __dda, draw);
-		draw_verline(draw.x, 0, draw.start_y, p->ceili_color, p);
-		draw_verline(draw.x, draw.end_y, SCREENHEIGHT - 1, p->floor_color, p);
+		draw_verline(p, draw, p->ceili_color, TOP);
+		draw_verline(p, draw, p->floor_color, BOTTOM);
 		r += dr;
 	}
 	return (0);
