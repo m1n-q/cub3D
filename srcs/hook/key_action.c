@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:32:33 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:54:41 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:07:01 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ int	rotate(int keycode, t_param *p)
 
 static int	check_collision(t_param *p, double radius)
 {
-	double	r;
+	double		r;
 	t_vector	d;
 	t_vector	newdir;
-	int		linelength;
-	int		scale;
+	int			linelength;
+	int			scale;
 
 	scale = p->cfg->blockscale;
 	r = 0.0;
@@ -53,7 +53,8 @@ static int	check_collision(t_param *p, double radius)
 		{
 			d.x += newdir.x;
 			d.y += newdir.y;
-			if (p->worldmap[(int)((int)(p->pos.y + d.y) / scale)][(int)((int)(p->pos.x + d.x) / scale)])
+			if (p->worldmap[(int)((int)(p->pos.y + d.y) / scale)] \
+							[(int)((int)(p->pos.x + d.x) / scale)])
 				return (1);
 			linelength++;
 		}
@@ -64,10 +65,10 @@ static int	check_collision(t_param *p, double radius)
 
 static int	move_(t_param *p, t_vector movedir)
 {
-	int		amount;
+	double		amount;
 	t_vector	oldpos;
 
-	amount = 5;
+	amount = p->cfg->blockscale / 10;
 	oldpos = p->pos;
 	p->pos.x += movedir.x * amount;
 	if (check_collision(p, p->cfg->collision_range))
