@@ -22,13 +22,13 @@ void	parse_texture(t_param *p, int type, char *line)
 		i++;
 	path = ft_strtrim(&line[i + 2], " \t");
 	if (!path)
-		err_exit("Error: ft_strtrim() failure", p);
+		err_exit("ft_strtrim() failure", p);
 	i = -1;
 	while (path[++i])
 		if (path[i] == ' ' || path[i] == '\t')
-			err_exit("Error: space in path", p);
+			err_exit("space in path", p);
 	if (i == 0)
-		err_exit("Error: no path", p);
+		err_exit("no path", p);
 	p->tex_path[type] = path;
 	return ;
 }

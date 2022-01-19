@@ -81,9 +81,3 @@ void	print_worldmap(t_param *p)
 		i++;
 	}
 }
-
-void	wall_leaks_exit(int y, int x, t_param *p)
-{
-	printf(P_RED "=> y:[%d], x:[%d] <=\n" P_RESET, y, x);
-	err_exit(" ERROR: wall leak", p);
-}

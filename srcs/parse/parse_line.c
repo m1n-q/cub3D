@@ -67,13 +67,13 @@ void	parse_line(t_param *p, char *line)
 	if (is_empty_line(line) && !p->map)
 		return ;
 	if (type != UN_DEF && p->type_set[type])
-		err_exit("Error: double keys", p);
+		err_exit("double keys", p);
 	if (check_type_set(p))
 	{
 		set_max_width(p, line);
 		p->map = lst_add_back(p->map, line);
 		if (!p->map)
-			err_exit("Error:  failure", p);
+			err_exit("failure", p);
 		return ;
 	}
 	p->type_set[type] = 1;
@@ -81,7 +81,7 @@ void	parse_line(t_param *p, char *line)
 		return (parse_texture(p, type, line));
 	else if (type == FLOOR || type == CEILI)
 		return (parse_rgb(p, type, line));
-	err_exit("Error: invalid key", p);
+	err_exit("invalid key", p);
 }
 
 // 32 가장 긴 라인의 width값이 설정되도록

@@ -28,11 +28,11 @@ void	check_x_axis(t_param *p, int **M, int y)
 		if (M[y][start] == ' ')
 		{
 			if (M[y][start - 1] != 1)
-				wall_leaks_exit(y, start - 1, p);
+				err_exit("wall leak", p);
 			while (M[y][start + 1] == ' ')
 				start++;
 			if (M[y][start + 1] != 1)
-				wall_leaks_exit(y, start + 1, p);
+				err_exit("wall leak", p);
 		}
 	}
 }
@@ -53,11 +53,11 @@ static void	check_y_axis(t_param *p, int **M, int x)
 		if (M[start][x] == ' ')
 		{
 			if (M[start - 1][x] != 1)
-				wall_leaks_exit(start - 1, x, p);
+				err_exit("wall leak", p);
 			while (M[start + 1][x] == ' ')
 				start++;
 			if (M[start + 1][x] != 1)
-				wall_leaks_exit(start + 1, x, p);
+				err_exit("wall leak", p);
 		}
 	}
 }

@@ -37,7 +37,7 @@ static void	check_y_axis(t_param *p, int y, int x)
 		}
 	}
 	if (block == 2)
-		err_exit("ERROR: found a hole in map", p);
+		err_exit("found a hole in map", p);
 }
 
 void	check_hole(t_param *p, int y)

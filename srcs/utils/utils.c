@@ -50,6 +50,7 @@ void	err_exit(char *msg, t_param *p)
 	int	i;
 
 	msg = strjoin2_(P_RED, msg, P_RESET);
+	write(2, "Error\n", 6);
 	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);
 	free(msg);

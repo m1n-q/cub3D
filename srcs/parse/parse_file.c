@@ -59,9 +59,9 @@ void	filename_check(char *filename, char *extension, t_param *p)
 	f_len = ft_strlen(filename);
 	e_len = ft_strlen(extension);
 	if (f_len <= e_len)
-		err_exit("Error: invalid filename", p);
+		err_exit("invalid filename", p);
 	if (ft_strncmp(filename + f_len - e_len, extension, e_len) != 0)
-		err_exit("Error: invalid extension", p);
+		err_exit("invalid extension", p);
 }
 
 void	cnt_mapheight(t_param *p)
@@ -93,7 +93,7 @@ void    parse_file(t_param *p, char *filename)
     filename_check(filename, ".cub", p);
     fd = open(filename, O_RDONLY);
     if (fd < 3)
-        err_exit("Error: open() failure", p);
+        err_exit("open() failure", p);
     p->cfg->mapwidth = 0;
     ret = get_next_line(fd, &line);
     while (ret > 0)
@@ -104,7 +104,7 @@ void    parse_file(t_param *p, char *filename)
         ret = get_next_line(fd, &line);
     }
     if (ret == -1)
-        err_exit("Error: get_next_line failure", p);
+        err_exit("get_next_line failure", p);
     parse_line(p, line);
     free(line);
     close(fd);

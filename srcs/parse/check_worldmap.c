@@ -20,12 +20,12 @@ void	check_left_right_wall(t_param *p, int y)
 	while (check_val(p->worldmap[y][x]) == 3 && x < p->cfg->mapwidth - 1)
 		x++;
 	if (p->worldmap[y][x] != 1)
-		wall_leaks_exit(y, x, p);
+		err_exit("wall leak", p);
 	x = p->cfg->mapwidth - 1;
 	while (check_val(p->worldmap[y][x]) == 3)
 		x--;
 	if (p->worldmap[y][x] != 1)
-		wall_leaks_exit(y, x, p);
+		err_exit("wall leak", p);
 }
 
 void	check_top_bottom_wall(t_param *p)
@@ -40,12 +40,12 @@ void	check_top_bottom_wall(t_param *p)
 		while (check_val(p->worldmap[y][x]) == 3 && y < p->cfg->mapheight - 1)
 			y++;
 		if (p->worldmap[y][x] != 1)
-			wall_leaks_exit(y, x, p);
+			err_exit("wall leak", p);
 		y = p->cfg->mapheight - 1;
 		while (check_val(p->worldmap[y][x]) == 3)
 			y--;
 		if (p->worldmap[y][x] != 1)
-			wall_leaks_exit(y, x, p);
+			err_exit("wall leak", p);
 	}
 }
 
@@ -63,7 +63,7 @@ void	check_worldmap(t_param *p, t_config *cfg)
 		while (x < cfg->mapwidth)
 		{
 			if (!check_val(p->worldmap[y][x]))
-				err_exit("ERROR: invalid val in map", p);
+				err_exit("invalid val in map", p);
 			if (check_val(p->worldmap[y][x]) == 1)
 				player += (set_dir(p, p->worldmap[y][x]) && set_pos(p, x, y));
 			x++;
@@ -75,7 +75,7 @@ void	check_worldmap(t_param *p, t_config *cfg)
 	check_top_bottom_wall(p);
 	check_wall(p);
 	if (player != 1)
-		err_exit("ERROR: wrong player numer", p);
+		err_exit("wrong player numer", p);
 }
 
 // 10 가장 왼쪽 벽을 체크합니다 in a line
