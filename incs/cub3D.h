@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:40:00 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 17:04:10 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 17:32:02 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 # include "get_next_line.h"
 # include "map.h"
 
-# define N		0
-# define S		1
-# define W		2
-# define E		3
+# define N		NO
+# define S		SO
+# define W		WE
+# define E		EA
 
 # define TOP	0
 # define BOTTOM	1

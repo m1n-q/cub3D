@@ -6,17 +6,19 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:33:58 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 16:32:10 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 17:43:29 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
+//NOTE: t_img.data	=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
+//NOTE: buffer		=> 직관적으로 생각할 수 있는 2차원 배열 형태
 typedef struct s_img
 {
 	void	*img;
-	int		*addr;
+	int		*data;
 	int		bpp;
 	int		linesize;
 	int		endian;
@@ -38,7 +40,7 @@ typedef struct s_vector
 	double	y;
 }	t_vector;
 
-typedef struct	s_lst
+typedef struct s_lst
 {
 	char			*content;
 	struct s_lst	*next;
@@ -57,7 +59,7 @@ typedef struct s_param
 {
 	void		*mlx;
 	void		*win;
-	int			**buf3D;	//NOTE: buffer	=> 직관적으로 생각할 수 있는 2차원 배열 형태
+	int			**buf3D;
 	int			textures[TEXNUM][TEXHEIGHT][TEXWIDTH];
 
 	t_config	*cfg;
@@ -71,8 +73,7 @@ typedef struct s_param
 	t_vector	pos;
 	t_vector	dir;
 
-	t_img		img3D;		//NOTE: t_img		=> mlx에서 사용되는 1차원 배열 형태 (width * y + x)
-
+	t_img		img3D;
 	t_img		wall_n;
 	t_img		wall_s;
 	t_img		wall_e;
@@ -86,15 +87,23 @@ typedef struct s_param
 
 typedef struct s_dda
 {
+	t_vector	step;
 	t_vector	raydir;
-	t_vector	hit;			// which box of the map we're in
-	t_vector	step;			// what direction to step in x or y-direction (either +1 or -1)
-	double		dist_vert;		// length of ray from current position to next vert-side
-	double		dist_horz;		// length of ray from current position to next horz-side
-	double		delta_vert;		// length of ray from one vert-side to next vert-side
-	double		delta_horz;		// length of ray from one vert-side to next horz-side
-	double		perp_dist;
 	t_vector	perp_dir;
-	int			side;			// was a NS or a EW wall hit?
+	t_vector	hit;
+	double		dist_vert;
+	double		dist_horz;
+	double		delta_vert;
+	double		delta_horz;
+	double		perp_dist;
+	int			side;
 }	t_dda;
 #endif
+
+// 	hit			: which box of the map we're in
+//	step		: what direction to step in x or y-direction (either +1 or -1)
+//	dist_vert	: length of ray from current position to next vert-side
+//	dist_horz	: length of ray from current position to next horz-side
+//	delta_vert	: length of ray from one vert-side to next vert-side
+//	delta_horz	: length of ray from one vert-side to next horz-side
+//	side		: was a NS or a EW wall hit?

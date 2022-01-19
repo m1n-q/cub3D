@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 19:21:35 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 00:02:27 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 17:29:15 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include "libft.h"
 
 # define BUFFER_SIZE 1024
-typedef struct	s_fd_set
+
+typedef struct s_fd_set
 {
 	int			was_called;
 	int			fd;

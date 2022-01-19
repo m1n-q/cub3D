@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:15:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 16:27:33 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 17:36:23 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	load_file(t_param *p, t_img *I, char *filename)
 	I->img = f(p->mlx, filename, &I->width, &I->height);
 	if (!I->img)
 		err_exit(formatstr("{}: load failed", filename, 0), p);
-	I->addr = (int *)mlx_get_data_addr(I->img, &I->bpp, \
+	I->data = (int *)mlx_get_data_addr(I->img, &I->bpp, \
 									&I->linesize, &I->endian);
 	if (I->width != I->height || I->width != TEXWIDTH)
 		err_exit(formatstr("{}: 256x256 image required.", filename, 0), p);
@@ -55,6 +55,6 @@ void	clear_img(t_img img, int w, int h)
 	{
 		x = -1;
 		while (++x < w)
-			img.addr[(y * img.linesize / sizeof(int) + x)] = 0;
+			img.data[(y * img.linesize / sizeof(int) + x)] = 0;
 	}
 }

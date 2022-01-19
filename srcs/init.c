@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 14:57:46 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 16:30:00 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 17:35:55 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	init_mlx_img(t_param *p)
 	p->img3D.img = mlx_new_image(p->mlx, SCREENWIDTH, SCREENHEIGHT);
 	if (!p->img3D.img)
 		exit(1);
-	p->img3D.addr = (int *)mlx_get_data_addr(p->img3D.img, &p->img3D.bpp, \
+	p->img3D.data = (int *)mlx_get_data_addr(p->img3D.img, &p->img3D.bpp, \
 										&p->img3D.linesize, &p->img3D.endian);
 }
 
