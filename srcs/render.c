@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 17:17:12 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 17:24:09 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	render(t_param *p)
 {
 	mlx_clear_window(p->mlx, p->win);
 	raycasting(p);
-	buffer_to_img(p->buf3D, p->img3D, SCREENWIDTH, SCREENHEIGHT);		// comment out with method2
-	clear_buffer(p->buf3D, SCREENWIDTH, SCREENHEIGHT);					// comment out with method2
+	buffer_to_img(p->buf3D, p->img3D, SCREENWIDTH, SCREENHEIGHT);		// @ comment out if method2
+	clear_buffer(p->buf3D, SCREENWIDTH, SCREENHEIGHT);					// @ comment out if method2
 	mlx_put_image_to_window(p->mlx, p->win, p->img3D.img, 0, 0);
 	return (0);
 }
