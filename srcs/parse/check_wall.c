@@ -70,7 +70,7 @@ void	check_wall(t_param *p)
 	y = -1;
 	while (++y < p->cfg->mapheight)
 		check_x_axis(p, p->worldmap, y);
-	x = 0;
+	x = -1;
 	while (++x < p->cfg->mapwidth)
 		check_y_axis(p, p->worldmap, x);
 }
