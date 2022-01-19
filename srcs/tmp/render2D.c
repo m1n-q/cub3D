@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 00:16:45 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:19:12 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,11 @@ void	draw_2Dplayer(t_param *p)
 	t_vector	minipos;
 	minipos.x = p->pos.x / p->cfg->blockscale * p->cfg->minimapscale;
 	minipos.y = p->pos.y / p->cfg->blockscale * p->cfg->minimapscale;
-
-	for (int y = -2; y <= 0; y++)
-		for (int x = -(y + 2); x <= (y + 2); x++)
+	for (int y = -1; y <= 0; y++)
+		for (int x = -(y + 1); x <= (y + 1); x++)
 			p->buf2D[(int)(minipos.y + (y))][(int)(minipos.x + (x))] = 0xff0000;
-	for (int y = 0; y <= 2; y++)
-		for (int x = (y - 2); x <= -(y - 2); x++)
+	for (int y = 0; y <= 1; y++)
+		for (int x = (y - 1); x <= -(y - 1); x++)
 			p->buf2D[(int)(minipos.y + (y))][(int)(minipos.x + (x))] = 0xff0000;
 
 }

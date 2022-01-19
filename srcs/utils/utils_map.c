@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 18:16:03 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 16:02:48 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:15:46 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	set_pos(t_param *p, int x, int y)
 {
 	int	blockscale;
 
-	blockscale = (SCREENWIDTH / 3);
+	blockscale = (SCREENWIDTH / 5);
 	if (blockscale < 1)
 		blockscale = 1;
 	p->pos.x = (x + 0.5) * blockscale;

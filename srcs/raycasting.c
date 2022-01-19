@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 00:00:45 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 00:17:12 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:09:55 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	raycasting(t_param *p)
 
 	draw.x = -1;
 	angle = (PI / 6.0);
-	dr = (angle * 2.0 / p->cfg->num_rays);
+	dr = (angle * 2.0 / NUM_RAYS);
 	r = -(angle);
 	while (r <= angle)
 	{

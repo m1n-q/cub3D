@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 11:37:02 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/18 17:03:59 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/19 16:22:55 by mishin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # define TEXWIDTH		256
 # define TEXHEIGHT		256
 # define TEXNUM			4
+# define NUM_RAYS		SCREENWIDTH
 
 #endif
