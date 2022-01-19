@@ -89,13 +89,13 @@ $(NAME) : $(LIBFT) $(LIBMLX) $(OBJS) link
 
 
 $(SRC_DIR)/parse/%.o: $(SRC_DIR)/parse/%.c compile1
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR) -I $(LIBMLX_DIR)
 
 $(SRC_DIR)/utils/%.o: $(SRC_DIR)/utils/%.c compile2
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR) -I $(LIBMLX_DIR)
 
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c compile0
-	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I $(INC_DIR) -I $(LIBMLX_DIR)
 
 
 # libft compile
