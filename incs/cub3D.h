@@ -97,6 +97,7 @@ int		lst_get_len(t_lst *node);
 t_lst	*lst_get_tail(t_lst *node);
 
 /* utils */
+char	*strjoin2_(char *s1, char *s2, char *s3);
 char	**ft_split2(char *str, char *ch);
 void	err_exit(char *msg, t_param *p);
 void	err_exit_(char *msg, t_param *p);

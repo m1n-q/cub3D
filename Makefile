@@ -28,6 +28,7 @@ SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/parse/check_wall.c \
 		$(SRC_DIR)/parse/check_worldmap.c \
 		$(SRC_DIR)/utils/utils.c \
+		$(SRC_DIR)/utils/utils2.c \
 		$(SRC_DIR)/utils/utils_lst.c \
 		$(SRC_DIR)/utils/utils_map.c \
 		$(SRC_DIR)/utils/mallocexit.c \
