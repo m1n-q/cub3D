@@ -29,7 +29,11 @@ int	bye(t_param *p)
 {
 	printf("Bye!\n");
 	mlx_destroy_window(p->mlx, p->win);
-	system("leaks cub3D &> res; cat res | grep leaked > res1; cat res1; rm res res1");
 	exit(0);
 	return (0);
 }
+
+/*
+system("leaks cub3D &> res; cat res | grep leaked > res1; \
+cat res1; rm res res1");
+*/

@@ -74,7 +74,6 @@ void	err_exit(char *msg, t_param *p)
 	write(2, "\n", 1);
 	free(msg);
 	dealloc(p);
-	system("leaks cub3D &> res; cat res | grep leaked > res1; cat res1; rm res res1");
 	exit(1);
 }
 
@@ -90,6 +89,10 @@ void	err_exit_(char *msg, t_param *p)
 	free(msg);
 	free(tmp);
 	dealloc(p);
-	system("leaks cub3D &> res; cat res | grep leaked > res1; cat res1; rm res res1");
 	exit(1);
 }
+
+/*
+system("leaks cub3D &> res; cat res | grep leaked > res1; \
+cat res1; rm res res1");
+*/
