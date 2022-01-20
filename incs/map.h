@@ -19,6 +19,10 @@
 # define RET_ERROR	0
 # define RET_EOF	-1
 
+# define PLAYER		1
+# define WALL_LAND	2
+# define SPACE		3
+
 # define NO			0
 # define SO			1
 # define WE			2

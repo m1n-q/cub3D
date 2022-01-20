@@ -53,11 +53,11 @@ int	set_pos(t_param *p, int x, int y)
 int	check_val(int c)
 {
 	if (c == 'N' || c == 'S' || c == 'W' || c == 'E')
-		return (1);
-	if (c == 1 || c == 0)
-		return (2);
-	if (c == ' ' || c == '\t')
-		return (3);
+		return (PLAYER);
+	else if (c == 1 || c == 0)
+		return (WALL_LAND);
+	else if (c == ' ' || c == '\t')
+		return (SPACE);
 	else
 		return (0);
 }

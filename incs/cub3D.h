@@ -86,8 +86,7 @@ void	parse_line(t_param *p, char *line);
 void	parse_texture(t_param *p, int type, char *line);
 void	parse_rgb(t_param *p, int type, char *line);
 void	check_worldmap(t_param *p, t_config *cfg);
-void	check_hole(t_param *p, int y);
-void	check_wall(t_param *p);
+void	check_map_leaks(t_param *p, int **map);
 
 int		get_next_line(int fd, char **line);
 t_lst	*lst_add_back(t_lst *node, char *content);

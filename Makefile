@@ -24,8 +24,7 @@ SRCS =  $(SRC_DIR)/main.c \
 		$(SRC_DIR)/parse/parse_line.c \
 		$(SRC_DIR)/parse/parse_rgb.c \
 		$(SRC_DIR)/parse/parse_texture.c \
-		$(SRC_DIR)/parse/check_hole.c \
-		$(SRC_DIR)/parse/check_wall.c \
+		$(SRC_DIR)/parse/check_map_leaks.c \
 		$(SRC_DIR)/parse/check_worldmap.c \
 		$(SRC_DIR)/utils/utils.c \
 		$(SRC_DIR)/utils/utils2.c \
