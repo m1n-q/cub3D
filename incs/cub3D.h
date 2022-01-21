@@ -16,6 +16,13 @@
 # include <math.h>
 # include <stdio.h>
 # include <X11/X.h>
+
+/*
+# include "/Applications/Xcode.app/Contents/Developer/Platforms/\
+MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/Library/\
+Frameworks/Tk.framework/Versions/8.5/Headers/X11/X.h"
+*/
+
 # include <stdbool.h>
 
 # include "mlx.h"
