@@ -6,7 +6,7 @@
 /*   By: mishin <mishin@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:35:09 by mishin            #+#    #+#             */
-/*   Updated: 2022/01/19 16:19:12 by mishin           ###   ########.fr       */
+/*   Updated: 2022/01/21 13:54:56 by mishin           ###   ########.kr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	draw_2Dmap(t_param *p)
 {
 	for (int y=0; y < p->cfg->mapheight; y++)
 		for (int x=0; x < p->cfg->mapwidth; x++)
-			if (draw_2Dsquare(p, x, y, p->grid) && p->worldmap[y][x])
+			if (draw_2Dsquare(p, x, y, p->grid) && p->worldmap[y][x] == 1)
 				draw_2Dsquare(p, x, y, p->block);
 }
 
